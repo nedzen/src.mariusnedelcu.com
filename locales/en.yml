@@ -28,12 +28,12 @@ en:
       month: "%b, %Y"
       year: "%Y"
   blog:
-    url: http://ngs.io/
-    title: Atsushi Nagase
-    cname: ngs.io
+    url: http://mariusnedelcu.com/
+    title: Marius Nedelcu
+    cname: mariusnedelcu.com
     description: Hacking recipes in my life.
   author:
-    name: Atsushi Nagase
+    name: Marius Nedelcu
   tag_title:
     text: "Entries tagged with &quot;%{tag}&quot;"
     html: "Entries tagged with <q>%{tag}</q>"

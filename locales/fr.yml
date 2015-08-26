@@ -1,0 +1,39 @@
+---
+fr:
+  search_site: 'recherche'
+  search_result: 'resultats:'
+  links: 'liens'
+  similar_articles: 'articles similaires'
+  archives: 'archives'
+  show_all: 'voir tout'
+  previous_article: 'article precendent'
+  next_article: 'article suivant'
+  filter_tags: 'filtre par tag'
+  read_more: 'en savoir plus'
+  file_not_found: 'pas trouve'
+  navigation: 'navigation'
+  tags: 'les tags'
+  monthly: 'mois'
+  home: 'pagehome'
+  aboutme: 'qui suis-je'
+  tweet: 'tweet-le'
+  recent_entries: 'recentes'
+  calendar_description:
+    text: "%postees en {title}"
+  calendar_title:
+    text: "bla bla text par %{title}"
+    html: "ecrit par <time>%{title}</time>"
+    format:
+      day: "%d, %b, %Y"
+      month: "%b, %Y"
+      year: "%Y"
+  blog:
+    url: http://fr.mariusnedelcu.com/
+    title: 'marius Nedelcu voici mon sit web'
+    cname: fr.mariusnedelcu.com
+    description: 'je suis donc je suis ici oui'
+  author:
+    name: 'mon nom ici Marius'
+  tag_title:
+    text: "tagged: &quot;%{tag}&quot;"
+    html: "tagged: <q>%{tag}</q>"

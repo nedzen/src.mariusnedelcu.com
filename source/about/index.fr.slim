@@ -1,0 +1,44 @@
+---
+title: En savoir plus sur Marius Nedelcu
+description: graphiste polyvalent sur Paris
+ogp:
+  og:
+    type: profile
+  profile:
+    first_name: Marius
+    last_name:  Nedelcu
+    username:   nedzen
+    gender:     male
+alternate: true
+---
+
+- content_for :main do
+  main.col-md-9 role='main' itemscope=true itemtype="http://data-vocabulary.org/Person"
+    .row
+      .col-md-12
+        h1 itemprop="name" Marius Nedelcu
+    .row
+      .col-md-3
+        p
+          =image_tag('logo_pink.jpg', :alt => 'nedzen', :class => 'logo', :itemprop=>'photo')
+      .col-md-9
+        p= alt_link
+
+        span Je suis à Paris
+        
+        markdown:
+
+          ## À propos de moi:
+          
+          etant graphiste je m'interesse a plus que me concerne directemment par rapport à ma proffesion. Les soujets qui m'attirent et m'intrique le plus sont l'hesthetique, la philosophie, l'art, la biologie, l'etre umain car ce que je fais c'est pour lui a s'en servir.
+
+          Sur ce blog je vais écrire sur des choses que je ne comprends pas. Fais toi plaisir, clique ici et la sur mes pensées
+
+      h3 Get in touch with me at
+      dl.dl-horizontal
+        dt boîte mail
+        dd= link_to 'hello@mariusnedelcu.com', 'hello@mariusnedelcu.com'
+        dt Skype
+        dd= link_to 'marius.etc', 'skype:marius.etc?call'
+        dt Phone
+        dd +33 065 174 55 66

@@ -5,13 +5,13 @@ source 'http://rubygems.org'
 gem 'dotenv'
 
 gem 'middleman-blog-similar', :github => 'ngs/middleman-blog-similar', :ref => 'begin-rescue-tree-tagger'
-gem 'levenshtein-ffi', :require => 'levenshtein'
+# gem 'levenshtein-ffi', :require => 'levenshtein'
 
 gem "middleman-favicon-maker", "~> 3.5"
 gem 'middleman', '~> 3.2.2'
 gem 'middleman-blog', '~> 3.5.0'
 gem 'middleman-deploy'
-gem 'middleman-disqus'
+# gem 'middleman-disqus'
 gem 'middleman-google-analytics', :github => 'ngs/middleman-google-analytics'
 gem 'middleman-livereload', '~> 3.3.2'
 gem 'middleman-ogp', :git => 'git://github.com/ngs/middleman-ogp.git', :branch => 'blog-support'

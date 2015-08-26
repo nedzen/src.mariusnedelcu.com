@@ -25,11 +25,11 @@ compile:
   override:
     - bundle exec middleman build --verbose:
         environment:
-          MM_LANG: ja
+          MM_LANG: fr
     - bundle exec middleman build --verbose:
         environment:
           MM_LANG: en
-    - tar cvfz $CIRCLE_ARTIFACTS/build-ja.tar.gz build-ja
+    - tar cvfz $CIRCLE_ARTIFACTS/build-fr.tar.gz build-fr
     - tar cvfz $CIRCLE_ARTIFACTS/build-en.tar.gz build-en
 deployment:
   main:
@@ -37,7 +37,7 @@ deployment:
     commands:
       - bundle exec middleman deploy >/dev/null 2>&1:
           environment:
-            MM_LANG: ja
+            MM_LANG: fr
       - bundle exec middleman deploy >/dev/null 2>&1:
           environment:
             MM_LANG: en

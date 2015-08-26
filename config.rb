@@ -7,13 +7,13 @@ require './lib/middleman/renderers/custom'
 # Blog settings
 ###
 
-lang = (ENV['MM_LANG'] || 'ja').to_sym
+lang = (ENV['MM_LANG'] || 'fr').to_sym
 cname = ({
-  en: 'ngs.io',
-  ja: 'ja.ngs.io'
+  en: 'mariusnedelcu.com',
+  fr: 'fr.mariusnedelcu.com'
 })[lang]
 
-Time.zone = "Tokyo"
+Time.zone = "Paris"
 
 activate :directory_indexes
 activate :syntax
@@ -44,6 +44,7 @@ activate :blog do |blog|
   blog.per_page = 10
   blog.page_link = "p{num}"
 end
+
 # if lang == :en
 activate :similar, :algorithm => :'word_frequency/tree_tagger'
 # else
@@ -114,16 +115,16 @@ configure :build do
   ignore '_drafts'
   ignore 'redirect.html'
   if lang == :en
-    ignore '/about/index.ja.html'
-    ignore '/ja/*'
+    ignore '/about/index.fr.html'
+    ignore '/fr/*'
     activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-200187-32'
+      ga.tracking_id = 'UA-59815331-1'
     end
   else
     ignore '/about/index.en.html'
     ignore '/en/*'
     activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-200187-34'
+      ga.tracking_id = 'UA-59815331-1'
     end
   end
   activate :favicon_maker, :icons => {
@@ -152,30 +153,29 @@ configure :build do
   }
 end
 
-activate :disqus do |d|
-  d.shortname = lang == :en ? "ngsio" : "jangsio"
-end
+# activate :disqus do |d|
+#   d.shortname = lang == :en ? "ngsio" : "jangsio"
+# end
 
 activate :deploy do |deploy|
   IO.write "source/CNAME", cname
   deploy.method = :git
   deploy.branch = 'gh-pages'
-  deploy.remote = "https://#{ENV['GH_TOKEN']}@github.com/ngs/#{cname}.git"
+  deploy.remote = "https://#{ENV['GH_TOKEN']}@github.com/nedzen/#{cname}.git"
 end
 
 helpers do
   include EmojiHelper
-
   def alt_lang
     I18n.locale.to_s == 'en' ? "ja_JP" : "en_US"
   end
 
   def alt_lang_name
-    I18n.locale.to_s == 'en' ? "日本語" : "English"
+    I18n.locale.to_s == 'en' ? "fr_FR" : "French"
   end
 
   def alt_host
-    I18n.locale.to_s == 'en' ? "ja.ngs.io" : "ngs.io"
+    I18n.locale.to_s == 'en' ? "fr.mariusnedelcu.com" : "mariusnedelcu.com"
   end
 
   def alt_href
@@ -186,5 +186,4 @@ helpers do
     link_to %Q{<span class="glyphicon glyphicon-globe"></span>&nbsp;#{alt_lang_name}},
       alt_href, href_lang: alt_lang, rel: "alternate"
   end
-
 end
