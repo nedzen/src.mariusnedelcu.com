@@ -1,7 +1,7 @@
 ---
-title: Testing out the blog
-description: "Looking out for different ways to integrate content"
-date: 2015-08-17 21:56
+title: second test article goes here
+description: "Something that serves as content placeholder"
+date: 2015-08-26 12:35 CEST
 tags: nedzen, whatever, here, tttags
 public: true
 alternate: true
@@ -14,8 +14,6 @@ ogp:
       width: 992
       height: 525
 ---
-
-![](images/2015-08-17-letestehere/gelly_fond.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo faucibus risus, sed congue lectus ultricies vitae. Etiam pulvinar mollis neque eget ultricies. Vivamus magna arcu, ullamcorper rhoncus odio eu, scelerisque condimentum metus. Pellentesque tempus libero quis nibh scelerisque facilisis. 
 

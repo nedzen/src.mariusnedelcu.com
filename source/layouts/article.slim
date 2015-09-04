@@ -11,13 +11,13 @@
         p= alt_link
       = preserve do
         == yield
+    
     footer.meta
-      ul.pull-left.nav.nav-pills.tags itemprop="keywords"
+      ul.tags itemprop="keywords"
         - current_article.tags.each do|tag|
           li
             = link_to tag_path(tag) do
-              span.glyphicon.glyphicon-tag
-              |&nbsp;
+              span
               = tag
 
 

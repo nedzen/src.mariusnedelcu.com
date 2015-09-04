@@ -1,6 +1,7 @@
 ---
 title: About Marius Nedelcu
 description: About Marius Nedelcu a graphic designer.
+layout: secondarylayout
 ogp:
   og:
     type: profile
@@ -12,41 +13,45 @@ ogp:
 alternate: true
 ---
 
-- content_for :main do
-  main.col-md-9 role='main' itemscope=true itemtype="http://data-vocabulary.org/Person"
-    .row
-      .col-md-12
-        h1 itemprop="name" Marius Nedelcu
-        p itemprop="name" nedzen
-    .row
-      .col-md-3
-        p
-          =image_tag('logo_pink.jpg', :alt => 'nedzen', :class => 'logo', :itemprop=>'photo')
 
-      .col-md-9
-        p= alt_link
 
-        span Based in Paris
+
+
+/ - content_for :main do
+/   main.ss role='main' itemscope=true itemtype="http://data-vocabulary.org/Person"
+/     .row
+/       .col-md-12
+/         h1 itemprop="name" Marius Nedelcu
+/         p itemprop="name" nedzen
+/     .row
+/       .col-md-3
+/         p
+/           =image_tag('logo_pink.jpg', :alt => 'nedzen', :class => 'logo', :itemprop=>'photo')
+
+/       .col-md-9
+/         p= alt_link
+
+/         span Based in Paris
         
-        markdown:
+/         markdown:
 
-          ## Some things about me:
+/           ## Some things about me:
 
-          Being mainly a designer I interest myself in many subjects outside of what is immediately linked to my craft. The subjects on which I write interest me and I triedy to understand them more deeply by approaching them in writing. Before anyone else I write for myself. It can look as a documentation of things I know, or an abstract cracking of things that I don’t know. It is a quest for meaning where the process is more important than the end result.
+/           Being mainly a designer I interest myself in many subjects outside of what is immediately linked to my craft. The subjects on which I write interest me and I triedy to understand them more deeply by approaching them in writing. Before anyone else I write for myself. It can look as a documentation of things I know, or an abstract cracking of things that I don’t know. It is a quest for meaning where the process is more important than the end result.
 
-          If you what you read here resonates with you, sparks your imagination or simply annoys you. let me know in the comments.          
+/           If you what you read here resonates with you, sparks your imagination or simply annoys you. let me know in the comments.          
 
-        ul
-          li= link_to image_tag('dribbble.svg', :alt => 'dribbble'), 'https://dribbble.com/mariusnedelcu', :target => '_blank'
-          li= link_to image_tag('twitter.svg', :alt => 'twitter'), 'https://twitter.com/nedzen', :target => '_blank'
-          li= link_to image_tag('ello.svg', :alt => 'ello'), 'https://ello.co/mariusnedelcu', :target => '_blank'
-          li= link_to image_tag('github.svg', :alt => 'github'), 'https://github.com/nedzen/', :target => '_blank'
+/         ul
+/           li= link_to image_tag('dribbble.svg', :alt => 'dribbble'), 'https://dribbble.com/mariusnedelcu', :target => '_blank'
+/           li= link_to image_tag('twitter.svg', :alt => 'twitter'), 'https://twitter.com/nedzen', :target => '_blank'
+/           li= link_to image_tag('ello.svg', :alt => 'ello'), 'https://ello.co/mariusnedelcu', :target => '_blank'
+/           li= link_to image_tag('github.svg', :alt => 'github'), 'https://github.com/nedzen/', :target => '_blank'
 
-      h3 Get in touch with me at
-      dl.dl-horizontal
-        dt Email
-        dd= link_to 'hello@mariusnedelcu.com', 'hello@mariusnedelcu.com'
-        dt Skype
-        dd= link_to 'marius.etc', 'skype:marius.etc?call'
-        dt Phone
-        dd +33 065 174 55 66
+/       h3 Get in touch with me at
+/       dl.dl-horizontal
+/         dt Email
+/         dd= link_to 'hello@mariusnedelcu.com', 'hello@mariusnedelcu.com'
+/         dt Skype
+/         dd= link_to 'marius.etc', 'skype:marius.etc?call'
+/         dt Phone
+/         dd +33 065 174 55 66

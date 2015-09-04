@@ -19,6 +19,7 @@ activate :directory_indexes
 activate :syntax
 activate :i18n, langs: [lang]
 activate :livereload
+# activate :minify_css
 
 set :markdown_engine, :custom
 set :markdown_engine_prefix, ::Middleman::Renderers
@@ -167,7 +168,7 @@ end
 helpers do
   include EmojiHelper
   def alt_lang
-    I18n.locale.to_s == 'en' ? "ja_JP" : "en_US"
+    I18n.locale.to_s == 'en' ? "fr_FR" : "en_US"
   end
 
   def alt_lang_name

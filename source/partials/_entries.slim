@@ -9,19 +9,19 @@
         = article.summary
     - if article.render(keep_separator: true, layout: false).match(article.blog_options.summary_separator)
       p.read-more
-        = link_to article.url, class: 'btn btn-default btn-sm' do
+        = link_to article.url, class: 'btn' do
           = t :read_more
-          span.glyphicon.glyphicon-play-circle &nbsp;
+          span
 - if paginate && (next_page || num_pages > 1)
   .text-center
-    ul.pagination.pagination-lg
+    ul.pagination
       - if prev_page
         li
           = link_to prev_page, rel: 'prev' do
             span.fa.fa-chevron-left
       - else
         li.disabled
-          span.fa.fa-chevron-left
+          span
       - (page_number - 2 .. page_number + 2).select{|i| i > 0 && i <= num_pages}.each do |i|
         - if i == page_number
           li.active
@@ -38,4 +38,4 @@
             span.fa.fa-chevron-right
       - else
         li.disabled
-          span.fa.fa-chevron-right
+          span
