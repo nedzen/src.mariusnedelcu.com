@@ -6,9 +6,9 @@
       p.meta
         time itemprop="datePublished" datetime=current_article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
           = current_article.date.strftime('%Y-%m-%d %H:%M')
+        - if current_resource.data.alternate
+          = alt_link
     .article-body itemprop="articleBody"
-      - if current_resource.data.alternate
-        p= alt_link
       = preserve do
         == yield
     
@@ -19,7 +19,9 @@
             = link_to tag_path(tag) do
               span
               = tag
-
+      / ul
+      /   - current_article.similar_articles.first(5).each do|article|
+      /     li= link_to article.title, article.url
 
       / ul.nav.nav-pills.pull-right
       /   li
@@ -40,15 +42,16 @@
         /   a href="https://news.ycombinator.com/submit" class="hn-button" class="hn-button" data-title=current_article.title data-url=url
         /     | Vote on Hacker News
       
-      ul.pager
-        - if current_article.previous_article
-          li.previous
-            = link_to current_article.previous_article.url, 'data-toggle' => 'tooltip', title: "#{ t :previous_article }: #{ current_article.previous_article.title }", rel: 'prev' do
-              span.glyphicon.glyphicon-chevron-left
-        - if current_article.next_article
-          li.next
-            = link_to current_article.next_article.url, 'data-toggle' => 'tooltip', title: "#{ t :next_article }: #{ current_article.next_article.title }", rel: 'next' do
-              span.glyphicon.glyphicon-chevron-right
+      / ul.pager
+      /   - if current_article.previous_article
+      /     li.previous
+      /       = link_to current_article.previous_article.url, title: "#{ t :previous_article }: #{ current_article.previous_article.title }", rel: 'prev' do
+      /         =current_article.previous_article.title
+
+      /   - if current_article.next_article
+      /     li.next
+      /       = link_to current_article.next_article.url, 'data-toggle' => 'tooltip', title: "#{ t :next_article }: #{ current_article.next_article.title }", rel: 'next' do
+      /         =current_article.next_article.title
 
 
     / .disqus= disqus

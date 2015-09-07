@@ -5,7 +5,7 @@ en:
   links: Links
   similar_articles: Similar Articles
   archives: Archives
-  show_all: Show all
+  show_all: writing
   previous_article: Previous Article
   next_article: Next Article
   filter_tags: Filter Tags
@@ -15,9 +15,10 @@ en:
   tags: Tags
   monthly: Monthly
   home: Home
-  aboutme: About me
+  aboutme: about
+  visual: work
   tweet: Tweet
-  recent_entries: Recent Entries
+  recent_entries: Recent
   calendar_description:
     text: "Entries posted in %{title}"
   calendar_title:
@@ -35,5 +36,5 @@ en:
   author:
     name: Marius Nedelcu
   tag_title:
-    text: "Entries tagged with &quot;%{tag}&quot;"
-    html: "Entries tagged with <q>%{tag}</q>"
+    text: "# %{tag}"
+    html: "# %{tag}"

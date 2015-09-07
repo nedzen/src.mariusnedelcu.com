@@ -156,3 +156,115 @@ $prefixes: ("-moz-", "-webkit-", "-ms-", "");
 //       font-url($somefont + '.svg#gcsbi') format('svg'); /* Legacy iOS */
 //   } 
 // }
+// WebKit-style focus
+
+@mixin tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+
+@mixin hover {
+  @if $enable-hover-media-query {
+    // See Media Queries Level 4: http://drafts.csswg.org/mediaqueries/#hover
+    // Currently shimmed by https://github.com/twbs/mq4-hover-shim
+    @media (hover: hover) {
+      &:hover { @content }
+    }
+  }
+  @else {
+    &:hover { @content }
+  }
+}
+
+@mixin hover-focus {
+  @if $enable-hover-media-query {
+    &:focus { @content }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin plain-hover-focus {
+  @if $enable-hover-media-query {
+    &,
+    &:focus {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &,
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin hover-focus-active {
+  @if $enable-hover-media-query {
+    &:focus,
+    &:active {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:active,
+    &:hover {
+      @content
+    }
+  }
+}
+
+// Sizing shortcuts
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($w) {
+  width: $w;
+  height: $w;
+}
+
+// Transitions
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+@mixin transition-property($transition-property...) {
+  -webkit-transition-property: $transition-property;
+          transition-property: $transition-property;
+}
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: $transition-delay;
+          transition-delay: $transition-delay;
+}
+@mixin transition-duration($transition-duration...) {
+  -webkit-transition-duration: $transition-duration;
+          transition-duration: $transition-duration;
+}
+@mixin transition-timing-function($timing-function) {
+  -webkit-transition-timing-function: $timing-function;
+          transition-timing-function: $timing-function;
+}
+@mixin transition-transform($transition...) {
+  -webkit-transition: -webkit-transform $transition;
+     -moz-transition: -moz-transform $transition;
+       -o-transition: -o-transform $transition;
+          transition: transform $transition;
+}

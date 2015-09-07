@@ -42,7 +42,7 @@ activate :blog do |blog|
   blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"
   blog.paginate = true
-  blog.per_page = 10
+  blog.per_page = 1
   blog.page_link = "p{num}"
 end
 
@@ -168,11 +168,11 @@ end
 helpers do
   include EmojiHelper
   def alt_lang
-    I18n.locale.to_s == 'en' ? "fr_FR" : "en_US"
+    I18n.locale.to_s == 'en' ? "[ read in English ]" : "en_US"
   end
 
   def alt_lang_name
-    I18n.locale.to_s == 'en' ? "fr_FR" : "French"
+    I18n.locale.to_s == 'en' ? "[ read in French ]" : "French"
   end
 
   def alt_host

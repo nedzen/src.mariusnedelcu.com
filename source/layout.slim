@@ -64,63 +64,74 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
     /   - if next_page
     /     link rel="next" href=next_page.url
   
-  body
-    / .nedzen =config.site_url
-      / =current_resource.data.app_id
-      / =current_page.data.description
+    - if current_article
+        body.wide
+    - elsif current_page
+        body
+
+    nav.navbar itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
+      .logo= link_to config.site_url
+        =image_tag('mariusnedelcu_logo.svg', :alt => 'nedzen', :class => 'logo')
+        strong Marius Nedelcu - digital maverick
+
+      ul.nav-menu
+        li= link_to '/archives' do 
+          = t(:show_all)
+        li= link_to '/visual' 
+          = t :visual
+        li= link_to '/about' 
+          = t :aboutme
+
+      a.toggle-nav href="#" id="dothis" testing
+
+    / - if current_page.path === '/'
+    /   div testing
+    /   -elsif
+    /   .featured
+    /     h1 This is how I made that thing
+    /     =image_tag('gold_texture.jpg', :alt => 'nedzen', :class => 'logo')
+    /     p this text belongs to featured
     
     .container
+      .row
+        .content
+          - if content_for? :main
+            == yield_content :main
+          - else
+            main role='main'
+              == yield
       
-      #content
-        - if content_for? :main
-          == yield_content :main
-        - else
-          main role='main'
-            == yield
-      
-      aside#sidebar
-        div.me itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
-          =link_to '/about'
-            =image_tag('mariusnedelcu_logo.svg', :alt => 'nedzen', :class => 'logo')
-            strong Marius Nedelcu
-          em Digital Maverick
+        sidebar
+          .recent.box
+            h3= t :recent_entries
+            ul
+              - blog.articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }[0...10].each do |article|
+                li
+                  =link_to article do
+                    =emojify article.title
+                    time.date= article.date.strftime('%Y/%m/%d')
+              li.show-all
+                = link_to '/archives' do
+                  = t(:show_all)
 
-          ul
-            li= link_to image_tag('dribbble.svg', :alt => 'dribbble'), 'https://dribbble.com/mariusnedelcu', :target => '_blank'
-            li= link_to image_tag('twitter.svg', :alt => 'twitter'), 'https://twitter.com/nedzen', :target => '_blank'
-            li= link_to image_tag('ello.svg', :alt => 'ello'), 'https://ello.co/mariusnedelcu', :target => '_blank'
-            li= link_to image_tag('github.svg', :alt => 'github'), 'https://github.com/nedzen/', :target => '_blank'
+            
+          / h3= t :monthly
+          / ul.tags
+          /   - blog.articles.select {|a| a.data[:public] }.group_by {|a| a.date.year }.each do |year, year_articles|
+          /     - year_articles.group_by {|a| a.date.month }.each do |month, month_articles|
+          /       li
+          /         = link_to blog_month_path(year, month) do
+          /           = Date.new(year, month, 1).strftime(t 'calendar_title.format.month')
+          /           i= month_articles.size
 
-        / h3= t :recent_entries
-        ul.tags
-          - blog.articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }[0...10].each do |article|
-            li
-              =link_to article do
-                =emojify article.title
-                time.date= article.date.strftime('%Y/%m/%d')
-          / li.show-all
-          /   = link_to '/archives' do
-          /     = t(:show_all)
-
-          
-        / h3= t :monthly
-        ul.tags
-          - blog.articles.select {|a| a.data[:public] }.group_by {|a| a.date.year }.each do |year, year_articles|
-            - year_articles.group_by {|a| a.date.month }.each do |month, month_articles|
-              li
-                = link_to blog_month_path(year, month) do
-                  = Date.new(year, month, 1).strftime(t 'calendar_title.format.month')
-                  i= month_articles.size
-
-        
-        / h3= t :tags
-        ul.tags
-          - blog.tags.sort.each do |tag, articles|
-            li
-              =link_to tag_path(tag) do
-                span.glyphicon.glyphicon-tag
-                =tag
-                i=articles.size
+          .tags.box
+            h3= t :tags
+            ul.tags
+              - blog.tags.sort.each do |tag, articles|
+                li
+                  =link_to tag_path(tag) do
+                    =tag
+                    i=articles.size
 
 
         / section#sidebar-tags
@@ -211,13 +222,20 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
         /         i.fa.fa-dribbble
         /         | &nbsp;&nbsp;Dribbble
 
-      footer#main
-        .credit
-          p
-            | Proudly hosted on #{ link_to 'GitHub Pages', 'http://pages.github.com', rel: 'nofollow' }.&nbsp;
-            | Theme by #{ link_to 'United', 'http://bootswatch.com/united/', rel: 'nofollow', class: 'bootswatch-link' } from #{ link_to 'Bootswatch', 'http://bootswatch.com/', rel: 'nofollow' }.&nbsp;
-            | Built on CircleCI #{ link_to "build##{ENV['CIRCLE_BUILD_NUM']}", "https://circleci.com/gh/ngs/sources.ngs.io/#{ENV['CIRCLE_BUILD_NUM']}", rel: 'nofollow' } with commit #{ link_to (ENV['CIRCLE_SHA1']||'123456789abcdef')[0, 7], ENV['CIRCLE_COMPARE_URL'], rel: 'nofollow' }.
-          p Copyright &copy; #{ Time.now.year } #{ link_to 'Atsushi Nagase', 'http://ngs.io/', rel: 'copyright' } all rights reserved with all articles and pictures. Everything else in #{ link_to 'the repository', 'https://github.com/ngs/source.ngs.io/' } is #{ link_to 'MIT licensed', 'https://github.com/ngs/sources.ngs.io/blob/master/LICENSE.md' }.
+      footer
+        ul.social
+          li @copyright Marius Nedelcu
+          li= link_to image_tag('dribbble.svg', :alt => 'dribbble'), 'https://dribbble.com/mariusnedelcu', :target => '_blank'
+          li= link_to image_tag('twitter.svg', :alt => 'twitter'), 'https://twitter.com/nedzen', :target => '_blank'
+          li= link_to image_tag('ello.svg', :alt => 'ello'), 'https://ello.co/mariusnedelcu', :target => '_blank'
+          li= link_to image_tag('github.svg', :alt => 'github'), 'https://github.com/nedzen/', :target => '_blank'
+
+        / .credit
+        /   p
+        /     | Proudly hosted on #{ link_to 'GitHub Pages', 'http://pages.github.com', rel: 'nofollow' }.&nbsp;
+        /     | Theme by #{ link_to 'United', 'http://bootswatch.com/united/', rel: 'nofollow', class: 'bootswatch-link' } from #{ link_to 'Bootswatch', 'http://bootswatch.com/', rel: 'nofollow' }.&nbsp;
+        /     | Built on CircleCI #{ link_to "build##{ENV['CIRCLE_BUILD_NUM']}", "https://circleci.com/gh/ngs/sources.ngs.io/#{ENV['CIRCLE_BUILD_NUM']}", rel: 'nofollow' } with commit #{ link_to (ENV['CIRCLE_SHA1']||'123456789abcdef')[0, 7], ENV['CIRCLE_COMPARE_URL'], rel: 'nofollow' }.
+        /   p Copyright &copy; #{ Time.now.year } #{ link_to 'Atsushi Nagase', 'http://ngs.io/', rel: 'copyright' } all rights reserved with all articles and pictures. Everything else in #{ link_to 'the repository', 'https://github.com/ngs/source.ngs.io/' } is #{ link_to 'MIT licensed', 'https://github.com/ngs/sources.ngs.io/blob/master/LICENSE.md' }.
 
     = google_analytics_universal_tag
 

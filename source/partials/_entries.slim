@@ -13,12 +13,12 @@
           = t :read_more
           span
 - if paginate && (next_page || num_pages > 1)
-  .text-center
+
     ul.pagination
       - if prev_page
         li
           = link_to prev_page, rel: 'prev' do
-            span.fa.fa-chevron-left
+            | &#8592;
       - else
         li.disabled
           span
@@ -35,7 +35,7 @@
       - if next_page
         li
           = link_to next_page, rel: 'next' do
-            span.fa.fa-chevron-right
+            | &#8594;
       - else
         li.disabled
           span

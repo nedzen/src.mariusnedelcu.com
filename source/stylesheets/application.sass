@@ -1,203 +1,263 @@
-// @import 'syntax'
-@import 'bootstrap-reboot'
-@import 'bootstrap-grid'
-@import 'debug'
-
-
-// // reset
-// html, body, ul
-//   margin: 0
-//   padding: 0
-
-// html
-//   -webkit-tap-highlight-color: rgba(0,0,0,0)
-//   -webkit-font-smoothing: antialiased
-
-// // em, i
-// //   font-style: normal
-
-// li
-//   list-style-type: none
-
-// // design root with base elemen styling
-// body
-//   font-size: 100%
-//   font-family: 'Roboto', sans-serif
-
-// a
-//   color: $linkcolor
-//   border-bottom: 3px solid #CCC
-//   text-decoration: none
-//   &:hover
-//     border-bottom: 3px solid #000
-
-// p
-//   font-size: 1.2em
-//   line-height: 1.5em
-
-
-// h1, h2, h3, h4, h5
-//   font-weight: normal
-
-// img
-//   display: block
-//   width: 100%
-//   + figure
-//   border: 1px solid red
-
-// figure
-//   figcaption
-//     padding: $baseline
-
-// // structure
-// $n : 8
-// $w : 100%
-// $u : $w / $n
-
-// .container
-//   max-width: $u * 5
-//   // vertical-align: top
-//   @include center-block
-
-// #main, #sidebar
-//   display: inline-block
-//   vertical-align: top
-
-// #main
-//   outline: 2px solid blue
-//   width: $u * 4
-
-// #side
-//   outline: 2px solid yellow
-//   width: $u * 2
-
-
-
-// @import 'syntax'
-// @import 'compass'
-// @import 'mixins'
-// @import 'variables'
+@import 'variables'
+@import 'reboot'
+@import 'normalize'
 // @import 'debug'
-// @import 'bootstrap/normalize'
+@import 'syntax'
 
-// html
-//   -webkit-tap-highlight-color: rgba(0,0,0,0)
-//   -webkit-font-smoothing: antialiased
 
-// body
-//   font-family: 'Roboto', sans-serif
-//   font-size: 100%
+img
+	display: block
+	width: 100%
 
-// li
-//   list-style-type: none
+.container
+	max-width: $container-w
+	+center-block
+	+clearfix
 
-// ul,
-// figure,
-// figcaption
-//   margin: 0
-//   padding: 0
+.navbar
+	margin-bottom: $box-pad
+	padding: $box-pad
+	background: white
+	@extend .container
 
-// img
-//   max-width: 100%
-//   display: block
+.logo
+	float: left
+	strong
+		font-weight: normal
+		display: none
+		:hover & 
+			display: inline-block
 
-// a
-//   text-decoration: none
-//   color: $linkcolor
-//   border-bottom: 3px solid #CCC
-//   &:hover
-//     border-bottom: 3px solid #000
+.nav-menu
+	// &.open // I might not even need an open state.
+	margin: 0
+	padding: 0 0 0 100px
 
-// p
-//   font-size: 1.2em
-//   line-height: 1.5em
+	li
+		display: inline-block
+		padding: 0em 0.6em
+	a
+		// padding: 0.3em 0.6em
 
-// h1, h2
-//   font-weight: 200
+.toggle-nav
+	&.on
+		display: block
+	background: blue
+	color: white
+	// display: block
+	display: none
+	+square(20px)
 
-// #container
-//   padding: 1em
-//   max-width: $sitewidth
-//   @include center-block
+pre.highlight
+	background: white
+	padding: $box-pad 0rem $box-pad $box-pad
+	border-left: $box-pad solid #000
+	left: -1 * $box-pad
+	position: relative
+	// background: $body-bg
 
-// #sidebar
-//   padding-top: 1em
-//   float: right
-//   width: 26%
-//   .me
-//     strong, em
-//       display: block
-//     img.logo
-//       width: 49px
-//       margin-bottom: 1em
-//     ul 
-//       a 
-//         border-bottom: 0
-//       margin-top: 1em
-//     li
-//       display: inline-block
-//       margin-right: 10px
-//       img
-//         width: 20px
-  
-//   ul
-//     &.tags
-//       a i
-//         display: inline-block
-//         @include square(20px)
-//         text-align: center
-//         border-radius: 15px
-//         font-size: 0.7em 
-//         background: black
-//         color: #fff
-//         float: right
-  
-//     margin-bottom: 2em
-//     line-height: 1.5em
-//     a
-//       &:hover
-//         border-bottom: 3px solid #CCC
-//         color: #CCC
-//         i
-//           background: #CCC
-//       border-bottom: 3px solid #000
-    
-//     .date
-//       display: block
-//       font-size: 0.7em
+ul.pagination
+	border-top: 0
+	margin-top: - $box-pad
+	padding: 0
+	li
+		&.disabled
+			display: none
+		&.active span
+			background: white
+		
+		margin: 0
+		display: inline-block
+		list-style-type: none
+	a, span
+		display: block
+		padding: $box-pad
+	a
+		&:hover
+			background: black
+			color: white
+		border-bottom: 0
 
-// #content
-//   width: 70%
-//   float: left
+// .featured
+// 	@extend .container
+// 	position: relative
+// 	padding: $box-pad
+// 	background: white
+// 	h1, p
+// 		padding: $box-pad
+// 		position: absolute
 
-// .highlight
-//   padding: 0.5em
+p.read-more
+	margin-bottom: 0
+	// text-align: right
 
-// .meta
-//   .tags
-//     li 
-//       display: inline-block
-//       margin-right: 10px 
+.btn, .btn:hover 
+	border-bottom: 0
+	padding: 0.5em 1em
 
-// // Body reset
+.btn
+	&:hover
+		background: black
+		color: white
+	display: inline-block
+	background: $body-bg
 
-// body::-webkit-scrollbar
-//   width: 0.3em
+// scaffolding layout
 
-// body::-webkit-scrollbar-track
-//   background: none
+$sidebar-w: 20rem
 
-// body::-webkit-scrollbar-thumb
-//   background: black
+.row
+	width: 100%
+	float: left
+	padding-right: $sidebar-w
 
-// section.entry
-//   h2
-//     margin-bottom: 2em
-//     a
-//       &:hover 
-//         border-bottom: 3px solid #CCC
-//         color: #CCC
-//       border-bottom: 3px solid #000
-//   time
-//     display: block
-//     font-size: 0.6em
+.content
+	float: left
+	width: 100%
+
+.entry
+	background: white
+	padding: $box-pad
+	margin-bottom: $box-pad
+	header
+		padding: $box-pad
+		h1
+			font-size: 40px
+			font-weight: 900
+			margin: 0
+		p.meta
+			font-size: 13px
+			display: block
+			clear: left
+			a
+				float: right
+
+				
+
+
+h2[itemprop="name"]
+	margin-bottom: $box-pad
+	time
+		display: block
+		clear: left
+		font-size: 13px
+
+sidebar
+	width: $sidebar-w - $box-pad
+	margin-right: -1 * $sidebar-w
+	float: right
+
+.box
+	background: white
+	padding: $box-pad
+	margin: 0rem 0rem $box-pad 0rem
+	h3
+		margin-bottom: $box-pad
+		&:after
+			content: ' :'
+	ul
+		padding: 0
+		margin: 0
+		list-style-type: none
+	li
+		&.show-all
+			a
+				&:hover
+					color: $link-hover-color
+				color: white
+		&:last-child
+			margin-bottom: 0
+		margin-bottom: $box-pad
+
+.tags
+	i
+		margin-left: 4px
+		font-style: normal
+		color: #000
+		font-weight: bold
+		&:before
+			content: '⁄ '
+			font-weight: bold
+		// border-left: 2px solid $body-bg
+	a
+		&:before
+			content: '#'
+			// color: $body-bg
+			// font-weight: bold
+			margin-right: 1px
+		&:after
+			// content: ' ❯'
+	li
+		display: inline-block
+		margin-right: 10px
+
+footer.meta
+	ul
+		margin: 0
+		padding: 0
+
+.pager
+	list-style-type: none
+	a
+
+body.wide
+	.row
+		padding-right: 0
+	.content
+		float: none
+	sidebar
+		width: 100%
+		margin-right: 0
+		float: none
+		display: table
+		.box
+			vertical-align: top
+			width: 50%
+			display: table
+			display: table-cell
+	
+	.entry
+		background: $body-bg
+		padding: 0
+		// header
+		.article-body
+			background: white
+			padding: $box-pad
+
+
+a
+	&:hover
+		border-bottom: 2px solid #000
+	border-bottom: 2px solid $body-bg
+	+transition(200ms)
+
+
+time.date
+	display: block
+	clear: left
+	font-size: 13px
+
+.container
+	> footer
+		clear: both
+		// background: darken($body-bg, 5%)
+		padding: $box-pad 0
+
+ul.social
+	margin: 0
+	padding: 0
+	li
+		&:first-child
+			display: none
+		list-style-type: none
+		display: inline-block
+		width: 20px
+		margin-right: 10px
+		padding: 0
+
+#archives
+	background: white
+	display: block
+	width: 100%
+	padding: $box-pad
+
