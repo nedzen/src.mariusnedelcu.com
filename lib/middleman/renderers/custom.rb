@@ -44,3 +44,26 @@ module Middleman
 end
 
 ::Middleman::Renderers::MiddlemanRedcarpetHTML.send :include, ::Middleman::Renderers::CustomRenderer
+
+# for when I will know ruby well enough to be able 
+# to play with preprocessors.
+# as seen here http://opticalcortex.com/markdown-blockquote-attribution-with-redcarpet/
+# class StoryMarkdown::Render < Redcarpet::Render::HTML
+#   def cite(text)
+#     # allow attributes, starting with a --
+#     text.gsub! /(-- )(.*)\r/ do
+#       "<cite>#{$2}</cite>"
+#     end
+#     text
+#   end
+#   alias_method :preprocess, :cite
+
+#   def cite_html_clean(text)
+#     # we want attributions to be block level and not live inside paragraphs
+#     text.gsub! /(<cite>.*<\/cite>)(<\/p>)/ do
+#       "#{$2}#{$1}"
+#     end
+#     text
+#   end
+#   alias_method :postprocess, :cite_html_clean
+# end

@@ -10,14 +10,15 @@ img
 	width: 100%
 
 .container
-	max-width: $container-w
+	max-width: $container-xxl
 	+center-block
 	+clearfix
 
 .navbar
+	// +gradient-vertical($body-bg, #FFFFFF)
 	margin-bottom: $box-pad
 	padding: $box-pad
-	background: white
+	// background: white
 	@extend .container
 
 .logo
@@ -49,12 +50,19 @@ img
 	+square(20px)
 
 pre.highlight
-	background: white
-	padding: $box-pad 0rem $box-pad $box-pad
-	border-left: $box-pad solid #000
-	left: -1 * $box-pad
-	position: relative
-	// background: $body-bg
+	+transition(100ms)
+	border-left: 0 solid $body-bg
+	// background: white
+	padding: $box-pad 0rem
+	font-size: 15px
+
+pre::-webkit-scrollbar
+	height: 0.2em
+	width: 0.3
+pre::-webkit-scrollbar-track 
+	background: none
+pre::-webkit-scrollbar-thumb 
+	background: $body-bg
 
 ul.pagination
 	border-top: 0
@@ -78,14 +86,20 @@ ul.pagination
 			color: white
 		border-bottom: 0
 
-// .featured
-// 	@extend .container
-// 	position: relative
-// 	padding: $box-pad
-// 	background: white
-// 	h1, p
-// 		padding: $box-pad
-// 		position: absolute
+
+// adjusting the typography
+
+// h1
+// 	font-size: 30px
+// h2
+// 	font-size: 20px
+// h3
+// 	font-size: 15px
+// h4
+// 	font-size: 11px
+// h5
+// 	font-size: 9px
+
 
 p.read-more
 	margin-bottom: 0
@@ -116,31 +130,41 @@ $sidebar-w: 20rem
 	width: 100%
 
 .entry
-	background: white
-	padding: $box-pad
+	// background: white
+	// padding: $box-pad
 	margin-bottom: $box-pad
 	header
 		padding: $box-pad
+		+gradient-horizontal(#FFFFFF, $body-bg)
 		h1
 			font-size: 40px
 			font-weight: 900
 			margin: 0
 		p.meta
-			font-size: 13px
+			font-size: $font-size-small
 			display: block
 			clear: left
+			margin-bottom: 0
+			padding-left: 0
 			a
 				float: right
 
-				
-
+main > header
+	padding: $box-pad
+	+gradient-horizontal(#FFFFFF, $body-bg)
+	h1
+		font-size: 40px
+		font-weight: 900
+		margin: 0
 
 h2[itemprop="name"]
-	margin-bottom: $box-pad
+	margin-bottom : $box-pad
+	padding: $box-pad
+	padding-bottom : 0
 	time
 		display: block
 		clear: left
-		font-size: 13px
+		font-size: $font-size-small
 
 sidebar
 	width: $sidebar-w - $box-pad
@@ -148,8 +172,8 @@ sidebar
 	float: right
 
 .box
-	background: white
-	padding: $box-pad
+	// background: white
+	// padding: $box-pad
 	margin: 0rem 0rem $box-pad 0rem
 	h3
 		margin-bottom: $box-pad
@@ -188,10 +212,11 @@ sidebar
 		&:after
 			// content: ' ❯'
 	li
-		display: inline-block
+		display: block
 		margin-right: 10px
 
 footer.meta
+	padding: 0 $box-pad
 	ul
 		margin: 0
 		padding: 0
@@ -215,15 +240,97 @@ body.wide
 			width: 50%
 			display: table
 			display: table-cell
-	
-	.entry
-		background: $body-bg
-		padding: 0
+	.article-body
+		p
+			padding-right: 50%
+			img[alt="something"]
+				float: right
+				margin-right: -100%
+				width: 100%
+				border-left: $box-pad/2 solid white
+			img[alt="else"]
+				border-right: $box-pad/2 solid white
+			img[alt="auto"]
+				// width: 100%
+				width: auto
+				max-width: auto
+				height: auto
+				position: relative
 		// header
-		.article-body
-			background: white
-			padding: $box-pad
+			// // position: relative
+			// p
+			// 	display: block
+			// 	background: orange
+			// 	padding-right: 400px
+			// 	width: 100%
+			// 	position: relative
+			// 	overflow: visible
+			// 	outline: 1px solid red
+			// 	clear: both
+			// 	img
+			// 		position: absolute
+			// 		display: block
+			// 		width: 100%
+			// 		top: 0px
+			// 		left: 0px
+			// 		right: 0px
+			// 		bottom: 0px
 
+body.wide .article-body blockquote p
+	padding: $box-pad $box-pad * 2
+	margin: 0
+	font-size: 1.9em
+	line-height: 1.3em
+	font-style: italic
+	font-family: Georgia, Times, 'Times New Roman', serif
+	cite
+		display: block
+		font-size: 0.6em
+		&:before
+			content: "— "
+p
+	code
+		background: $body-bg
+		padding: 2px 3px
+
+p > q
+	// $decay : 30%
+	font-family: Georgia, Times, 'Times New Roman', serif
+	font-size: 1.2em
+	font-style: italic
+	display: block
+	padding: $box-pad
+	// margin-right: -1 * $decay
+	// padding-left: $decay
+
+.entry
+	// background: $body-bg
+	// background: white
+.article-body
+	+clearfix
+
+.entry
+	// background: white
+	padding-bottom: $box-pad
+	p, pre
+		padding-left: $box-pad
+		padding-right: $box-pad
+
+// handling images.
+figure
+	margin: 0
+	margin-bottom: $box-pad
+	background: none
+	img
+	// background: red
+	// overflow: visible
+
+figcaption
+	font-size: $font-size-small
+	padding: $box-pad
+	background: white
+	font-style: italic
+	border-bottom: 2px solid $body-bg
 
 a
 	&:hover
@@ -235,7 +342,16 @@ a
 time.date
 	display: block
 	clear: left
-	font-size: 13px
+	font-size: $font-size-small
+
+
+.footnotes
+	clear: both
+	padding: $box-pad
+	background: white
+	hr
+		border-top: 1px solid $body-bg
+		border-bottom: 0px
 
 .container
 	> footer
@@ -260,4 +376,56 @@ ul.social
 	display: block
 	width: 100%
 	padding: $box-pad
+	list-style-type: none
 
+::-moz-selection 
+	background: red
+::selection 
+	background: red
+
+
+#qu-showcase
+	background: $body-bg
+	position: relative
+	// outline: 4px solid blue
+	padding-top: 690px
+	
+	div
+		overflow-y: hidden
+		overflow-x: scroll
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+	
+	ul
+		position: relative
+		margin: 0
+		padding: 0
+		display: block
+		overflow: auto
+		width: 500px * 25
+	
+		li
+			list-style-type: none
+			display: block
+			float: left
+			width: 500px
+
+
+::-webkit-scrollbar
+	height: 0.5em
+	width: 0.5em
+::-webkit-scrollbar-track 
+	// background: red
+::-webkit-scrollbar-thumb 
+	background: black
+#mask
+	width: auto
+	z-index: 100
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	overflow: scroll

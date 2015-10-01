@@ -36,5 +36,5 @@ en:
   author:
     name: Marius Nedelcu
   tag_title:
-    text: "# %{tag}"
-    html: "# %{tag}"
+    text: "#%{tag}"
+    html: "#%{tag}"

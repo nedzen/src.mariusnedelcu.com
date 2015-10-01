@@ -1,8 +1,9 @@
 // Defaults
 
 $pi:     3.14;
-$font-size-root:     16px !default;
+$font-size-root:     18px !default;
 $font-size-base:     1rem !default;
+$font-size-small:    13px;/*  */
 $font-family-base : 'Roboto', sans-serif;
 $line-height: 		   1.5 !default;
 
@@ -12,9 +13,9 @@ $body-bg: 		       #f1f1f1; //d9f2ff
 
 $abbr-border-color:  $brand-primary;
 $hover-focus:        $brand-primary;
-$table-bg:					 #000;
-$table-cell-padding:	1rem/2;
-$text-muted:  				#000;
+$table-bg:					 #FFF;
+$table-cell-padding: 1rem/2;
+$text-muted:  			 #000;
 
 $enable-hover-media-query: false;
 
@@ -34,5 +35,5 @@ $container-md: 45rem;   // 720
 $container-lg: 60rem;   // 960
 $container-w:  62.44rem;   // 999
 $container-xl: 72.25rem;   // 1140
-
+$container-xxl: 92.25rem;   // 1140
 $box-pad: 1.3rem;

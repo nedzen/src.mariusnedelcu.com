@@ -23,7 +23,20 @@ activate :livereload
 
 set :markdown_engine, :custom
 set :markdown_engine_prefix, ::Middleman::Renderers
-set :markdown, :fenced_code_blocks => true, :smartypants => true, :autolink => true, :tables => true, :with_toc_data => true
+set :markdown, 
+  :fenced_code_blocks => true, 
+  :smartypants => true, 
+  :autolink => true, 
+  :tables => true, 
+  :with_toc_data => true,
+  :no_intra_emphasis => true,
+  :strikethrough => true,
+  :underline => true,
+  :highlight => true,
+  :footnotes => true,
+  :quote => true,
+  :superscript => true
+
 set :build_dir,    "build-#{lang}"
 set :partials_dir, 'partials'
 set :site_url, "http://#{cname}"

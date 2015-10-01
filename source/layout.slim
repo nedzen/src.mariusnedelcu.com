@@ -102,17 +102,17 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
               == yield
       
         sidebar
-          .recent.box
-            h3= t :recent_entries
-            ul
-              - blog.articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }[0...10].each do |article|
-                li
-                  =link_to article do
-                    =emojify article.title
-                    time.date= article.date.strftime('%Y/%m/%d')
-              li.show-all
-                = link_to '/archives' do
-                  = t(:show_all)
+          / .recent.box
+          /   h3= t :recent_entries
+          /   ul
+          /     - blog.articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }[0...10].each do |article|
+          /       li
+          /         =link_to article do
+          /           =emojify article.title
+          /           time.date= article.date.strftime('%Y/%m/%d')
+          /     li.show-all
+          /       = link_to '/archives' do
+          /         = t(:show_all)
 
             
           / h3= t :monthly
@@ -125,7 +125,7 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
           /           i= month_articles.size
 
           .tags.box
-            h3= t :tags
+            /h3= t :tags
             ul.tags
               - blog.tags.sort.each do |tag, articles|
                 li

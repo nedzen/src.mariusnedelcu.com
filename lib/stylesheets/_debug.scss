@@ -129,3 +129,12 @@ div#main {
   br {          outline: 1px solid #DB687D!important; }
   wbr {         outline: 1px solid #DB175B!important; }
 }
+
+// Something for debugging
+// html body * {background-color: rgba(255,0,0,.2)}
+// html body * *  {background-color: rgba(0,255,0,.2)}
+// html body * * * {background-color: rgba(0,0,255,.2)}
+// html body * * * * {background-color: rgba(255,0,255,.2)}
+// html body * * * * * {background-color: rgba(0,255,255,.2)}
+// html body * * * * * * {background-color: rgba(255,255,0,.2)}
+

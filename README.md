@@ -1,4 +1,4 @@
-sources.ngs.io
+Mariusnedelcu .com
 ==============
 
 Notes & To Do:
@@ -30,9 +30,9 @@ Preview
 
 ```bash
 # English blog
-MM_LANG=en bundle exec middleman server -p 4567
+MM_LANG=en bundle exec middleman server -p 4566
 # French blog
-MM_LANG=fr bundle exec middleman server -p 5678
+MM_LANG=fr bundle exec middleman server -p 5677
 ```
 
 Deploy

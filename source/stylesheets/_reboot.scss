@@ -7,9 +7,9 @@
   box-sizing: inherit;
 }
 
-body::-webkit-scrollbar       { width: 0.3em;}
-body::-webkit-scrollbar-track { background: none;}
-body::-webkit-scrollbar-thumb { background: black;}
+// body::-webkit-scrollbar       { width: 0.3em;}
+// body::-webkit-scrollbar-track { background: none;}
+// body::-webkit-scrollbar-thumb { background: black;}
 
 html {
   // Sets a specific default `font-size` for user with `rem` type scales.
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 // bottom margin to use `rem` units instead of `em`.
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: $box-pad;
 }
 
 // Abbreviations and acronyms
@@ -115,19 +115,6 @@ pre {
   // Reset browser default of `1em` to use `rem`s
   margin-bottom: 1rem;
 }
-
-
-//
-// Figures
-//
-
-figure {
-  // Normalize adds `margin` to `figure`s as browsers apply it inconsistently.
-  // We reset that to create a better flow in-page.
-  margin: 0 0 1rem;
-}
-
-
 
 //
 // Images

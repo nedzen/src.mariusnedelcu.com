@@ -1,4 +1,6 @@
-h1= t :archives
+header
+  h1= t :archives
+
 ul#archives
   - blog.articles.select {|a| a.data[:public] }.group_by {|a| a.date.year }.each do |year, year_articles|
     - year_articles.group_by {|a| a.date.month }.each do |month, month_articles|

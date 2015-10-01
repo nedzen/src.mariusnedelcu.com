@@ -2,10 +2,11 @@
 pageable: true
 per_page: 12
 ---
-h1
-  = t 'tag_title.html', tag: tagname 
-  span &nbsp; : &nbsp;
-  =articles.size
+header
+	h1
+	  = t 'tag_title.html', tag: tagname
+	  span &nbsp; ⁄ &nbsp;
+	  =articles.size
 
 = partial "entries", locals: locals
 
