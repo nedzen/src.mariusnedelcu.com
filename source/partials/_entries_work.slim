@@ -1,0 +1,51 @@
+ul.work
+  li.s2x a
+  li b
+  li c
+  li.s2x d
+  li e
+  li.s2x f
+  li f
+  li.s2x f
+
+- page_articles.select {|a| a.data[:public] && a.data.category == 'work'}.sort { |x,y| y.date <=> x.date }.each_with_index do |article, i|
+  section.entry itemscope=true itemtype="http://schema.org/BlogPosting"
+    h2 itemprop="name"
+      = link_to emojify(article.title), article, itemprop: "url"
+      time itemprop="datePublished" datetime=article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
+        = article.date.strftime('%Y-%m-%d %H:%M')
+    .article-body itemprop="articleBody"
+      = preserve do
+        = article.summary
+    - if article.render(keep_separator: true, layout: false).match(article.blog_options.summary_separator)
+      p.read-more
+        = link_to article.url, class: 'btn' do
+          = t :read_more
+          span
+
+- if paginate && (next_page || num_pages > 1)
+  ul.pagination
+    - if prev_page
+      li
+        = link_to prev_page, rel: 'prev' do
+          | &#8592;
+    - else
+      li.disabled
+        span
+    - (page_number - 2 .. page_number + 2).select{|i| i > 0 && i <= num_pages}.each do |i|
+      - if i == page_number
+        li.active
+          span= i
+      - else
+        li
+          - p = nil
+          - (i ... page_number).each do p = p ? p.metadata[:locals]['prev_page'] : prev_page; end
+          - (page_number ... i).each do p = p ? p.metadata[:locals]['next_page'] : next_page; end
+          =link_to "#{i}", p && p.url
+    - if next_page
+      li
+        = link_to next_page, rel: 'next' do
+          | &#8594;
+    - else
+      li.disabled
+        span

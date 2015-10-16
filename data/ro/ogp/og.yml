@@ -1,0 +1,9 @@
+title: fr.mariusnedelcu.com
+site_name: fr.mariusnedelcu.com
+locale: fr_FR
+type: website
+description: 'tu n`as jamais entendu parler de moi'
+image:
+  '': 'http://www.gravatar.com/avatar/f456d7e38f39c2d3c2a249b4048460eb.png?s=500'
+  width: 500
+  height: 500

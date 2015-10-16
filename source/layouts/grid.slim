@@ -1,0 +1,212 @@
+doctype 5
+html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/WebSite"
+  head
+    meta charset="utf-8"
+    meta http_equiv='X-UA-Compatible' content='IE=edge;chrome=1'
+    meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'
+    meta content="Middleman #{Middleman::VERSION}" name='generator'
+    meta itemprop="url" content=config.site_url
+    link rel='author' href='http://www.twitter.com/@nedzen'
+    title
+      - if current_article
+        = "#{emojify current_article.title, :raw} - "
+      - elsif current_page && current_page.data.title
+        = "#{emojify current_page.data.title} - "
+      - elsif content_for?(:title)
+        = "#{emojify yield_content(:title)} - "
+      = t 'blog.title'
+    - ogp_tags do|name, value|
+      meta property=name content=emojify(value, :raw)
+      - if name.match /^og:(image|description|title|url)$/
+        meta property=name.sub('og:', 'twitter:') content=emojify(value, :raw)
+    / noscript
+
+    = stylesheet_link_tag 'application', "http://fonts.googleapis.com/css?family=Roboto:500,900,400italic,700italic,300,700,500italic,300italic,400"
+    = javascript_include_tag 'application'
+    
+    / - if current_page.data.description
+    /   meta content=emojify(current_page.data.description, :raw) name="description"
+    / - elsif content_for?(:description)
+    /   meta content=emojify(yield_content(:description), :raw) name="description"
+    / - else
+    /   meta content=emojify(t('blog.description'), :raw) name="description"
+    
+    / - if current_page.data.keywords
+    /   meta content=emojify(current_page.data.page.keywords, :raw) name="keywords"
+    / - elsif current_article && current_article.tags
+    /   meta content=emojify(current_article.tags.join(','), :raw) name="keywords"
+
+    / - if current_resource.data.alternate
+    /   meta content=alt_lang property="og:locale:alternate"
+    /   link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{ current_resource.url }"
+    
+    / - if current_resource.data.app_id
+    /   meta name='apple-itunes-app' content="app-id=#{current_resource.data.app_id}, affiliate-data='at=10l87J'"
+    
+    / meta content=t('author.name') name="author"
+
+    / = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+    / - %w{152 144 120 114 76 72 60 67}.each do |size|
+    /   - size = "#{size}x#{size}"
+    /   link rel="apple-touch-icon" size=size href="/apple-touch-icon-#{size}-precomposed.png"
+    / link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
+    / link rel="shortcut icon" href="/favicon.png"
+    / link rel="icon" type="image/ico" href="/favicon.ico"
+
+    / - if current_article
+    /   - if current_article.previous_article
+    /     link rel="prev" href=current_article.previous_article.url
+    /   - if current_article.next_article
+    /     link rel="next" href=current_article.next_article.url
+    / - elsif paginate
+    /   - if prev_page
+    /     link rel="prev" href=prev_page.url
+    /   - if next_page
+    /     link rel="next" href=next_page.url
+  
+  body.grid
+
+    nav.navbar itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
+      .logo= link_to config.site_url
+        =image_tag('mariusnedelcu_logo.svg', :alt => 'nedzen', :class => 'logo')
+        strong Marius Nedelcu - digital maverick
+
+      ul.nav-menu
+        li= link_to '/archives' do 
+          = t(:show_all)
+        li= link_to '/visual' 
+          = t :visual
+        li= link_to '/about' 
+          = t :aboutme
+
+      a.toggle-nav href="#" id="dothis" testing
+
+    / - if current_page.path === '/'
+    /   div testing
+    /   -elsif
+    /   .featured
+    /     h1 This is how I made that thing
+    /     =image_tag('gold_texture.jpg', :alt => 'nedzen', :class => 'logo')
+    /     p this text belongs to featured
+    
+    .container
+      .row
+        .content
+          - if content_for? :main
+            == yield_content :main
+          - else
+            main role='main'
+              == yield
+      
+        / sidebar
+        /   .recent.box
+        /     h3= t :recent_entries
+        /     ul.tags
+        /       - blog.articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }[0...10].each do |article|
+        /         li
+        /           =link_to article do
+        /             =emojify article.title
+        /             time.date= article.date.strftime('%Y/%m/%d')
+        /       li.show-all
+        /         = link_to '/archives' do
+        /           = t(:show_all)
+            
+        /   / h3= t :monthly
+        /   / ul.tags
+        /   /   - blog.articles.select {|a| a.data[:public] }.group_by {|a| a.date.year }.each do |year, year_articles|
+        /   /     - year_articles.group_by {|a| a.date.month }.each do |month, month_articles|
+        /   /       li
+        /   /         = link_to blog_month_path(year, month) do
+        /   /           = Date.new(year, month, 1).strftime(t 'calendar_title.format.month')
+        /   /           i= month_articles.size
+
+        /   .tags.box
+        /     h3= t :tags
+        /     ul.tags
+        /       - blog.tags.sort.each do |tag, articles|
+        /         li
+        /           =link_to tag_path(tag) do
+        /             =tag
+        /             i=articles.size
+
+        / section#sidebar-tags
+        /   header
+        /     h2= t :tags
+        /     form#tag-filter-form.form-inline role="form"
+        /       div.form-group.has-feedback
+        /         input.form-control#tag-filter-input type="search" placeholder=t(:filter_tags)
+        /         span.glyphicon.glyphicon-search.form-control-feedback
+        /   ol.nav.collapse.in#sidebar-tags-list
+        /     - blog.tags.sort.each do |tag, articles|
+        /       li.hidden
+        /         = link_to tag_path(tag) do
+        /           span.glyphicon.glyphicon-tag
+        /           | &nbsp;
+        /           = tag
+        /           span.badge.pull-right= articles.size
+        /     li.show-all
+        /       = link_to '#tag-filter-form', class: 'show-all-tags-link' do
+        /         span.glyphicon.glyphicon-plus
+        /         | &nbsp;
+        /         = t(:show_all)
+
+          / h2= t :navigation
+          / ol.nav itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
+          /   li
+          /     = link_to '/', itemprop: 'url' do
+          /       span itemprop='name'
+          /         = t :home
+          /   li
+          /     = link_to '/about', rel: 'author', itemprop: 'url' do
+          /       span itemprop='name'
+          /         = t :aboutme
+          /   li
+          /     - if I18n.locale.to_s == 'fr'
+          /       = link_to 'http://mariusnedelcu.com/', rel: 'alternate', itemprop: 'url', hreflang: 'en' do
+          /         span itemprop='name' Blog (English)
+          /     - else
+          /       = link_to 'http://fr.mariusnedelcu.com/', rel: 'alternate', itemprop: 'url', hreflang: 'fr' do
+          /         span itemprop='name' Français
+
+        / section#sidebar-search
+        /   form#site-search-form.form-inline {
+        /     role="form"
+        /     method="get"
+        /     action="/search/"
+        /     itemprop="potentialAction"
+        /     itemscope="itemscope"
+        /     itemtype="http://schema.org/SearchAction"
+        /   }
+        /     div.form-group.has-feedback
+        /       input.form-control#site-search-input {
+        /         type="search" placeholder=t(:search_site)
+        /         name="q" accesskey="s" required="required"
+        /       }
+        /       span.glyphicon.glyphicon-search.form-control-feedback
+        /       meta itemprop="target" content="#{config.site_url}/search/?q={q}"
+
+        / section#sidebar-bootswatch style="display:none"
+        /   h2 Theme
+        /   .btn-group
+        /     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
+        /       span.bootswatch-theme-name
+        /       | &nbsp;
+        /       span.caret
+        /     ul.dropdown-menu.bootswatch-theme-list role="menu"
+        /       li style="padding: 1em 0; text-align: center"
+        /         i.fa.fa-refresh.fa-spin
+
+      footer
+        = partial "socialmedia"
+
+        / .credit
+        /   p
+        /     | Proudly hosted on #{ link_to 'GitHub Pages', 'http://pages.github.com', rel: 'nofollow' }.&nbsp;
+        /     | Theme by #{ link_to 'United', 'http://bootswatch.com/united/', rel: 'nofollow', class: 'bootswatch-link' } from #{ link_to 'Bootswatch', 'http://bootswatch.com/', rel: 'nofollow' }.&nbsp;
+        /     | Built on CircleCI #{ link_to "build##{ENV['CIRCLE_BUILD_NUM']}", "https://circleci.com/gh/ngs/sources.ngs.io/#{ENV['CIRCLE_BUILD_NUM']}", rel: 'nofollow' } with commit #{ link_to (ENV['CIRCLE_SHA1']||'123456789abcdef')[0, 7], ENV['CIRCLE_COMPARE_URL'], rel: 'nofollow' }.
+        /   p Copyright &copy; #{ Time.now.year } #{ link_to 'Atsushi Nagase', 'http://ngs.io/', rel: 'copyright' } all rights reserved with all articles and pictures. Everything else in #{ link_to 'the repository', 'https://github.com/ngs/source.ngs.io/' } is #{ link_to 'MIT licensed', 'https://github.com/ngs/sources.ngs.io/blob/master/LICENSE.md' }.
+
+    = google_analytics_universal_tag
+
+/ - content_for :title do
+/   = t 'blog.title'
