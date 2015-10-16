@@ -5,78 +5,168 @@
 @import 'syntax'
 
 
+// General ------------------------------------
+body
+	padding-top: $box-pad
+	background: transparent
+	+gradient-horizontal($body-bg, fade-out($body-bg, .5))
+	min-height: 100%
+
+p
+	code
+		color: white
+		background: black
+		padding: 2px 6px
+		border-radius: 2px
+		box-shadow: 0px 1px 2px fade-out(black, .9)
+
+
+// handling images
+// **********************
+figure
+	margin: 0
+	margin-bottom: $box-pad
+	// padding: $box-pad
+	background: white
+	img
+figcaption
+	padding: $box-pad
+	font-size: $font-size-small
+
+a
+	&:hover
+		border-bottom: 2px solid #000
+	border-bottom: 2px solid $body-bg
+	+transition(200ms)
+
+p > q
+	// $decay : 30%
+	font-family: Georgia, Times, 'Times New Roman', serif
+	font-size: 1.2em
+	font-style: italic
+	display: inline-block
+	clear: both
+	width: 100%
+	padding: $box-pad
+	// margin-right: -1 * $decay
+	// padding-left: $decay
+
 img
 	display: block
 	width: 100%
 
+ul
+	margin: 0
+	padding: 0
+	li
+		list-style-type: none
+
+pre.highlight
+	background: none
+	padding: $box-pad 0
+	font-size: 15px
+
+::-webkit-scrollbar
+	height: 0.5em
+	width: 0.5em
+::-webkit-scrollbar-track 
+	// background: red
+::-webkit-scrollbar-thumb 
+	background: black
+
+.footnotes
+	clear: both
+	max-width: 700px
+	border-top: 1px dotted black
+	hr
+		display: none
+
+// Scaffolding ---------------------------------
+$sidebar-w: 16rem
+
+.row
+	width: 100%
+	float: left
+	padding-right: $sidebar-w
+
 .container
 	max-width: $container-xxl
+	padding: $box-pad $box-pad * 2
 	+center-block
 	+clearfix
+	> footer
+		clear: both
+		padding: $box-pad 0
 
-.navbar
-	// +gradient-vertical($body-bg, #FFFFFF)
-	margin-bottom: $box-pad
-	padding: $box-pad
-	// background: white
-	@extend .container
+.content
+	float: left
+	width: 100%
 
+sidebar
+	width: $sidebar-w - $box-pad
+	margin-right: -1 * $sidebar-w
+	float: right
+	text-align: right
+	
+
+// ------
+body.wide
+	.row
+		padding-right: 0
+	.content
+		float: none
+	sidebar
+		width: 100%
+		margin-right: 0
+		float: none
+		display: none
+		.box
+			vertical-align: top
+			width: 50%
+			display: table
+			display: table-cell
+
+//------
+body.grid
+	.row
+		padding: 0
+
+// Header --------------------------------------
 .logo
 	float: left
 	strong
 		font-weight: normal
 		display: none
-		:hover & 
+		:hover &
 			display: inline-block
 
-.nav-menu
-	// &.open // I might not even need an open state.
-	margin: 0
-	padding: 0 0 0 100px
+.navbar
+	margin-bottom: $box-pad
+	@extend .container
 
+.nav-menu
+	padding: 0 0 0 100px
 	li
 		display: inline-block
 		padding: 0em 0.6em
-	a
-		// padding: 0.3em 0.6em
 
-.toggle-nav
-	&.on
-		display: block
-	background: blue
-	color: white
-	// display: block
-	display: none
-	+square(20px)
-
-pre.highlight
-	+transition(100ms)
-	border-left: 0 solid $body-bg
-	// background: white
-	padding: $box-pad 0rem
-	font-size: 15px
-
-pre::-webkit-scrollbar
-	height: 0.2em
-	width: 0.3
-pre::-webkit-scrollbar-track 
-	background: none
-pre::-webkit-scrollbar-thumb 
-	background: $body-bg
+// Site Parts -----------------------------------
+.sbar
+	outline: 2px solid red
+	height: 0
+	overflow: visible
+	padding-left: 700px
 
 ul.pagination
-	border-top: 0
-	margin-top: - $box-pad
-	padding: 0
+	margin: $box-pad 0
+	// padding-top: $box-pad
 	li
 		&.disabled
 			display: none
 		&.active span
 			background: white
-		
 		margin: 0
 		display: inline-block
-		list-style-type: none
 	a, span
 		display: block
 		padding: $box-pad
@@ -86,103 +176,29 @@ ul.pagination
 			color: white
 		border-bottom: 0
 
-
-// adjusting the typography
-
-// h1
-// 	font-size: 30px
-// h2
-// 	font-size: 20px
-// h3
-// 	font-size: 15px
-// h4
-// 	font-size: 11px
-// h5
-// 	font-size: 9px
-
-
 p.read-more
 	margin-bottom: 0
-	// text-align: right
+	a
+		border-bottom-color: black
 
-.btn, .btn:hover 
-	border-bottom: 0
-	padding: 0.5em 1em
-
-.btn
-	&:hover
-		background: black
-		color: white
-	display: inline-block
-	background: $body-bg
-
-// scaffolding layout
-
-$sidebar-w: 20rem
-
-.row
-	width: 100%
-	float: left
-	padding-right: $sidebar-w
-
-.content
-	float: left
-	width: 100%
-
-.entry
-	// background: white
-	// padding: $box-pad
-	margin-bottom: $box-pad
-	header
-		padding: $box-pad
-		+gradient-horizontal(#FFFFFF, $body-bg)
-		h1
-			font-size: 40px
-			font-weight: 900
-			margin: 0
-		p.meta
-			font-size: $font-size-small
-			display: block
-			clear: left
-			margin-bottom: 0
-			padding-left: 0
-			a
-				float: right
-
-main > header
-	padding: $box-pad
-	+gradient-horizontal(#FFFFFF, $body-bg)
-	h1
-		font-size: 40px
-		font-weight: 900
-		margin: 0
-
-h2[itemprop="name"]
-	margin-bottom : $box-pad
-	padding: $box-pad
-	padding-bottom : 0
-	time
-		display: block
-		clear: left
-		font-size: $font-size-small
-
-sidebar
-	width: $sidebar-w - $box-pad
-	margin-right: -1 * $sidebar-w
-	float: right
+ul.social // social links in the bootom footer
+	li
+		&:last-child
+			width: auto
+			font-size: $font-size-small	
+			vertical-align: top
+			padding-left: $box-pad
+		display: inline-block
+		width: 20px
+		margin-right: 10px
+		padding: 0
 
 .box
-	// background: white
-	// padding: $box-pad
 	margin: 0rem 0rem $box-pad 0rem
 	h3
 		margin-bottom: $box-pad
 		&:after
 			content: ' :'
-	ul
-		padding: 0
-		margin: 0
-		list-style-type: none
 	li
 		&.show-all
 			a
@@ -206,78 +222,73 @@ sidebar
 	a
 		&:before
 			content: '#'
-			// color: $body-bg
-			// font-weight: bold
 			margin-right: 1px
 		&:after
-			// content: ' ❯'
 	li
 		display: block
 		margin-right: 10px
 
 footer.meta
-	padding: 0 $box-pad
 	ul
-		margin: 0
-		padding: 0
+		li
+			display: inline-block
+			font-weight: bold
 
-.pager
-	list-style-type: none
-	a
+// Content ----------------------------------
 
-body.wide
-	.row
-		padding-right: 0
-	.content
-		float: none
-	sidebar
-		width: 100%
-		margin-right: 0
-		float: none
-		display: table
-		.box
-			vertical-align: top
-			width: 50%
-			display: table
-			display: table-cell
-	.article-body
-		p
-			padding-right: 50%
-			img[alt="something"]
-				float: right
-				margin-right: -100%
-				width: 100%
-				border-left: $box-pad/2 solid white
-			img[alt="else"]
-				border-right: $box-pad/2 solid white
-			img[alt="auto"]
-				// width: 100%
-				width: auto
-				max-width: auto
-				height: auto
-				position: relative
-		// header
-			// // position: relative
-			// p
-			// 	display: block
-			// 	background: orange
-			// 	padding-right: 400px
-			// 	width: 100%
-			// 	position: relative
-			// 	overflow: visible
-			// 	outline: 1px solid red
-			// 	clear: both
-			// 	img
-			// 		position: absolute
-			// 		display: block
-			// 		width: 100%
-			// 		top: 0px
-			// 		left: 0px
-			// 		right: 0px
-			// 		bottom: 0px
+.entry
+	padding-bottom: $box-pad
+	margin-bottom: $box-pad
+	header
+		padding-bottom: $box-pad
+		h1
+			font-size: 40px
+			font-weight: 900
+			margin: 0
+		p.meta
+			font-weight: bold
+			font-size: $font-size-small
+			display: block
+			clear: left
+			margin-bottom: 0
+			padding-left: 0
+			a
+				margin-left: 20px
+				// float: right
 
+// main > header
+// 	padding: $box-pad
+// 	h1
+// 		font-size: 40px
+// 		font-weight: 900
+// 		margin: 0
+
+// h2[itemprop="name"]
+// 	margin-bottom : 0
+// 	padding: 0 0 $box-pad 0
+// 	font-weight: 800
+// 	time
+// 		display: block
+// 		clear: left
+// 		font-size: $font-size-small
+
+
+// About page --------------------------------------------
+.about
+	> p
+		max-width: 700px
+	
+
+
+
+.article-body
+	+clearfix
+	p
+		max-width: 700px
+		display: block
+		
 body.wide .article-body blockquote p
-	padding: $box-pad $box-pad * 2
+	// padding: $box-pad $box-pad * 2
 	margin: 0
 	font-size: 1.9em
 	line-height: 1.3em
@@ -288,106 +299,70 @@ body.wide .article-body blockquote p
 		font-size: 0.6em
 		&:before
 			content: "— "
-p
-	code
-		background: $body-bg
-		padding: 2px 3px
-
-p > q
-	// $decay : 30%
-	font-family: Georgia, Times, 'Times New Roman', serif
-	font-size: 1.2em
-	font-style: italic
-	display: block
-	padding: $box-pad
-	// margin-right: -1 * $decay
-	// padding-left: $decay
-
-.entry
-	// background: $body-bg
-	// background: white
-.article-body
-	+clearfix
-
-.entry
-	// background: white
-	padding-bottom: $box-pad
-	p, pre
-		padding-left: $box-pad
-		padding-right: $box-pad
-
-// handling images.
-figure
-	margin: 0
-	margin-bottom: $box-pad
-	background: none
-	img
-	// background: red
-	// overflow: visible
-
-figcaption
-	font-size: $font-size-small
-	padding: $box-pad
-	background: white
-	font-style: italic
-	border-bottom: 2px solid $body-bg
-
-a
-	&:hover
-		border-bottom: 2px solid #000
-	border-bottom: 2px solid $body-bg
-	+transition(200ms)
-
-
+	
 time.date
 	display: block
 	clear: left
 	font-size: $font-size-small
 
-
-.footnotes
-	clear: both
-	padding: $box-pad
-	background: white
-	hr
-		border-top: 1px solid $body-bg
-		border-bottom: 0px
-
-.container
-	> footer
-		clear: both
-		// background: darken($body-bg, 5%)
-		padding: $box-pad 0
-
-ul.social
-	margin: 0
-	padding: 0
-	li
-		&:first-child
-			display: none
-		list-style-type: none
-		display: inline-block
-		width: 20px
-		margin-right: 10px
-		padding: 0
-
 #archives
-	background: white
 	display: block
 	width: 100%
 	padding: $box-pad
-	list-style-type: none
 
-::-moz-selection 
-	background: red
-::selection 
-	background: red
 
+
+
+// -------------------------------------
+// Portfolio View ----------------------
+// -------------------------------------
+.work
+	background: fade-out(red, .9)
+	padding: 0
+	margin: 0
+	+clearfix
+	li
+		width: 33.3333%
+		padding-top: 33.3333%
+		background: fade-out(blue, .7)
+		display: inline-block
+		height: 0
+		float: left
+		overflow: hidden
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .btn, .btn:hover 
+// 	border-bottom: 0
+// 	padding: 0.5em 1em
+
+// .btn
+// 	&:hover
+// 		background: black
+// 		color: white
+// 		border-bottom: 1px solid black
+// 	border-bottom: 2px solid black
+// 	// display: block
+// 	text-align: left
+// 	background: $body-bg
+// 	font-weight: bold
+// 	border: 1px solid black
+// 	border-radius: 2px
+
+// scaffolding layout
 
 #qu-showcase
-	background: $body-bg
 	position: relative
-	// outline: 4px solid blue
 	padding-top: 690px
 	
 	div
@@ -405,23 +380,14 @@ ul.social
 		padding: 0
 		display: block
 		overflow: auto
-		width: 500px * 25
+		width: 500px * 62
 	
 		li
-			list-style-type: none
 			display: block
 			float: left
 			width: 500px
 
-
-::-webkit-scrollbar
-	height: 0.5em
-	width: 0.5em
-::-webkit-scrollbar-track 
-	// background: red
-::-webkit-scrollbar-thumb 
-	background: black
-#mask
+.qu-mask
 	width: auto
 	z-index: 100
 	position: absolute

@@ -23,6 +23,8 @@ Build
 MM_LANG=en bundle exec middleman build
 # Frech blog
 MM_LANG=fr bundle exec middleman build
+# Romanian blog
+MM_LANG=ro bundle exec middleman build
 ```
 
 Preview
@@ -30,9 +32,11 @@ Preview
 
 ```bash
 # English blog
-MM_LANG=en bundle exec middleman server -p 4566
+MM_LANG=en bundle exec middleman server -p 4567
 # French blog
-MM_LANG=fr bundle exec middleman server -p 5677
+MM_LANG=fr bundle exec middleman server -p 5678
+# Romanian blog
+MM_LANG=ro bundle exec middleman server -p 6789
 ```
 
 Deploy

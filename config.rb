@@ -10,7 +10,8 @@ require './lib/middleman/renderers/custom'
 lang = (ENV['MM_LANG'] || 'fr').to_sym
 cname = ({
   en: 'mariusnedelcu.com',
-  fr: 'fr.mariusnedelcu.com'
+  fr: 'fr.mariusnedelcu.com',
+  ro: 'ro.mariusnedelcu.com'
 })[lang]
 
 Time.zone = "Paris"
@@ -140,6 +141,12 @@ configure :build do
     activate :google_analytics do |ga|
       ga.tracking_id = 'UA-59815331-1'
     end
+  # else
+  #   ignore '/about/index.en.html'
+  #   ignore '/en/*'
+  #   activate :google_analytics do |ga|
+  #     ga.tracking_id = 'UA-59815331-1'
+  #   end
   end
   activate :favicon_maker, :icons => {
     "favicon-hires.png" => [
@@ -181,11 +188,11 @@ end
 helpers do
   include EmojiHelper
   def alt_lang
-    I18n.locale.to_s == 'en' ? "[ read in English ]" : "en_US"
+    I18n.locale.to_s == 'en' ? "[ EN ]" : "en_US"
   end
 
   def alt_lang_name
-    I18n.locale.to_s == 'en' ? "[ read in French ]" : "French"
+    I18n.locale.to_s == 'en' ? "[ FR ]" : "French"
   end
 
   def alt_host
@@ -197,7 +204,7 @@ helpers do
   end
 
   def alt_link
-    link_to %Q{<span class="glyphicon glyphicon-globe"></span>&nbsp;#{alt_lang_name}},
-      alt_href, href_lang: alt_lang, rel: "alternate"
+    link_to %Q{#{alt_lang_name}},
+      alt_href, href_lang: alt_lang, rel: "alternate", title: "read in #{alt_lang_name}"
   end
 end

@@ -218,12 +218,7 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
         /         | &nbsp;&nbsp;Dribbble
 
       footer
-        ul.social
-          li @copyright Marius Nedelcu
-          li= link_to image_tag('dribbble.svg', :alt => 'dribbble'), 'https://dribbble.com/mariusnedelcu', :target => '_blank'
-          li= link_to image_tag('twitter.svg', :alt => 'twitter'), 'https://twitter.com/nedzen', :target => '_blank'
-          li= link_to image_tag('ello.svg', :alt => 'ello'), 'https://ello.co/mariusnedelcu', :target => '_blank'
-          li= link_to image_tag('github.svg', :alt => 'github'), 'https://github.com/nedzen/', :target => '_blank'
+        = partial "socialmedia"
 
         / .credit
         /   p
