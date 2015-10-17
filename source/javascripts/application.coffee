@@ -93,17 +93,17 @@ getStylesheet = ->
 getStylesheet()
 
 
-handleFilterTagsKeyUp = (e)->
-  input = $ e.target
-  filterTags input.val()
+# handleFilterTagsKeyUp = (e)->
+#   input = $ e.target
+#   filterTags input.val()
 
-filterTags = (text)->
-  $('#sidebar-tags-list > li').each ->
-    self = $ @
-    if self.text().indexOf(text) == -1
-      self.addClass 'hidden'
-    else
-      self.removeClass 'hidden'
+# filterTags = (text)->
+#   $('#sidebar-tags-list > li').each ->
+#     self = $ @
+#     if self.text().indexOf(text) == -1
+#       self.addClass 'hidden'
+#     else
+#       self.removeClass 'hidden'
 
 # setUpMixCloud = ->
 #   $('.mixcloud[data-embed-uuid]').each ->
@@ -113,9 +113,9 @@ filterTags = (text)->
 #     src = "https://www.mixcloud.com/widget/iframe/?feed=#{ encodeURIComponent feed }&amp;embed_uuid=#{ embedUuid }&amp;replace=0&amp;light=#{light}&amp;hide_cover=1&amp;embed_type=widget_standard&amp;hide_tracklist=1"
 #     ele.replaceWith $('<iframe width="100%" height="180" frameborder="0" />').attr {src}
 
-handleShowAllLink = (e)->
-  $('#sidebar-tags-list > li').removeClass 'hidden'
-  $('.show-all-tags-link').remove()
+# handleShowAllLink = (e)->
+#   $('#sidebar-tags-list > li').removeClass 'hidden'
+#   $('.show-all-tags-link').remove()
 
 # handleReadMoreLink = (e)->
 #   link = $ @
@@ -153,12 +153,12 @@ handleShowAllLink = (e)->
 #       name: 'BOOTSTRA.386'
 #     }
 
-appendItem = (ul, data)->
-  { cssCdn, name, preview } = data
-  li = $ """<li><a href="#{preview}" target="_blank">#{name}</a></li>"""
-  li.find('a').data data
-  ul.append li
-  li
+# appendItem = (ul, data)->
+#   { cssCdn, name, preview } = data
+#   li = $ """<li><a href="#{preview}" target="_blank">#{name}</a></li>"""
+#   li.find('a').data data
+#   ul.append li
+#   li
 
 # setTheme = (theme)->
 #   { name, preview, cssCdn, isDefault } = theme
@@ -175,22 +175,22 @@ appendItem = (ul, data)->
 #     bgColor = "rgba(#{r}, #{g}, #{b}, 0.9)"
 #   $('#sidebar-navigation').css 'background-color', bgColor
 
-handleYAuctionLink = (e) ->
-  anchor = $ e.target
-  href = anchor.attr 'href'
-  anchor.attr 'href', "http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=2462325&pid=883185139&vc_url=#{encodeURIComponent href}"
+# handleYAuctionLink = (e) ->
+#   anchor = $ e.target
+#   href = anchor.attr 'href'
+#   anchor.attr 'href', "http://ck.jp.ap.valuecommerce.com/servlet/referral?sid=2462325&pid=883185139&vc_url=#{encodeURIComponent href}"
 
-$ ->
-  $('body').on 'click', '[href*="auction"][href*="yahoo.co.jp"]', handleYAuctionLink
+# $ ->
+#   $('body').on 'click', '[href*="auction"][href*="yahoo.co.jp"]', handleYAuctionLink
   # $('[data-toggle=tooltip]').tooltip()
   # $('form#tag-filter-form')
   # .on('submit', no)
   # .find('input')
-  .on('keyup', handleFilterTagsKeyUp)
+  # .on('keyup', handleFilterTagsKeyUp)
   # $('.article-body > table').addClass 'table-bordered table'
-  $('.show-all-tags-link').on('click', handleShowAllLink)
+  # $('.show-all-tags-link').on('click', handleShowAllLink)
   # $('#sidebar-bootswatch [data-toggle="dropdown"]').on 'click', loadThemeDropDown
-  $('.bootswatch-theme-list').on 'click', 'a', ->
+  # $('.bootswatch-theme-list').on 'click', 'a', ->
     # setTheme $(@).data()
     # no
   # $('.read-more a').on 'click', handleReadMoreLink
@@ -199,8 +199,8 @@ $ ->
   # $('#sidebar-navigation').hidescroll hiddenClass: 'nav-hidden'
   # setUpMixCloud()
 
-new Konami () ->
-  $('#sidebar-bootswatch').fadeIn()
+# new Konami () ->
+#   $('#sidebar-bootswatch').fadeIn()
 
 # theme = $.cookie(COOKIE_KEY_THEME) || getDefaultTheme()
 # document.write """<link rel="stylesheet" type="text/css" href="#{theme.cssCdn}" id="bootswatch-css">"""

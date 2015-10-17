@@ -1,7 +1,7 @@
 @import 'variables'
 @import 'reboot'
 @import 'normalize'
-@import 'debug'
+// @import 'debug'
 @import 'syntax'
 
 
@@ -19,7 +19,6 @@ p
 		padding: 2px 6px
 		border-radius: 2px
 		box-shadow: 0px 1px 2px fade-out(black, .9)
-
 
 // handling images
 // **********************
@@ -45,7 +44,6 @@ a
 	+transition(200ms)
 
 p > q
-	// $decay : 30%
 	font-family: Georgia, Times, 'Times New Roman', serif
 	font-size: 1.2em
 	font-style: italic
@@ -53,8 +51,6 @@ p > q
 	clear: both
 	width: 100%
 	padding: $box-pad
-	// margin-right: -1 * $decay
-	// padding-left: $decay
 
 ul
 	margin: 0
@@ -70,17 +66,25 @@ pre.highlight
 ::-webkit-scrollbar
 	height: 0.5em
 	width: 0.5em
-::-webkit-scrollbar-track 
-	// background: red
-::-webkit-scrollbar-thumb 
+
+::-webkit-scrollbar-thumb
 	background: black
 
-.footnotes
-	clear: both
-	max-width: 700px
-	border-top: 1px dotted black
-	hr
-		display: none
+// Typography
+h1, h2, h3, h4, h5, h6 
+	font-weight: normal
+	margin-top: 0
+	line-height: 1.3
+	margin-bottom: $box-pad
+
+h1
+	font-size: $font-size-root * $pi / 1.5
+h2
+	font-size: $font-size-root * $pi / 2
+h3
+	font-size: $font-size-root * $pi / 2.5
+h4
+	font-size: $font-size-root
 
 // Scaffolding ---------------------------------
 .row, .content
@@ -114,6 +118,7 @@ pre.highlight
 		width: 100%
 
 	sidebar
+		+transition(200ms)
 		width: $sidebar-w - $box-pad
 		margin-right: -1 * $sidebar-w
 		text-align: right
@@ -207,8 +212,8 @@ body.grid
 		display: inline-block
 		padding: 0em 0.6em
 
-// Site Parts -----------------------------------
 
+// Site Parts -----------------------------------
 
 ul.pagination
 	margin: $box-pad 0
@@ -232,6 +237,10 @@ ul.pagination
 p.read-more
 	margin-bottom: 0
 	a
+		&:hover
+			background: black
+			color: white
+		padding: 1px 4px 1px 2px
 		border-bottom-color: black
 
 ul.social // social links in the bootom footer
@@ -285,7 +294,15 @@ footer.meta
 	ul
 		li
 			display: inline-block
-			font-weight: bold
+
+// just in case i write content with
+// footnotes should revisit this
+.footnotes
+	clear: both
+	max-width: 700px
+	border-top: 1px dotted black
+	hr
+		display: none
 
 // Content ----------------------------------
 
@@ -293,37 +310,14 @@ footer.meta
 	padding-bottom: $box-pad
 	margin-bottom: $box-pad
 	header
-		padding-bottom: $box-pad
-		h1
-			font-size: 40px
+		h1, h2
 			font-weight: 900
 			margin: 0
 		p.meta
 			font-weight: bold
 			font-size: $font-size-small
-			display: block
-			clear: left
-			margin-bottom: 0
-			padding-left: 0
 			a
 				margin-left: 20px
-				// float: right
-
-// main > header
-// 	padding: $box-pad
-// 	h1
-// 		font-size: 40px
-// 		font-weight: 900
-// 		margin: 0
-
-// h2[itemprop="name"]
-// 	margin-bottom : 0
-// 	padding: 0 0 $box-pad 0
-// 	font-weight: 800
-// 	time
-// 		display: block
-// 		clear: left
-// 		font-size: $font-size-small
 
 
 // About page --------------------------------------------
@@ -361,8 +355,12 @@ time.date
 #archives
 	display: block
 	width: 100%
-	padding: $box-pad
 
+
+ul.entries
+	li a time
+		margin-right: $box-pad
+	
 
 
 
