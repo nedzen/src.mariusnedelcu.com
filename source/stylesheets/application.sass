@@ -1,7 +1,7 @@
 @import 'variables'
 @import 'reboot'
 @import 'normalize'
-// @import 'debug'
+@import 'debug'
 @import 'syntax'
 
 
@@ -23,14 +23,19 @@ p
 
 // handling images
 // **********************
+img
+	display: block
+	max-width: 100%
+
 figure
+	&.wide
+		img
+			width: 100%
 	margin: 0
 	margin-bottom: $box-pad
-	// padding: $box-pad
-	background: white
-	img
+
 figcaption
-	padding: $box-pad
+	padding-top: $box-pad
 	font-size: $font-size-small
 
 a
@@ -50,10 +55,6 @@ p > q
 	padding: $box-pad
 	// margin-right: -1 * $decay
 	// padding-left: $decay
-
-img
-	display: block
-	width: 100%
 
 ul
 	margin: 0
@@ -82,32 +83,88 @@ pre.highlight
 		display: none
 
 // Scaffolding ---------------------------------
-$sidebar-w: 16rem
-
-.row
+.row, .content
 	width: 100%
-	float: left
-	padding-right: $sidebar-w
+
+
+@media screen and (min-width: $container-md)
+
+@media screen and (min-width: $container-md)
+	$sidebar-w: 10rem
+	.row
+		float: left
+		padding-right: $sidebar-w
+	
+	.content
+		float: left
+		width: 100%
+
+	sidebar
+		float: right
+		width: $sidebar-w - $box-pad
+		margin-right: -1 * $sidebar-w
+
+@media screen and (min-width: $container-xxl)
+	$sidebar-w: 16rem
+	.row
+		padding-right: $sidebar-w
+
+	.content
+		float: left
+		width: 100%
+
+	sidebar
+		width: $sidebar-w - $box-pad
+		margin-right: -1 * $sidebar-w
+		text-align: right
+
+
+// sidebar inside articles
+// to hold the images.
+
+.sidebar
+	+transition(200ms)
+	overflow: visible
+	height: 0
+	padding-left: 700px
+	figure
+		padding-left: $box-pad
 
 .container
+	@media screen and (max-width: $container-xxl)
+		$x: 52.5%
+		.sidebar
+			height: 0
+			padding-left: $x
+		.article-body p
+			max-width: $x
+	@media screen and (max-width: $container-xl)
+		$x: 555px
+		.sidebar
+			height: 0
+			padding-left: $x
+		.article-body p
+			max-width: $x
+	@media screen and (max-width: $container-w)
+		$x: 100%
+		div.sidebar
+			height: auto
+			padding-left: 0
+			figure
+				padding-left: 0
+		.article-body p
+			max-width: 700px
+
 	max-width: $container-xxl
-	padding: $box-pad $box-pad * 2
+	@media screen and (min-width: $container-lg)
+		padding: $box-pad $box-pad * 2
+	padding: 0 $box-pad
+	+transition(200ms)
 	+center-block
 	+clearfix
 	> footer
 		clear: both
 		padding: $box-pad 0
-
-.content
-	float: left
-	width: 100%
-
-sidebar
-	width: $sidebar-w - $box-pad
-	margin-right: -1 * $sidebar-w
-	float: right
-	text-align: right
-	
 
 // ------
 body.wide
@@ -151,11 +208,7 @@ body.grid
 		padding: 0em 0.6em
 
 // Site Parts -----------------------------------
-.sbar
-	outline: 2px solid red
-	height: 0
-	overflow: visible
-	padding-left: 700px
+
 
 ul.pagination
 	margin: $box-pad 0
@@ -329,6 +382,8 @@ time.date
 		height: 0
 		float: left
 		overflow: hidden
+
+
 
 
 

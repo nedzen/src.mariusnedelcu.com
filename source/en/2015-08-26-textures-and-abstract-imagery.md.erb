@@ -15,15 +15,16 @@ ogp:
       width: 992
       height: 525
 ---
+<div class="sidebar">
+  <figure>
+    <%= image_tag '2015-08-26-textures-and-abstract-imagery/preview_mag.png' %>
+    <figcaption>Something here and there</figcaption>
+  </figure>
+</div>
 
 Accidental Empires: How the Boys of Silicon Valley Make Their Millions, Battle Foreign Competition, and Still Can't Get a Date (1992, 1996), is a book written by Mark Stephens under the pen name Robert X. Cringely about the founding of the personal computer industry and the history of Silicon Valley. The style of the book is informal, and in the first chapter Cringley claims that he is not a historian but an explainer, and that "historians have a harder job because they can be faulted for what is left out; explainers like me can get away with printing only the juicy parts." Notably, the book was critical of Steve Jobs and Apple, as well as Bill Gates and Microsoft.
 
 READMORE
-
-<div class="sbar">
-  <%= image_tag '2015-08-26-textures-and-abstract-imagery/preview_mag.png' %>
-  <%= image_tag '2015-08-26-textures-and-abstract-imagery/leaf_fond.png' %>
-</div>
 
 that you live on planet Earth. If that’s the case, here’s some good news: "Our humble home has over seven times more" trees than previously thought. Yes, seven times more trees, bringing our arboreal number from 400 billion to a whopping 3 trillion. That over four hundred trees per person. 
 
@@ -34,14 +35,12 @@ Pretty good, right?
 This new estimate was reached **using** nearly half a million ground measurements, combined with satellite imaging, and computer models. The previous figure, by comparison, relied solely on satellite imaging, reports The New York Times. The study which lead to this stunning, seven-fold increase, was published this week in Nature. Entitled “Mapping tree density at a global scale,” the study was conducted by a team from Yale university, ==and spearheaded by Thomas Crowther, a post-doctoral fellow at the University's School of Forestry & Environmental Studies. Crowther became involved in the tree-counting study, after having been approached by Plant for the Planet, a global, environmental youth initiative. With a goal== of planting a billion trees, the group wanted to understand _what effect their efforts would have on overall C02 emissions for the planet. "quote" In order to understand the effect, Crowther realized_, he’d need first to understand just how many trees there were out there to begin with.  
 
 
-<figure>
+<figure class="wide">
 	<%= image_tag '2015-08-26-textures-and-abstract-imagery/leaf_fond.png' %>
 	<figcaption>Something here lorem ipsum dolor sit amet dolor consec ipsum</figcaption>
 </figure>
 
-<figure style="max-width:500px; display:inline-block;">
-	<%= image_tag '2015-08-26-textures-and-abstract-imagery/alt.jpg' %>
-</figure>
+<%= image_tag '2015-08-26-textures-and-abstract-imagery/alt.jpg' %>
 
 
 that you live on planet Earth.[^1] If that’s the case, here’s some good news: "Our humble home has over seven times more" trees than previously thought. Yes, seven times more trees, bringing our arboreal number from 400 billion to a whopping 3 trillion. That over four hundred trees per person. 
@@ -63,106 +62,17 @@ This new estimate was reached **using** nearly half a million ground measurement
 #### If you’re reading this, odds are pretty good
 
 ```erb
-<div>
-	<%= image_tag '2015-08-26-textures-and-abstract-imagery/leaf_fond.png' %>
-</div>
+
 ```
 
 `We actually didn’t start` with the design. ~~Mistaken text.~~ http://example.com to look at the overall structure of their company first to then define what the magazine should be—from a content and design perspective.
 
 ```html
-<h1>Experiments with Sass Color Functions</h1>
-
-<p>Top and bottom border to all divs are generated with <code>grayscale($color)</code> and <code>desaturate($color, 20)</code>, respectively.</p>
-
-<h2>Sass Native:</h2>
-
-<div class="darken">
-  <pre>darken($color, 20);</pre>
-  <p>Darken base color by 20%.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#darken-instance_method">Documentation.</a> Related: <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#lighten-instance_method">lighten</a></p>
-</div>
-
-<div class="complement">
-  <pre>complement($color);</pre>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#complement-instance_method">Documentation.</a></p>
-</div>
-
-<div class="saturate">
-  <pre>saturate($color, 20);</pre>
-  <p>Increase saturation of base color by 20%.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#saturate-instance_method">Documentation</a>. Related: <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#desaturate-instance_method">desaturate</a></p>
-</div>
-
-<div class="invert">
-  <pre>invert($color);</pre>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#invert-instance_method">Documentation.</a></p>
-</div>
-
-<div class="mix">
-  <pre>mix($color, #00F, 75%);</pre>
-  <p>Mix blue into the base color by 75%.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#mix-instance_method">Documentation.</a></p>
-</div>
-
-<div class="hue">
-  <pre>adjust_hue($color, 110);</pre>
-  <p>Rotate base color by 110 degrees around the color wheel.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#adjust_hue-instance_method">Documentation</a></p>
-</div>
-
-<div class="adjust-single">
-  <pre>adjust-color($color, $green: 128);</pre>
-  <p>Add a hue to a color, by value. Use a negative number to subtract a color.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#adjust_color-instance_method">Documentation.</a> Related: <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#scale_color-instance_method">scale-color</a>, <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#change_color-instance_method">change-color</a></p>
-</div>
-
-<div class="adjust-multiple">
-  <pre>adjust-color($color, $green: -64, $blue: -64)</pre>
-  <p>Remove multiple hues from a color, by value. Use a positve number to add a hue.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#adjust_color-instance_method">Documentation.</a></p>
-</div>
-
-<div class="transparentize">
-  <pre>transparentize(gray, .5);</pre>
-  <p>Adjust the transparency (alpha) of a color.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#transparentize-instance_method">Documentation.</a> Related: <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#fade_out-instance_method">fade-out</a>, <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#opacify-instance_method">opacify</a>, <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#transparentize-instance_method">transparentize</a></p>
-</div>
-
-<div class="red">
-  <pre>rgb(red($color), 0, 0)</pre>
-  <p>Use only the amount of red in the base color.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#red-instance_method">Documentation.</a></p>
-</div>
-
-<div class="green">
-  <pre>rgb(0, green($color), 0);</pre>
-  <p>Use only the amount of green in the base color.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#green-instance_method">Documentation.</a></p>
-</div>
-
-<div class="blue">
-  <pre>rgb(0, 0, blue($color));</pre>
-  <p>Use only the amount of blue in the base color.</p>
-  <p class="docs"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#blue-instance_method">Documentation.</a></p>
-</div>
-
-<p>Also see color "getter" functions:</p>
-<ul>
-  <li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#hue-instance_method">hue($color)</a></li>
-  <li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#saturation-instance_method">saturation($color)</a></li>
-  <li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#lightness-instance_method">lightness($color)</a></li>
-  <li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#alpha-instance_method">alpha($color)</a></li>
-</ul>
-
-<h2>Compass:</h2>
-
-<div class="shade">
+<div class="codes">
   <pre>shade($color, 50%);</pre>
   <p>Mix <code>$color</code> with black, by %.</p>
-  <p class="docs"><a href="http://compass-style.org/reference/compass/helpers/colors/#shade">Documentation.</a> Related:  <a href="http://compass-style.org/reference/compass/helpers/colors/#tint">tint</a></p>
+  <p class="docs"><a href="#">Documentation.</a></p>
 </div>
-
 ```
 
 <figure>
@@ -170,10 +80,3 @@ This new estimate was reached **using** nearly half a million ground measurement
 	<figcaption>Something here lorem ipsum dolor sit amet dolor consec ipsum</figcaption>
 </figure>
 
-<div class="sbar">
-  <%= image_tag '2015-08-26-textures-and-abstract-imagery/preview_mag.png' %>
-</div>
-
-We felt the magazine should be a by-product of the GOOD brand. Since GOOD Magazine was going through the process from being an activist magazine solely, to bringing in more of a lifestyle component, we had to be very careful to not end up with something over-designed and in the end nothing tangible. We wanted the content to drive the magazine, not the design. We tried to keep it very simple and put our efforts into the content. We worked in close collaboration with GOOD’s Editor-in-Chief Josh Neuman, Casey, and the awesome GOOD team.
-
-We actually didn’t start with the design. It was more important to look at the overall structure of their company first to then define what the magazine should be—from a content and design perspective.
