@@ -24,45 +24,44 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
     = stylesheet_link_tag 'application', "http://fonts.googleapis.com/css?family=Roboto:500,900,400italic,700italic,300,700,500italic,300italic,400"
     = javascript_include_tag 'application'
     
-    / - if current_page.data.description
-    /   meta content=emojify(current_page.data.description, :raw) name="description"
-    / - elsif content_for?(:description)
-    /   meta content=emojify(yield_content(:description), :raw) name="description"
-    / - else
-    /   meta content=emojify(t('blog.description'), :raw) name="description"
-    
-    / - if current_page.data.keywords
-    /   meta content=emojify(current_page.data.page.keywords, :raw) name="keywords"
-    / - elsif current_article && current_article.tags
-    /   meta content=emojify(current_article.tags.join(','), :raw) name="keywords"
+    - if current_page.data.description
+      meta content=emojify(current_page.data.description, :raw) name="description"
+    - elsif content_for?(:description)
+      meta content=emojify(yield_content(:description), :raw) name="description"
+    - else
+      meta content=emojify(t('blog.description'), :raw) name="description"
+    - if current_page.data.keywords
+      meta content=emojify(current_page.data.page.keywords, :raw) name="keywords"
+    - elsif current_article && current_article.tags
+      meta content=emojify(current_article.tags.join(','), :raw) name="keywords"
 
-    / - if current_resource.data.alternate
-    /   meta content=alt_lang property="og:locale:alternate"
-    /   link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{ current_resource.url }"
+    - if current_resource.data.alternate
+      meta content=alt_lang property="og:locale:alternate"
+      link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{ current_resource.url }"
     
     / - if current_resource.data.app_id
     /   meta name='apple-itunes-app' content="app-id=#{current_resource.data.app_id}, affiliate-data='at=10l87J'"
     
-    / meta content=t('author.name') name="author"
+    meta content=t('author.name') name="author"
 
-    / = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
-    / - %w{152 144 120 114 76 72 60 67}.each do |size|
-    /   - size = "#{size}x#{size}"
-    /   link rel="apple-touch-icon" size=size href="/apple-touch-icon-#{size}-precomposed.png"
-    / link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
-    / link rel="shortcut icon" href="/favicon.png"
-    / link rel="icon" type="image/ico" href="/favicon.ico"
+    = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+    - %w{152 144 120 114 76 72 60 67}.each do |size|
+      - size = "#{size}x#{size}"
+      link rel="apple-touch-icon" size=size href="/apple-touch-icon-#{size}-precomposed.png"
+      / link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
+    link rel="shortcut icon" href="/favicon.png"
+    link rel="icon" type="image/ico" href="/favicon.ico"
 
-    / - if current_article
-    /   - if current_article.previous_article
-    /     link rel="prev" href=current_article.previous_article.url
-    /   - if current_article.next_article
-    /     link rel="next" href=current_article.next_article.url
-    / - elsif paginate
-    /   - if prev_page
-    /     link rel="prev" href=prev_page.url
-    /   - if next_page
-    /     link rel="next" href=next_page.url
+    - if current_article
+      - if current_article.previous_article
+        link rel="prev" href=current_article.previous_article.url
+      - if current_article.next_article
+        link rel="next" href=current_article.next_article.url
+    - elsif paginate
+      - if prev_page
+        link rel="prev" href=prev_page.url
+      - if next_page
+        link rel="next" href=next_page.url
   
     - if current_article
         body.wide
