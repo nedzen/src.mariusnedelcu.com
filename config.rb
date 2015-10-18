@@ -124,7 +124,7 @@ end
 configure :build do
   activate :minify_css
   activate :minify_javascript
-  activate :asset_hash, ignore: 'images'
+  activate :asset_hash, ignore: 'images', ignore: ['images', 'stylesheets']
   ignore '.DS_Store'
   ignore '.*.swp'
   ignore '_drafts'
