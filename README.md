@@ -23,8 +23,7 @@ Build
 MM_LANG=en bundle exec middleman build
 # Frech blog
 MM_LANG=fr bundle exec middleman build
-# Romanian blog
-MM_LANG=ro bundle exec middleman build
+
 ```
 
 Preview
@@ -35,8 +34,7 @@ Preview
 MM_LANG=en bundle exec middleman server -p 4567
 # French blog
 MM_LANG=fr bundle exec middleman server -p 5678
-# Romanian blog
-MM_LANG=ro bundle exec middleman server -p 6789
+
 ```
 
 Deploy
@@ -54,8 +52,7 @@ echo "GH_TOKEN=<MY_GITHUB_TOKEN>" > .env
 MM_LANG=en bundle exec middleman deploy
 # French blog
 MM_LANG=fr bundle exec middleman deploy
-# Romanian blog
-MM_LANG=ro bundle exec middleman deploy
+
 ```
 
 License

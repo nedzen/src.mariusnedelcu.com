@@ -10,8 +10,7 @@ require './lib/middleman/renderers/custom'
 lang = (ENV['MM_LANG'] || 'fr').to_sym
 cname = ({
   en: 'mariusnedelcu.com',
-  fr: 'fr.mariusnedelcu.com',
-  ro: 'ro.mariusnedelcu.com'
+  fr: 'fr.mariusnedelcu.com'
 })[lang]
 
 Time.zone = "Paris"
@@ -161,17 +160,11 @@ configure :build do
     activate :google_analytics do |ga|
       ga.tracking_id = 'UA-68991286-1'
     end
-  elsif
+  else
     ignore '/about/index.en.html'
     ignore '/en/*'
     activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-XXXXXX-FR'
-    end
-  else
-    ignore '/about/index.ro.html'
-    ignore '/ro/*'
-    activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-XXXXXX-RO'
+      ga.tracking_id = 'UA-68991286-2'
     end
   end
   activate :favicon_maker, :icons => {
