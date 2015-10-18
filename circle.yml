@@ -1,7 +1,7 @@
 machine:
   timezone: UTC
   ruby:
-    version: 2.0.0-p481
+    version: 2.2.2
   environment:
     TAGGER_DIR: vendor/tree-tagger
     TREETAGGER_COMMAND: vendor/tree-tagger/cmd/tree-tagger-english
@@ -29,13 +29,8 @@ compile:
     - bundle exec middleman build --verbose:
         environment:
           MM_LANG: en
-    - bundle exec middleman build --verbose:
-        environment:
-          MM_LANG: ro
-
     - tar cvfz $CIRCLE_ARTIFACTS/build-fr.tar.gz build-fr
     - tar cvfz $CIRCLE_ARTIFACTS/build-en.tar.gz build-en
-    - tar cvfz $CIRCLE_ARTIFACTS/build-en.tar.gz build-ro
 deployment:
   main:
     branch: 'master'
@@ -46,6 +41,3 @@ deployment:
       - bundle exec middleman deploy >/dev/null 2>&1:
           environment:
             MM_LANG: en
-      - bundle exec middleman deploy >/dev/null 2>&1:
-          environment:
-            MM_LANG: ro
