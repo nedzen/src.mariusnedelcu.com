@@ -50,7 +50,5 @@ getStylesheet = ->
     document.write '<link rel=\'stylesheet\' href=\'http://mariusnedelcu.com/stylesheets/c22.css\' type=\'text/css\'>'
   if 23 <= currentTime and currentTime < 24
     document.write '<link rel=\'stylesheet\' href=\'http://mariusnedelcu.com/stylesheets/c23.css\' type=\'text/css\'>'
-  # if 24 <= currentTime and currentTime < 25
-  #   document.write '<link rel=\'stylesheet\' href=\'http://mariusnedelcu.com/stylesheets/c24.css\' type=\'text/css\'>'
   return
 getStylesheet()

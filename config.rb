@@ -124,7 +124,33 @@ end
 configure :build do
   activate :minify_css
   activate :minify_javascript
-  activate :asset_hash, ignore: 'images', ignore: ['images', 'stylesheets']
+  activate :asset_hash, ignore: [
+                        'images',
+                        'stylesheets/c00.css',
+                        'stylesheets/c01.css',
+                        'stylesheets/c02.css',
+                        'stylesheets/c03.css',
+                        'stylesheets/c04.css',
+                        'stylesheets/c05.css',
+                        'stylesheets/c06.css',
+                        'stylesheets/c07.css',
+                        'stylesheets/c08.css',
+                        'stylesheets/c09.css',
+                        'stylesheets/c10.css',
+                        'stylesheets/c11.css',
+                        'stylesheets/c12.css',
+                        'stylesheets/c13.css',
+                        'stylesheets/c14.css',
+                        'stylesheets/c15.css',
+                        'stylesheets/c16.css',
+                        'stylesheets/c17.css',
+                        'stylesheets/c18.css',
+                        'stylesheets/c19.css',
+                        'stylesheets/c20.css',
+                        'stylesheets/c21.css',
+                        'stylesheets/c22.css',
+                        'stylesheets/c23.css'
+                      ]
   ignore '.DS_Store'
   ignore '.*.swp'
   ignore '_drafts'
