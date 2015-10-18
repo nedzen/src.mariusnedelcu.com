@@ -8,7 +8,7 @@ machine:
     MM_ENV: production
   pre:
     - "git config --global user.name 'Circle CI'"
-    - "git config --global user.email 'a+circleci@ngs.io'"
+    - "git config --global user.email 'nedzen.11@gmail.com'"
 test:
   override:
     - 'echo "OK"'
@@ -29,8 +29,13 @@ compile:
     - bundle exec middleman build --verbose:
         environment:
           MM_LANG: en
+    - bundle exec middleman build --verbose:
+        environment:
+          MM_LANG: ro
+
     - tar cvfz $CIRCLE_ARTIFACTS/build-fr.tar.gz build-fr
     - tar cvfz $CIRCLE_ARTIFACTS/build-en.tar.gz build-en
+    - tar cvfz $CIRCLE_ARTIFACTS/build-en.tar.gz build-ro
 deployment:
   main:
     branch: 'master'
@@ -41,4 +46,7 @@ deployment:
       - bundle exec middleman deploy >/dev/null 2>&1:
           environment:
             MM_LANG: en
+      - bundle exec middleman deploy >/dev/null 2>&1:
+          environment:
+            MM_LANG: ro
 
