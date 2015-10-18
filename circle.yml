@@ -49,4 +49,3 @@ deployment:
       - bundle exec middleman deploy >/dev/null 2>&1:
           environment:
             MM_LANG: ro
-

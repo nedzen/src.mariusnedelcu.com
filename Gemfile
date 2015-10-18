@@ -28,4 +28,3 @@ gem 'gemoji', '~> 2.1'
 gem 'slim'
 gem 'sass'
 gem 'coffee-script'
-

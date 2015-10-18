@@ -15,18 +15,13 @@ alternate: true
 
 - content_for :main do
   main.about role='main' itemscope=true itemtype="http://data-vocabulary.org/Person"
-
-    = image_tag 'x.gif'
     
-    h1 Marius Nedelcu
+    header
+      h1 Marius Nedelcu
+      p.meta = alt_link
     
-    p = alt_link
-    
-    p Graphic Designer Based in Paris
     markdown:
-      ## Cate ceva despre mine
-      etc etc in limba Romanana. yes yes yo
-      
+      etc etc in limba Romanana. yes yes yo  
 
     h3 Ia legatura cu mine.
 

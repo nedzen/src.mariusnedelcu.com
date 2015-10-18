@@ -159,20 +159,20 @@ configure :build do
     ignore '/about/index.fr.html'
     ignore '/fr/*'
     activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-59815331-1'
+      ga.tracking_id = 'UA-68991286-1'
     end
   else
     ignore '/about/index.en.html'
     ignore '/en/*'
     activate :google_analytics do |ga|
-      ga.tracking_id = 'UA-59815331-1'
+      ga.tracking_id = 'UA-XXXXXX-FR'
     end
-  # else
-  #   ignore '/about/index.en.html'
-  #   ignore '/en/*'
-  #   activate :google_analytics do |ga|
-  #     ga.tracking_id = 'UA-59815331-1'
-  #   end
+  else
+    ignore '/about/index.ro.html'
+    ignore '/ro/*'
+    activate :google_analytics do |ga|
+      ga.tracking_id = 'UA-XXXXXX-RO'
+    end
   end
   activate :favicon_maker, :icons => {
     "favicon-hires.png" => [
@@ -213,12 +213,17 @@ end
 
 helpers do
   include EmojiHelper
+
   def alt_lang
-    I18n.locale.to_s == 'en' ? "[ EN ]" : "en_US"
+    I18n.locale.to_s == 'en' ? "fr_FR" : "en_US"
   end
 
   def alt_lang_name
-    I18n.locale.to_s == 'en' ? "[ FR ]" : "French"
+    I18n.locale.to_s == 'en' ? "[ FR ]" : "[ EN ]"
+  end
+
+  def alt_lang_longname
+    I18n.locale.to_s == 'en' ? "French" : "English"
   end
 
   def alt_host
@@ -231,6 +236,7 @@ helpers do
 
   def alt_link
     link_to %Q{#{alt_lang_name}},
-      alt_href, href_lang: alt_lang, rel: "alternate", title: "read in #{alt_lang_name}"
+      alt_href, href_lang: alt_lang, rel: "alternate", title: "read in #{alt_lang_longname}"
   end
+
 end

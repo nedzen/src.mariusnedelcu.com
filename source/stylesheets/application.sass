@@ -323,27 +323,34 @@ footer.meta
 	padding-bottom: $box-pad
 	margin-bottom: $box-pad
 	header
+		clear: both
 		h1, h2
 			font-weight: 900
 			margin: 0
-		p.meta
-			font-weight: bold
-			font-size: $font-size-small
-			a
-				margin-left: 20px
+
+p.meta
+	font-weight: bold
+	font-size: $font-size-small
+	time
+		margin-right: $box-pad
 
 
 // About page --------------------------------------------
 .about
 	> p
 		max-width: 700px
+	header h1
+		margin-bottom: 0
 
 .article-body
 	+clearfix
 	p
 		max-width: 700px
 		display: block
-		
+
+.banner
+	margin-bottom: $box-pad
+
 body.wide .article-body blockquote p
 	// padding: $box-pad $box-pad * 2
 	margin: 0

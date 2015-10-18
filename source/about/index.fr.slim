@@ -15,17 +15,13 @@ alternate: true
 - content_for :main do
   main.about role='main' itemscope=true itemtype="http://data-vocabulary.org/Person"
 
-    = image_tag 'x.gif'
-    
-    h1 Marius Nedelcu
-    
-    p = alt_link
-    
-    p Graphic Designer Based in Paris
-      markdown:
-        ## À propos de moi:
-        Etant graphiste je m'interesse a plus que me concerne directemment par rapport à ma proffesion. Les soujets qui m'attirent et m'intrique le plus sont l'hesthetique, la philosophie, l'art, la biologie, l'etre umain car ce que je fais c'est pour lui a s'en servir.
-        Sur ce blog je vais écrire sur des choses que je ne comprends pas. Fais toi plaisir, clique ici et la sur mes pensées
+    header
+      h1 Marius Nedelcu
+      p.meta = alt_link
+      
+    markdown:
+      Etant graphiste je m'interesse a plus que me concerne directemment par rapport à ma proffesion. Les soujets qui m'attirent et m'intrique le plus sont l'hesthetique, la philosophie, l'art, la biologie, l'etre umain car ce que je fais c'est pour lui a s'en servir.
+      Sur ce blog je vais écrire sur des choses que je ne comprends pas. Fais toi plaisir, clique ici et la sur mes pensées
 
     h3 Get in touch with me at
 
