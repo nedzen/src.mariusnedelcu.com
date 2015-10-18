@@ -1,4 +1,4 @@
-# Copyright &copy; 2014 Atsushi Nagase
+# Copyright &copy; 2014 Marius Nedelcu
 
 ## Articles and pictures.
 
