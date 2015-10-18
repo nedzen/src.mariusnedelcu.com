@@ -6,7 +6,7 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
     meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'
     / meta content="Middleman #{Middleman::VERSION}" name='generator'
     meta itemprop="url" content=config.site_url
-    link rel='author' href='http://www.twitter.com/Fedzen'
+    link rel='author' href='http://www.twitter.com/nedzen'
     title
       - if current_article
         = "#{emojify current_article.title, :raw} - "
@@ -77,8 +77,8 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
       ul.nav-menu
         li= link_to '/archives' do 
           = t(:show_all)
-        li= link_to '/work' 
-          = t :visual
+        /-li= link_to '/work' 
+          /-= t :visual
         li= link_to '/about' 
           = t :aboutme
 

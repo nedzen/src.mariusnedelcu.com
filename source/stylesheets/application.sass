@@ -90,9 +90,6 @@ h4
 .row, .content
 	width: 100%
 
-
-@media screen and (min-width: $container-md)
-
 @media screen and (min-width: $container-md)
 	$sidebar-w: 10rem
 	.row
@@ -122,7 +119,6 @@ h4
 		width: $sidebar-w - $box-pad
 		margin-right: -1 * $sidebar-w
 		text-align: right
-
 
 // sidebar inside articles
 // to hold the images.
@@ -214,7 +210,6 @@ body.grid
 
 
 // Site Parts -----------------------------------
-
 ul.pagination
 	margin: $box-pad 0
 	// padding-top: $box-pad
@@ -285,10 +280,28 @@ ul.social // social links in the bootom footer
 		&:before
 			content: '#'
 			margin-right: 1px
-		&:after
 	li
 		display: block
 		margin-right: 10px
+
+ul.thumbnails
+	$w : 100%
+	padding: $box-pad 0
+	+clearfix
+	&.c3
+		li
+			width: $w / 3
+	&.c2
+		li
+			width: $w / 2
+	
+	li
+		display: block
+		float: left
+		a:hover
+			img
+				+transition(100ms)
+				opacity: .5
 
 footer.meta
 	ul
@@ -324,9 +337,6 @@ footer.meta
 .about
 	> p
 		max-width: 700px
-	
-
-
 
 .article-body
 	+clearfix
@@ -382,19 +392,6 @@ ul.entries
 		overflow: hidden
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // .btn, .btn:hover 
 // 	border-bottom: 0
 // 	padding: 0.5em 1em
@@ -417,6 +414,7 @@ ul.entries
 #qu-showcase
 	position: relative
 	padding-top: 690px
+	margin-bottom: $box-pad
 	
 	div
 		overflow-y: hidden
