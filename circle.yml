@@ -7,7 +7,7 @@ machine:
     TREETAGGER_COMMAND: vendor/tree-tagger/cmd/tree-tagger-english
     MM_ENV: production
   pre:
-    - "git config --global user.name 'Circle CI'"
+    - "git config --global user.name 'CircleCI'"
     - "git config --global user.email 'nedzen.11@gmail.com'"
 test:
   override:
