@@ -54,6 +54,8 @@ echo "GH_TOKEN=<MY_GITHUB_TOKEN>" > .env
 MM_LANG=en bundle exec middleman deploy
 # French blog
 MM_LANG=fr bundle exec middleman deploy
+# Romanian blog
+MM_LANG=ro bundle exec middleman deploy
 ```
 
 License
