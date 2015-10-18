@@ -161,7 +161,7 @@ configure :build do
     activate :google_analytics do |ga|
       ga.tracking_id = 'UA-68991286-1'
     end
-  else
+  elsif
     ignore '/about/index.en.html'
     ignore '/en/*'
     activate :google_analytics do |ga|
