@@ -1,7 +1,7 @@
 // Mixin image
 @mixin background-image($img) {
   background-image: url(image-path($img));
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 
 // Box sizing

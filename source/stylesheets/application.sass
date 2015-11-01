@@ -6,6 +6,9 @@
 
 
 // General ------------------------------------
+html
+	+background-image('noise_mask_40.png')
+
 body
 	padding-top: $box-pad
 	background: transparent
@@ -25,6 +28,8 @@ p
 img
 	display: block
 	max-width: 100%
+	&.gemoji
+		display: inline-block
 
 figure
 	&.wide
