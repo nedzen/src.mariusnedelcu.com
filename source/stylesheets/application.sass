@@ -1,7 +1,7 @@
 @import 'variables'
 @import 'reboot'
 @import 'normalize'
-// @import 'debug'
+@import 'debug'
 @import 'syntax'
 
 
@@ -344,8 +344,16 @@ p.meta
 .about
 	> p
 		max-width: 700px
+		margin-left: 36%
 	header h1
 		margin-bottom: 0
+	h3
+		clear: both
+.myself
+	max-width: 33.3%
+	float: left
+	margin-bottom: $box-pad
+
 
 .article-body
 	+clearfix

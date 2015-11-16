@@ -7,7 +7,7 @@ require './lib/middleman/renderers/custom'
 # Blog settings
 ###
 
-lang = (ENV['MM_LANG'] || 'fr').to_sym
+lang = (ENV['MM_LANG'] || 'en').to_sym
 cname = ({
   en: 'mariusnedelcu.com',
   fr: 'fr.mariusnedelcu.com'
