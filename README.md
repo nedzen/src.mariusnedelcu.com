@@ -1,5 +1,8 @@
 Mariusnedelcu .com
 ==============
+see this :
+http://bryntaylor.co.uk/work/personal-identity/
+
 
 Notes & To Do:
 -----
