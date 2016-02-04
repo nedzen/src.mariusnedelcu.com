@@ -1,0 +1,19 @@
+header#header itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
+  div
+    .logo-wrap= link_to config.site_url
+      =image_tag('mariusnedelcu_logo.svg', :alt => 'logo Marius Nedelcu')
+      strong Marius&nbsp;Nedelcu
+
+    nav
+      h1.title post name goes right here
+      .toggle-nav#toggle
+        span
+        span
+        span
+      ul.nav-menu
+        li= link_to '/archives' do 
+          = t(:show_all)
+        li= link_to '/work' 
+          = t :work
+        li= link_to '/about' 
+          = t :aboutme

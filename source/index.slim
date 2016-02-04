@@ -2,4 +2,17 @@
 pageable: true
 per_page: 2
 ---
-= partial "entries", locals: locals
+
+main#content role="main"
+  .container
+  	ul.cb-slideshow
+	  	li
+				span Image 01
+	  	li 
+	  		span Image 02
+	  	li
+	  		span Image 03
+	  	li
+	  		span Image 04
+
+/= partial "entries", locals: locals

@@ -61,7 +61,6 @@
 // Credit: HTML5 Boilerplate
 
 .hidden { display: none !important; }
-
 // .text-left           { text-align: left; }
 // .text-right          { text-align: right; }
 // .text-center         { text-align: center; }
@@ -76,6 +75,43 @@
 //   position: fixed;
 // }
 
+//animation mixin experiment
+// http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+
+
 // HACK THE SELECTION THINGY
 // -------------------------
 $prefixes: ("-moz-", "-webkit-", "-ms-", "");
@@ -88,6 +124,15 @@ $prefixes: ("-moz-", "-webkit-", "-ms-", "");
     }
 }
 // -------------
+
+@mixin animation-delay($t) {
+  -webkit-animation-delay: $t;
+  -moz-animation-delay: $t;
+  -o-animation-delay: $t;
+  -ms-animation-delay: $t;
+  animation-delay: $t;
+}
+
 
 .btn {
   display: inline-block;

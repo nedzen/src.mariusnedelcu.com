@@ -16,7 +16,7 @@ fr:
   monthly: 'mois'
   home: 'pagehome'
   aboutme: 'qui suis-je'
-  visual: 'visuale'
+  work: 'visuale'
   tweet: 'tweet-le'
   recent_entries: 'recentes'
   calendar_description:
@@ -32,7 +32,7 @@ fr:
     url: http://fr.mariusnedelcu.com/
     title: 'marius Nedelcu voici mon sit web'
     cname: fr.mariusnedelcu.com
-    description: 'je suis donc je suis ici oui'
+    description: 'je suis donc je suis ici oui a changer'
   author:
     name: 'mon nom ici Marius'
   tag_title:

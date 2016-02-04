@@ -1,12 +1,13 @@
-ul.work
-  li.s2x a
-  li b
-  li c
-  li.s2x d
-  li e
-  li.s2x f
-  li f
-  li.s2x f
+main#content role="main"
+  .container
+    section#work
+      article.project
+        a
+          figure
+          .project-title
+            h2
+            p
+
 
 - page_articles.select {|a| a.data[:public] && a.data.category == 'work'}.sort { |x,y| y.date <=> x.date }.each_with_index do |article, i|
   section.entry itemscope=true itemtype="http://schema.org/BlogPosting"

@@ -65,22 +65,8 @@ html lang=I18n.locale.to_s itemscope="itemscope" itemtype="http://schema.org/Web
     /     link rel="next" href=next_page.url
   
   body.grid
-
-    nav.navbar itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement"
-      .logo= link_to config.site_url
-        =image_tag('mariusnedelcu_logo.svg', :alt => 'nedzen', :class => 'logo')
-        strong Marius Nedelcu - digital maverick
-
-      ul.nav-menu
-        li= link_to '/archives' do 
-          = t(:show_all)
-        li= link_to '/visual' 
-          = t :visual
-        li= link_to '/about' 
-          = t :aboutme
-
-      a.toggle-nav href="#" id="dothis" testing
-
+    =partial "nav"
+    // The above code adds a sort of featured.
     / - if current_page.path === '/'
     /   div testing
     /   -elsif

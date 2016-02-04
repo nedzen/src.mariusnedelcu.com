@@ -16,7 +16,7 @@ en:
   monthly: Monthly
   home: Home
   aboutme: about
-  visual: work
+  work: work
   tweet: Tweet
   recent_entries: Recent
   calendar_description:
@@ -32,7 +32,7 @@ en:
     url: http://mariusnedelcu.com/
     title: Marius Nedelcu
     cname: mariusnedelcu.com
-    description: Hacking recipes in my life.
+    description: Change the parent of this tree from blog to something else.
   author:
     name: Marius Nedelcu
   tag_title:

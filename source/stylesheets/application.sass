@@ -5,9 +5,46 @@
 @import 'syntax'
 
 
+// Regular
+@font-face
+	font-family: 'Graphik-Regular'
+	src: url('/fonts/Graphik-Regular.eot')
+	src: url('/fonts/Graphik-Regular.eot?#iefix') format('embedded-opentype'), url('/fonts/Graphik-Regular.woff2') format('woff2'), url('/fonts/Graphik-Regular.woff') format('woff'), url('/fonts/Graphik-Regular.ttf') format('truetype') //url('/fonts/Graphik-Regular.svg#Graphik-Regular') format('svg')
+	font-weight: normal
+	font-style: normal
+
+
+// // Bold
+// @font-face
+// 	font-family: 'LetteraTextStd-Bold'
+// 	src: url('LetteraTextStd-Bold.eot')
+// 	src: url('LetteraTextStd-Bold.eot?#iefix') format('embedded-opentype'),
+// 			 url('LetteraTextStd-Bold.woff2') format('woff2'),
+// 			 url('LetteraTextStd-Bold.woff') format('woff'),
+// 			 url('LetteraTextStd-Bold.ttf') format('truetype'),
+// 			 url('LetteraTextStd-Bold.svg#LetteraTextStd-Bold') format('svg')
+// 	font-weight: normal
+// 	font-style: normal
+
+// //Light
+// @font-face
+// 	font-family: 'LetteraTextStd-Light'
+// 	src: url('LetteraTextStd-Light.eot')
+// 	src:url('LetteraTextStd-Light.eot?#iefix') format('embedded-opentype'),
+// 			url('LetteraTextStd-Light.woff2') format('woff2'),
+// 			url('LetteraTextStd-Light.woff') format('woff'),
+// 			url('LetteraTextStd-Light.ttf') format('truetype'),
+// 			url('LetteraTextStd-Light.svg#LetteraTextStd-Light') format('svg')
+// 	font-weight: normal
+// 	font-style: normal
+
+
+
+
+
 // General ------------------------------------
 html
-	+background-image('noise_mask.png')
+	// +background-image('noise_mask.png')
 
 body
 	padding-top: $box-pad
@@ -42,11 +79,11 @@ figcaption
 	padding-top: $box-pad
 	font-size: $font-size-small
 
-a
-	&:hover
-		border-bottom: 2px solid #000
-	border-bottom: 2px solid $body-bg
-	+transition(200ms)
+// a
+// 	&:hover
+// 		border-bottom: 2px solid #000
+// 	border-bottom: 2px solid $body-bg
+// 	+transition(200ms)
 
 p > q
 	font-family: Georgia, Times, 'Times New Roman', serif
@@ -68,12 +105,12 @@ pre.highlight
 	padding: $box-pad 0
 	font-size: 15px
 
-::-webkit-scrollbar
-	height: 0.5em
-	width: 0.5em
+// ::-webkit-scrollbar
+// 	height: 0.5em
+// 	width: 0.5em
 
-::-webkit-scrollbar-thumb
-	background: black
+// ::-webkit-scrollbar-thumb
+// 	background: black
 
 // Typography
 h1, h2, h3, h4, h5, h6 
@@ -92,85 +129,8 @@ h4
 	font-size: $font-size-root
 
 // Scaffolding ---------------------------------
-.row, .content
-	width: 100%
-
 @media screen and (min-width: $container-md)
-	$sidebar-w: 10rem
-	.row
-		float: left
-		padding-right: $sidebar-w
-	
-	.content
-		float: left
-		width: 100%
-
-	sidebar
-		float: right
-		width: $sidebar-w - $box-pad
-		margin-right: -1 * $sidebar-w
-
 @media screen and (min-width: $container-xxl)
-	$sidebar-w: 16rem
-	.row
-		padding-right: $sidebar-w
-
-	.content
-		float: left
-		width: 100%
-
-	sidebar
-		+transition(200ms)
-		width: $sidebar-w - $box-pad
-		margin-right: -1 * $sidebar-w
-		text-align: right
-
-// sidebar inside articles
-// to hold the images.
-
-.sidebar
-	+transition(200ms)
-	overflow: visible
-	height: 0
-	padding-left: 700px
-	figure
-		padding-left: $box-pad
-
-.container
-	@media screen and (max-width: $container-xxl)
-		$x: 52.5%
-		.sidebar
-			height: 0
-			padding-left: $x
-		.article-body p
-			max-width: $x
-	@media screen and (max-width: $container-xl)
-		$x: 555px
-		.sidebar
-			height: 0
-			padding-left: $x
-		.article-body p
-			max-width: $x
-	@media screen and (max-width: $container-w)
-		$x: 100%
-		div.sidebar
-			height: auto
-			padding-left: 0
-			figure
-				padding-left: 0
-		.article-body p
-			max-width: 700px
-
-	max-width: $container-xxl
-	@media screen and (min-width: $container-lg)
-		padding: $box-pad $box-pad * 2
-	padding: 0 $box-pad
-	+transition(200ms)
-	+center-block
-	+clearfix
-	> footer
-		clear: both
-		padding: $box-pad 0
 
 // ------
 body.wide
@@ -195,23 +155,69 @@ body.grid
 		padding: 0
 
 // Header --------------------------------------
-.logo
-	float: left
-	strong
-		font-weight: normal
-		display: none
-		&:hover &
-			display: inline-block
+#header
+	h1
+		margin: 0
+		font-size: $font-size-root
+		float: left
+	ul
+		float: right
+	nav
+		+clearfix
+	
+	position: relative
+	z-index: 999
+	// margin-top: 30px // body has a padding already.
+	> div
+		//background: yellow
+		+center-block
+		position: relative
+		max-width: $container-lg
 
-.navbar
-	margin-bottom: $box-pad
-	@extend .container
+.logo-wrap
+	display: block
+	text-align: center
+	> a
+		&:hover
+			strong
+				width: 140px
+		display: inline-block
+		vertical-align: bottom
+		img
+			width: 49px
+			display: inline-block
+			vertical-align: bottom
+		strong
+			width: 0
+			vertical-align: bottom
+			position: relative
+			overflow: hidden
+			+transition(100ms)
+			display: inline-block
+			font-weight: normal
 
 .nav-menu
-	padding: 0 0 0 100px
 	li
 		display: inline-block
 		padding: 0em 0.6em
+
+.toggle-nav
+	&.active span
+		//+transition(background 0.4s)
+		background: #dcdcdc
+	display: none
+	position: fixed
+	right: 30px
+	top: 25px
+	z-index: 999999999
+	span
+		display: block
+		background: #282828
+		width: 20px
+		height: 2px
+		margin-bottom: 3px
+
+
 
 
 // Site Parts -----------------------------------
@@ -342,30 +348,8 @@ p.meta
 
 // About page --------------------------------------------
 .about
-	> p
-		max-width: 700px
-		margin-left: 36%
-	header h1
-		margin-bottom: 0
-	h3
-		clear: both
-.myself
-	max-width: 33.3%
-	float: left
-	margin-bottom: $box-pad
 
-
-.article-body
-	+clearfix
-	p
-		max-width: 700px
-		display: block
-
-.banner
-	margin-bottom: $box-pad
-
-body.wide .article-body blockquote p
-	// padding: $box-pad $box-pad * 2
+.article-body blockquote p
 	margin: 0
 	font-size: 1.9em
 	line-height: 1.3em
@@ -398,6 +382,8 @@ ul.entries
 // Portfolio View ----------------------
 // -------------------------------------
 .work
+	*
+		out
 	background: fade-out(red, .9)
 	padding: 0
 	margin: 0
@@ -490,3 +476,282 @@ ul.entries
 			border-radius: 5px 0px 0px 
 			padding: 0 5px 0 5px
 			color: white
+
+
+// Gallery featured
+.cb-slideshow
+	margin-top: 0
+
+.cb-slideshow, .cb-slideshow:after
+	position: fixed
+	width: 100%
+	height: 100%
+	top: 0px
+	left: 0px
+	z-index: 0
+
+
+$anim-t: 7s
+
+.cb-slideshow li span
+	+square(100%)
+	position: absolute
+	top: 0px
+	left: 0px
+	color: transparent
+	background-size: cover
+	background-position: 50% 50%
+	background-repeat: none
+	z-index: 0		
+	// +animation('imageAnimation 35s infinite')
+	// -webkit-animation-name: imageAnimation
+	// -webkit-animation-iteration-count: infinite
+	// -webkit-animation-duration: $anim-t * 5
+	// animation-name: imageAnimation
+	// animation-iteration-count: infinite
+	// animation-duration: $anim-t * 5
+
+.cb-slideshow li:nth-child(1) span
+	background-color: orange
+	// +background-image('https://c2.staticflickr.com/6/5634/21094585560_ac9afe7d6e_o.png')	
+	+animation-delay($anim-t * -4)
+
+.cb-slideshow li:nth-child(2) span
+	background-color: pink
+	// +background-image('https://c1.staticflickr.com/1/609/22134225900_ac7ff861c8_o.jpg')
+	+animation-delay($anim-t * -3)
+
+.cb-slideshow li:nth-child(3) span
+	background-color: blue
+	// +background-image('https://c2.staticflickr.com/6/5655/22295568926_4a259c1f1c_o.jpg')
+	+animation-delay($anim-t * -2)
+
+.cb-slideshow li:nth-child(4) span
+	background-color: pink
+	// +background-image('https://c2.staticflickr.com/6/5737/22309239162_57fb9b16b1_o.jpg')
+	+animation-delay($anim-t * -1)
+
++keyframes(imageAnimation)
+	0%
+		opacity: 0
+	10%
+		opacity: 0
+	20%
+		opacity: 0
+	70%
+		opacity: 0
+		-webkit-animation-timing-function: ease-in
+		-webkit-transform: scale(1)
+	80%
+		opacity: 1
+	90%
+		opacity: 1
+		-webkit-animation-timing-function: ease-out
+	100%
+		opacity: 0
+		-webkit-transform: scale(1.07)
+
+.cb-slideshow
+	+animation('introFade 2s ease-in')
+	// -webkit-animation: introFade 2s ease-in
+	// -moz-animation: introFade 2s ease-in
+	// -o-animation: introFade 2s ease-in
+	// -ms-animation: introFade 2s ease-in
+	// animation: introFade 2s ease-in
+
++keyframes(introFade)
+	0%
+		opacity: 0
+	100%
+		opacity: 1
+
+.no-cssanimations .cb-slideshow li span
+	opacity: 1
+
+
+
+
+
+
+// .featured-title li:nth-child(1) p
+//     opacity: 1;
+//     animation-delay: -38s;
+//     -webkit-animation-delay: -38s
+// }
+// .featured-title li:nth-child(2) p {
+//     animation-delay: -31s;
+//     -webkit-animation-delay: -31s
+// }
+// .featured-title li:nth-child(3) p {
+//     animation-delay: -24s;
+//     -webkit-animation-delay: -24s
+// }
+// .featured-title li:nth-child(4) p {
+//     animation-delay: -17s;
+//     -webkit-animation-delay: -17s
+// }
+// .featured-title li:nth-child(5) p {
+//     animation-delay: -10s;
+//     -webkit-animation-delay: -10s
+// }
+// .index-site-title-container {
+//     width: 70%;
+//     margin: 0 !important;
+//     display: inline-block
+// }
+// .index-site-title-box {
+//     display: -webkit-flex;
+//     display: -moz-flex;
+//     display: -ms-flex;
+//     display: flex;
+//     -webkit-flex-flow: row wrap;
+//     -moz-flex-flow: row wrap;
+//     -ms-flex-flow: row wrap;
+//     flex-flow: row wrap;
+//     -webkit-justify-content: flex-start;
+//     -moz-justify-content: flex-start;
+//     -ms-justify-content: flex-start;
+//     justify-content: flex-start;
+//     -webkit-align-items: flex-start;
+//     -moz-align-items: flex-start;
+//     -ms-align-items: flex-start;
+//     align-items: flex-start;
+//     margin: 0 !important
+// }
+// .index-site-title-box h2 {
+//     -webkit-flex: 0 1 auto;
+//     -moz-flex: 0 1 auto;
+//     -ms-flex: 0 1 auto;
+//     flex: 0 1 auto;
+//     margin-right: 5px
+// }
+// .index-site-title-box ul {
+//     -webkit-flex: 0 1 70%;
+//     -moz-flex: 0 1 70%;
+//     -ms-flex: 0 1 70%;
+//     flex: 0 1 70%;
+//     text-align: left
+// }
+// .featured-title {
+//     position: relative;
+//     width: 100%
+// }
+// ul.featured-title {
+//     margin: 0
+// }
+// ul.featured-title li p {
+//     color: #dcdcdc;
+//     text-transform: lowercase
+// }
+// .featured-title li p {
+//     opacity: 0;
+//     position: absolute;
+//     text-align: left;
+//     top: 0;
+//     left: 0;
+//     margin-top: 0;
+//     z-index: 99;
+//     -webkit-animation: titleAnimation 35s linear infinite 0s;
+//     -moz-animation: titleAnimation 35s linear infinite 0s;
+//     -o-animation: titleAnimation 35s linear infinite 0s;
+//     -ms-animation: titleAnimation 35s linear infinite 0s;
+//     animation: titleAnimation 35s linear infinite 0s
+// }
+// .featured-title li p a {
+//     color: #dcdcdc !important
+// }
+// @-webkit-keyframes titleAnimation {
+//     0% {
+//         opacity: 0
+//     }
+//     3% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     19.5% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     22.5% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 0
+//     }
+// }
+// @-moz-keyframes titleAnimation {
+//     0% {
+//         opacity: 0
+//     }
+//     3% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     19.5% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     22.5% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 0
+//     }
+// }
+// @-o-keyframes titleAnimation {
+//     0% {
+//         opacity: 0
+//     }
+//     3% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     19.5% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     22.5% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 0
+//     }
+// }
+// @-ms-keyframes titleAnimation {
+//     0% {
+//         opacity: 0
+//     }
+//     3% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     19.5% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     22.5% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 0
+//     }
+// }
+// @keyframes titleAnimation {
+//     0% {
+//         opacity: 0
+//     }
+//     3% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     19.5% {
+//         opacity: 1;
+//         z-index: 999
+//     }
+//     22.5% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 0
+//     }
+// }
