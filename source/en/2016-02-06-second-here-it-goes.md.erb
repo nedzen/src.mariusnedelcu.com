@@ -2,7 +2,7 @@
 title: second here it goes
 date: 2016-02-06 19:12 CET
 description: "whatever description just have something"
-cover: animam.jpg
+cover: animam2.gif
 tags: testing, here, there, now
 public: true
 alternate: true
@@ -19,7 +19,7 @@ ogp:
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 <figure>
-	<img src='/images/<%= current_page.data.title.gsub(/\s/,'-')%>/animam.jpg'>
+	<%= image_tag 'animam1.gif' %>
 	<figcaption>Some text that can go underneath without any problem</figcaption>
 </figure>
 
@@ -27,8 +27,8 @@ In late 1936, Ahnenerbe took over the publication of Teudt's magazine Germanien,
 
 In late 1936, Ahnenerbe took over the publication of Teudt's magazine Germanien, first in cooperation with Teudt, then without him. The monthly now became the official voice of Ahnenerbe and was aimed at a wider audience. From December 1936, the magazine was distributed free of charge to all SS leaders
 
-<figure><img src='/images/<%= current_page.data.title.gsub(/\s/,'-')%>/animam.jpg'></figure>
-<figure><img src='/images/<%= current_page.data.title.gsub(/\s/,'-')%>/animam.jpg'></figure>
+<figure><%= image_tag 'animam1.gif' %></figure>
+<figure><%= image_tag 'animam1.gif' %></figure>
 
 After a slide show on February 19, 1936, of his trip to Bohuslän, a region in southwestern Sweden, Wirth convinced Himmler to launch an expedition to the region, the first official expedition financed by the Ahnenerbe. Bohuslän was known for its massive quantity of petroglyph rock carvings, which Wirth believed were evidence of an ancient writing system predating all known systems. 
 

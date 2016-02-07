@@ -1,0 +1,122 @@
+// Gallery featured
+@import 'mixins'
+@import 'variables'
+
+$anim-t: 7s
+
+.cb-slideshow li
+	&:nth-child(1) span
+		+background-image('animam1.gif')	
+	&:nth-child(2) span
+		+background-image('animam2.gif')
+	&:nth-child(3) span
+		+background-image('animam3.gif')
+	&:nth-child(4) span
+		+background-image('animam4.gif')
+	&:nth-child(5) span
+		+background-image('animam5.gif')
+
+html.index, body.index
+	+square(100%)
+
+body.index
+	.header,
+	.introbox
+		display: table
+		+square(100%)
+		padding: 3px
+
+	.header > div,
+	.introbox > div
+		display: table-cell
+		vertical-align: middle
+		position: relative
+	nav.navbar
+		height: 100%
+		text-align: center
+		h1, ul
+			float: none
+
+nav.navbar,
+.slideshow
+	+center-block
+
+.slideshow
+	position: relative
+	max-width: $container-max
+	height: 70%
+	overflow: hidden
+	
+
+// Switching to fullscreen on small screens
+// .cb-slideshow, .cb-slideshow:after
+// 	position: fixed
+// 	width: 100%
+// 	height: 100%
+// 	top: 0px
+// 	left: 0px
+// 	z-index: 0
+
+.cb-slideshow li span
+	+square(100%)
+	position: absolute
+	top: 0px
+	left: 0px
+	color: transparent
+	background-size: cover
+	background-position: 50% 50%
+	background-repeat: none
+	z-index: 0
+	+animation('imageAnimation 35s infinite')
+	// -webkit-animation-name: imageAnimation
+	// -webkit-animation-iteration-count: infinite
+	// -webkit-animation-duration: $anim-t * 5
+	// animation-name: imageAnimation
+	// animation-iteration-count: infinite
+	// animation-duration: $anim-t * 5
+
+.cb-slideshow li:nth-child(1) span
+	+animation-delay($anim-t * -4)
+.cb-slideshow li:nth-child(2) span
+	+animation-delay($anim-t * -3)
+.cb-slideshow li:nth-child(3) span
+	+animation-delay($anim-t * -2)
+.cb-slideshow li:nth-child(4) span
+	+animation-delay($anim-t * -1)
+
++keyframes(imageAnimation)
+	0%
+		opacity: 0
+	10%
+		opacity: 0
+	20%
+		opacity: 0
+	70%
+		opacity: 0
+		-webkit-animation-timing-function: ease-in
+		-webkit-transform: scale(1)
+	80%
+		opacity: 1
+	90%
+		opacity: 1
+		-webkit-animation-timing-function: ease-out
+	100%
+		opacity: 0
+		-webkit-transform: scale(1.07)
+
+.cb-slideshow
+	+animation('introFade 2s ease-in')
+	// -webkit-animation: introFade 2s ease-in
+	// -moz-animation: introFade 2s ease-in
+	// -o-animation: introFade 2s ease-in
+	// -ms-animation: introFade 2s ease-in
+	// animation: introFade 2s ease-in
+
++keyframes(introFade)
+	0%
+		opacity: 0
+	100%
+		opacity: 1
+
+.no-cssanimations .cb-slideshow li span
+	opacity: 1

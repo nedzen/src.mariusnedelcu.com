@@ -1,0 +1,51 @@
+meta charset="utf-8"
+meta http_equiv='X-UA-Compatible' content='IE=edge;chrome=1'
+meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'
+meta itemprop='url' content=config.site_url
+link rel='author' href='http://www.twitter.com/nedzen'
+title
+  - if current_article
+    = current_article.title
+  - elsif current_page && current_page.data.title
+    =current_page.data.title
+  - elsif content_for?(:title)
+    = "yield_content(:title)"
+  = t 'blog.title'
+  
+/ - ogp_tags do|name, value|
+/   meta property=name content=value
+/   - if name.match /^og:(image|description|title|url)$/
+/     meta property=name.sub('og:', 'twitter:') content=value
+/ - if current_page.data.description
+/   meta content=current_page.data.description name="description"
+/ - elsif content_for?(:description)
+/   meta content=yield_content(:description) name="description"
+/ - else
+/   meta content=t('blog.description') name="description"
+/ - if current_page.data.keywords
+/   meta content=current_page.data.page.keywords name="keywords"
+/ - elsif current_article && current_article.tags
+/   meta content=current_article.tags.join(',') name="keywords"
+/ - if current_resource.data.alternate
+  / meta content=alt_lang property= "og:locale:alternate"
+  / meta content=t 'author.name' name="author"
+  / link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{current_resource.url}"
+
+/ =feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+/ - %w{152 144 120 114 76 72 60 67}.each do |size|
+/   - size = "#{size}x#{size}"
+/   link rel="apple-touch-icon" size=size href="/apple-touch-icon-#{size}-precomposed.png"
+/   / link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
+/ link rel="shortcut icon" href="/favicon.png"
+/ link rel="icon" type="image/ico" href="/favicon.ico"
+
+/ - if current_article
+/   - if current_article.previous_article.nil?
+/     link rel="prev" href=current_article.previous_article.url
+/   - if current_article.next_article.nil?
+/     link rel="next" href=current_article.next_article.url
+/ - elsif paginate
+/   - if prev_page
+/     link rel="prev" href=prev_page.url
+/   - if next_page
+/     link rel="next" href=next_page.url

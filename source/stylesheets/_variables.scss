@@ -1,14 +1,14 @@
 // Defaults
-$pi:     3.14;
+$pi: 3.14;
 $font-size-root:     16px !default;
 $font-size-base:     1rem !default;
 $font-size-small:    13px;/*  */
-$font-family-base : 'Graphik-Regular', sans-serif;
-$line-height: 		   1.5 !default;
+$font-family-base :  'Graphik-Regular', sans-serif;
+$line-height: 		 1.5 !default;
 
 $brand-primary :     #000000;
 $body-color: 		 #000000;
-$body-bg: 		     #f1f1f1; //d9f2ff
+$body-bg: 		     #f1f1f1;
 
 $abbr-border-color:  $brand-primary;
 $hover-focus:        $brand-primary;
@@ -26,24 +26,8 @@ $link-decoration:            none !default;
 $link-hover-color:           $link-color;
 $link-hover-decoration:      none !default;
 
-
-// 1200px = 75rem
-// 1000px = 62.5rem
-// 800px = 50rem
-// 600px = 37.5rem
-// 500px = 31.25rem
-// 320px = 20rem
-// 300px = 18.75rem
-
-// $container-lg: 75rem; //1200px 
-// $container-big: 62.5rem; //1000px 
-// $container-md: 50rem; //800px 
-// $container-lmed: 37.5rem; //600px 
-// $container-smed: 31.25rem; //500px 
-// $container-sm: 20rem; //320px 
-// $container-xs: 18.75rem; //300px
-
-$container-max: 62.5rem; //1000px 
+$container-max: 75rem; //1200px
+$container-xl: 62.5rem; //1000px
 $container-lg: 50rem; //800px 
 $container-big: 37.5rem; //600px 
 $container-md: 31.25rem; //500px 
@@ -51,29 +35,3 @@ $container-sm: 20rem; //320px
 $container-xs: 18.75rem; //300px
 
 $box-pad: 1.3rem;
-
-$c00: #c3ff68;  //happygreen
-$c01: #0bde91;  //green
-$c02: #21629a;  //bleau
-$c03: #ff007e;  //pink
-$c04: #ff9c00;  //orange
-$c05: #6ede0b;  //deepgreen
-$c06: #d50073;  //deepgreen
-$c07: #ffc600;  //yellow
-$c08: #ffa2e6;  //pink2
-$c09: #ff0000;  //red
-$c10: #8a800c;  //kaki
-$c11: #ac894f;  //brown
-
-// $c12: #0090ff;  //wild yellow
-// $c13: #7200d2;  //pimp purple
-// $c14: #777777;  //gray normal
-// $c15: #5c3c27;  //brown
-// $c16: #363606;  //dirtygreen
-// $c17: #226774;  //naviblue
-// $c18: #333333;  //deep gray
-// $c19: #dca26b;  //skincolor
-// $c20: #0cbfb3;  //turcoise
-// $c21: #a30006;  //blood red
-// $c22: #be80ff;  //lightpurple
-// $c23: #6b6830;  //moldgreen
