@@ -1,18 +1,36 @@
+/ - page_articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }.each_with_index do |article, i|
+/   section.entry itemscope=true itemtype="http://schema.org/BlogPosting"
+/     header
+/       h2 itemprop="name"
+/         = link_to emojify(article.title), article, itemprop: "url"
+/       p.meta
+/         time itemprop="datePublished" datetime=article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
+/           = article.date.strftime('%Y-%m-%d %H:%M')
+/     .article-body itemprop="articleBody"
+/       = preserve do
+/         = article.summary
+/     - if article.render(keep_separator: true, layout: false).match(article.blog_options.summary_separator)
+/       p.read-more
+/         = link_to article.url, class: 'read-more' do
+/           = t :read_more
+
 - page_articles.select {|a| a.data[:public] }.sort { |x,y| y.date <=> x.date }.each_with_index do |article, i|
   section.entry itemscope=true itemtype="http://schema.org/BlogPosting"
-    header
-      h2 itemprop="name"
-        = link_to emojify(article.title), article, itemprop: "url"
-      p.meta
-        time itemprop="datePublished" datetime=article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
-          = article.date.strftime('%Y-%m-%d %H:%M')
-    .article-body itemprop="articleBody"
-      = preserve do
-        = article.summary
-    - if article.render(keep_separator: true, layout: false).match(article.blog_options.summary_separator)
-      p.read-more
-        = link_to article.url, class: 'read-more' do
-          = t :read_more
+    article.project
+      a href='#{article.url}' title='#{article.title}'
+        figure
+          img src="/images#{article.url}#{article.data.cover}" alt="#{article.title}"
+        h2 = article.data.title
+        p = article.data.description
+
+/     .article-body itemprop="articleBody"
+/       = preserve do
+/         = article.summary
+/     - if article.render(keep_separator: true, layout: false).match(article.blog_options.summary_separator)
+/       p.read-more
+/         = link_to article.url, class: 'read-more' do
+/           = t :read_more
+
 
 - if paginate && (next_page || num_pages > 1)
   ul.pagination
@@ -39,4 +57,4 @@
           | &#8594;
     - else
       li.disabled
-        span
+        span booooooooobs

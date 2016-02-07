@@ -42,7 +42,7 @@ set :partials_dir, 'partials'
 set :site_url, "http://#{cname}"
 
 activate :blog do |blog|
-  blog.permalink = "{year}/{month}/{day}/{title}/index.html"
+  blog.permalink = "{title}/index.html"
   blog.sources = "#{lang}/{year}-{month}-{day}-{title}.html"
   blog.taglink = "t/{tag}/index.html"
   blog.layout = "article"

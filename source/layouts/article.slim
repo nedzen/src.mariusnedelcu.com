@@ -1,25 +1,36 @@
 - wrap_layout :layout do
   article.entry itemscope=true itemtype="http://schema.org/BlogPosting"
-    header
-      h1 itemprop="name"
-        = emojify current_article.title
-      p.meta
-        time itemprop="datePublished" datetime=current_article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
-          = current_article.date.strftime('%Y-%m-%d %H:%M')
-        - if current_resource.data.alternate
-          = alt_link
-    .article-body itemprop="articleBody"
+    
+    article.project.project-page
       = preserve do
         == yield
     
-    footer.meta
-      ul.tags itemprop="keywords"
-        - current_article.tags.each do|tag|
-          li
-            = link_to tag_path(tag) do
-              span
-              = tag
-      / ul
+    div.navigation
+      - if current_article.previous_article.nil?
+      - else
+        span.prev= link_to current_article.previous_article.title, current_article.previous_article.url
+      - if current_article.next_article.nil?
+      - else
+        span.next= link_to current_article.next_article.title, current_article.next_article.url
+
+
+
+
+
+      / p.meta
+      /   time itemprop="datePublished" datetime=current_article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
+      /     = current_article.date.strftime('%Y-%m-%d %H:%M')
+      /   - if current_resource.data.alternate
+      /     = alt_link
+
+      / footer.meta
+      /   ul.tags itemprop="keywords"
+      /     - current_article.tags.each do|tag|
+      /       li
+      /         = link_to tag_path(tag) do
+      /           span
+      /           = tag
+      / / ul
       /   - current_article.similar_articles.first(5).each do|article|
       /     li= link_to article.title, article.url
 
