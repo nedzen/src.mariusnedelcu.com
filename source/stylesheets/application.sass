@@ -5,39 +5,28 @@
 @import 'debug'
 
 // General ------------------------------------
-*,
-*::before,
-*::after
+*, *::before, *::after
 	box-sizing: inherit
 
 html
 	font-size: $font-size-root
 	-webkit-tap-highlight-color: rgba(0,0,0,0)
 	box-sizing: border-box
-
 body
 	font-family: $font-family-base
 	font-size: $font-size-base
 	line-height: $line-height
 	color: $body-color
 	background-color: $body-bg
-
-html,
-body
+html, body, ul
 	padding: 0
 	margin: 0 
-
 figure
 	img
 		width: 100%
 	margin: 0
-
-ul
-	margin: 0
-	padding: 0
-	li
-		list-style-type: none
-
+li
+	list-style-type: none
 img
 	display: block
 	max-width: 100%
@@ -46,74 +35,107 @@ img
 
 // HEADER ------------------------------
 
-
-
 .introbox
-	+stretch(0)
-
-
+	+stretch
 
 .logo
-	display: block
 	text-align: center
-	z-index: 900
-	+stretch(20px, 0, 0, auto)
-	
+	height: $logo-h
 	> a
 		&:hover
 			strong
 				width: 140px
 		display: inline-block
 		vertical-align: bottom
+		img, strong
+			display: block
+			float: left
 		img
-			width: 49px
-			display: inline-block
-			vertical-align: bottom
+			height: $logo-h
 		strong
 			width: 0
-			vertical-align: bottom
+			padding-top: 6px
 			position: relative
 			overflow: hidden
-			+transition(100ms)
-			display: inline-block
 			font-weight: normal
-
+			+transition(100ms)
 
 // Header ----------------------------------------------------
-.header
-	> div
-		padding-top: 100px
-	nav
-		> div
-			height: 40px
-			padding: 8px 0
+header#header
+	padding-top: 30px
+	background-color: $body-bg
 
-
-// the navbar ------------------------------------------------
-nav.navbar
-	+center-block
-	position: relative
-	> div
-		position: absolute
-		bottom: 0
+	&.opacity
+		+transition(top .2s linear)
+		top: -($nav-height)
+	&.notOnTop,
+	&.scrollup
+		.logo
+			display: none
+		padding-top: 0
+		position: fixed
 		left: 0
 		right: 0
 		z-index: 99999
+		// background: #ebebeb
+		overflow: hidden
+		min-height: $nav-height
+	&.notOnTop
+		top: -($nav-height)
+	&.scrollup
+		top: 0
+		+transition(top .2s linear)
+		z-index: 99999
+
+
+
+	
+$navbar-pad: 15px
+$navbar-h: 20px
+// the navbar ------------------------------------------------
+// -webkit-tap-highlight-color: #303030
+
+nav
+	&.navbar
+		+center-block
+		position: relative
+	
 	h1.title
 		margin: 0
-		font-size: $font-size-root
 		float: left
 	ul
 		float: right
+
+	&.visible
+		visibility: visible
+		
+		background: red
+		z-index: 99999999999999
+		+transition(opacity 1.4s)
+		opacity: 1
+		position: fixed
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+
+	&.transition-dismiss
+		// +transition(opacity 0.5s)
+		// -moz-transition: opacity 0.5s
+		// -webkit-transition: opacity 0.5s
+		// opacity: 0
+		// visibility: visible
+
 ul.nav-menu
-	li
+	li, a
 		display: inline-block
+	a
+		padding: 9px 10px
 
 .toggle-nav
 	&.active span
 		+transition(background 0.4s)
 		background: #dcdcdc
-	display: none
 	position: fixed
 	right: 30px
 	top: 25px
@@ -125,9 +147,19 @@ ul.nav-menu
 		height: 2px
 		margin-bottom: 3px
 
+@media only screen and (min-width: 800px)
+	header#header .toggle-nav
+		display: none
+
+
 // Scafolding ------------------------------------------------
 main#content
 	+center-block
+
+#container
+	padding-top: 60px
+	&.margin-top
+		padding-top: 120px
 
 // $container-max: 75rem; //1200px
 // $container-xl: 62.5rem; //1000px
@@ -159,6 +191,8 @@ main#content
 @media screen and (min-width: $container-sm) // 320px
 @media screen and (min-width: $container-xs) // 300px
 
+
+@media only screen and (min-width: $container-lg)
 
 
 // max-width: $container-max
@@ -198,6 +232,8 @@ h1, h2, h3, h4, h5, h6
 	margin-bottom: 0
 	font-size: $font-size-root
 
+h2
+	font-size: 30px
 // .lead
 // 	font-size: 29px
 
@@ -209,13 +245,6 @@ h1, h2, h3, h4, h5, h6
 // // $container-md: 31.25rem; //500px 
 // // $container-sm: 20rem; //320px 
 // // $container-xs: 18.75rem; //300px
-
-// .container
-// 	@media screen and (min-width: $container-max)
-// 		max-width: $container-max
-// 	@media screen and (min-width: $container-lg)
-// 		max-width: $container-lg
-
 
 
 // .intro
@@ -552,3 +581,5 @@ ul.social // social links in the bootom footer
 // 		padding: 2px 6px
 // 		border-radius: 2px
 // 		box-shadow: 0px 1px 2px fade-out(black, .9)
+.hide
+	visibility: hidden

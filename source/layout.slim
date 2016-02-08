@@ -8,7 +8,7 @@ html lang=I18n.locale.to_s
   body
     =partial "nav"
 
-    .container
+    #container
       main#content
         - if content_for? :main
           == yield_content :main
