@@ -13,10 +13,7 @@ html lang=I18n.locale.to_s
         - if content_for? :main
           == yield_content :main
         - else
-          main role='main'
-            == yield
-      
-  footer
-    = partial "footer"
+          == yield
 
+  = partial "footer"
   = google_analytics_universal_tag

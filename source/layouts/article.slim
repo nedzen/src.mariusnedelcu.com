@@ -1,14 +1,22 @@
 - wrap_layout :layout do
-  article.entry itemscope=true itemtype="http://schema.org/BlogPosting"
+  
+  article.project-details
+    = preserve do
+      == yield
     
-    article.project.project-page
-      = preserve do
-        == yield
-    
-    div.navigation
-      - if current_article.previous_article.nil?
-      - else
-        div.prev= link_to current_article.previous_article.title, current_article.previous_article.url
-      - if current_article.next_article.nil?
-      - else
-        div.next= link_to current_article.next_article.title, current_article.next_article.url
+  div.navigation
+    - if current_article.previous_article.nil?
+    - else
+      .prev= link_to current_article.previous_article.title, current_article.previous_article.url
+
+    - if current_article.next_article.nil?
+    - else
+      .next= link_to current_article.next_article.title, current_article.next_article.url
+
+    .share
+      ul
+        li.share-btn: strong Share
+        li =link_to 'facebook', 'facebook.com'
+        li =link_to 'twitter', 'twitter.com' 
+        li =link_to 'tumblr', 'tumblr.com'
+        li =link_to 'email', 'email.com'

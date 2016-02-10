@@ -26,7 +26,7 @@ $link-decoration:            none !default;
 $link-hover-color:           $link-color;
 $link-hover-decoration:      none !default;
 
-$container-max: 75rem; //1200px
+$container-max: 70rem; //1200px
 $container-xl: 62.5rem; //1000px
 $container-lg: 50rem; //800px 
 $container-big: 37.5rem; //600px 
@@ -36,4 +36,6 @@ $container-xs: 18.75rem; //300px
 
 $box-pad: 1.3rem;
 $nav-height: 50px;
-$logo-h: 36px
+$logo-h: 36px;
+
+// * { outline: 1px dotted red }

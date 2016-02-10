@@ -17,6 +17,8 @@ fr:
   home: 'pagehome'
   aboutme: 'qui suis-je'
   work: 'visuale'
+  tumblr: 'feed'
+  contact: 'contact'
   tweet: 'tweet-le'
   recent_entries: 'recentes'
   calendar_description:
