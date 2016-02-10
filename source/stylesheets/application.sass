@@ -158,8 +158,7 @@ ul.nav-menu
 		display: inline-block
 	a
 		padding: 13px 10px
-	li.selected
-		a
+		&.active
 			font-weight: bold
 
 .toggle-nav
@@ -387,8 +386,8 @@ article
 		display: block
 		text-align: center
 
+$pad-left: $box-pad * 3
 .project-details
-	$pad-left: $box-pad * 3
 	h2, p
 		padding: 0 $pad-left
 		display: block
@@ -416,6 +415,44 @@ footer
 	width: $container-max
 	+center-block
 
+.meta
+	padding: $box-pad/2 0 $box-pad $pad-left
+	strong
+		font-weight: normal 
+		display: block  
+	span
+		margin-left: 10px
+	em
+		font-style: normal
+		padding-right: 5px
+
+ul.tags
+	margin-bottom: $box-pad
+	li
+		margin-right: 10px
+		display: inline-block
+
+.project-details
+	figure
+		margin: $box-pad * 2 0
+	header figure
+		margin-top: 0
+		margin-bottom: $box-pad * 2
+
+
+h1.title
+	padding: 13px 0
+	line-height: 25px
+	display: block
+	padding-left: $line + 0.3
+	&:before
+		position: absolute
+		left: 0
+		+size($line ,3px)
+		background: black
+		content: ''
+		display: block
+		margin-top: 12px
 
 // .lead
 // 	font-size: 29px

@@ -1,6 +1,22 @@
 - wrap_layout :layout do
   
   article.project-details
+    header
+      figure
+        = image_tag 'animam1.gif'
+      h2 =current_article.data.description
+      .meta
+        time itemprop="datePublished" datetime=current_article.date.to_time.strftime('%Y-%m-%dT%H:%M:%S') is="relative-time"
+          | posted : 
+          = current_article.date.strftime('%Y-%m-%d &bull; %H:%M')
+        span
+          - if current_resource.data.alternate
+            = alt_link
+        span.tag in : 
+        - current_article.tags.sort.each do |tag, articles|
+          em 
+            =link_to tag_path(tag) do
+              =tag
     = preserve do
       == yield
     

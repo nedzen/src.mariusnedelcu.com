@@ -205,6 +205,10 @@ end
 
 helpers do
 
+  def is_page_active(page)
+    current_page.url == page ? 'active' : ''
+  end
+  
   def alt_lang
     I18n.locale.to_s == 'en' ? "fr_FR" : "en_US"
   end
