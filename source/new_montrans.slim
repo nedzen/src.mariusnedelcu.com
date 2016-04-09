@@ -1,0 +1,409 @@
+---
+title: in-app landing page
+pageable: true
+per_page: 10
+layout: laymtrs
+---
+
+
+nav.navbar.navbar-fixed-top
+	.container
+		.navbar-header
+			button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+				span class="sr-only" Toggle navigation
+				span class="icon-bar"
+				span class="icon-bar"
+				span class="icon-bar"
+			
+			.navbar-brand.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
+
+		#navbar.navbar-collapse.collapse
+			ul.nav.navbar-nav
+				li.active =link_to 'concept', '#'
+				li =link_to 'Vehicles', '#'
+				li =link_to 'Directory', '#'
+				li =link_to 'Provider', '#'
+
+			ul.nav.navbar-nav.navbar-right
+				li =link_to 'Vehicles', '#'
+				li =link_to 'Vehicles', '#'
+				li.dropdown
+					li=link_to 'Traveler', '#'
+					li=link_to 'Traveler', '#'
+					li.signupbtn =link_to 'SIGN UP', '#'
+				li.dropdown
+					a.dropdown-toggle href="#" data-toggle="dropdown" role="button" Dropdown <span class="caret"></span>
+					ul.dropdown-menu
+						li =image_tag 'france.png'
+						li =image_tag 'uk.png'
+
+
+section#intro
+	.mask
+		.contents
+			.wrap
+				h1 Réservez à l'avance votre taxi/VTC au meilleur prix
+				p: strong Comparez les offres de plus de 6000 véhicules avec chauffeur partout en France.
+			
+				form#query.navbar-form
+					fieldset
+						.form-group.ride-type
+							select name="select" class="form-control"
+								option value="value1" aller simple
+								option value="value1" aller complex
+
+						.form-group.adress-depart
+							input type="text" class="form-control" placeholder="Adresse ou Lieu de départ"
+						.form-group.adress-arrive
+							input type="text" class="form-control" placeholder="Adresse ou Lieu de d'arrivée"
+						.form-group.hour-depart
+							input type="text" class="form-control" placeholder="Date &amp; heure de départ"
+
+						.form-group.compact
+							.sect-user
+								label.icn.user persons
+								input.form-control type="text" placeholder="nr"
+							.sect-bag
+								label.icn.bag tickets
+								input.form-control type="text" placeholder="nr"
+
+						.submit
+							button type="submit" class="btn btn-default btn-submit" Submit
+
+					h2 Customer satisfaction rate : 4.94/5
+
+section#stats
+	ul.statslist.container
+		li
+			=image_tag "icon_trip.png"
+			h2 16 446
+			strong trip requests sent
+
+		li
+			=image_tag "icon_chauffer.png"
+			h2 5 288
+			strong chauffered vehicles in France
+		li
+			=image_tag "icon_bids.png"
+			h2 110 709
+			strong bids compared
+		li
+			=image_tag "icon_reservation.png"
+			h2 5 293
+			strong reservations made
+
+
+
+section#howitworks
+	.container
+		header
+			h2 HOW IT WORKS ?
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
+
+		ul.howlist
+			li
+				strong 1
+				=image_tag "icon_posttrip.png"
+				h4 POST A TRIP
+				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+			li     
+				strong 2
+				=image_tag "icon_compare.png"
+				h4 POST A TRIP
+				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+			li     
+				strong 3
+				=image_tag "icon_enjoy.png"
+				h4 POST A TRIP
+				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+
+
+
+
+
+section#latest
+	.container
+		header
+			h2 LAST POSTED TRIP REQUESTS
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
+	
+		ul.ltslist
+			li
+				.box
+					.transp Taxis / Minivans <em>AR</em>
+					.route	Aix-les-Bains to Belley
+					.bids 20 offers received
+					.detail
+						.passengers 3
+						.bids 5
+						.price 337 &euro;
+			li
+				.box
+					.transp Coach / Minibus <em>AR</em>
+					.route	Le Cannet to Nice
+					.bids 20 offers received
+					.detail
+						.passengers 3
+						.bids 5
+						.price 105 &euro;
+
+			li
+				.box
+					.transp Taxis / Minivans <em>AR</em>
+					.route	Paris to Antony
+					.bids 20 offers received
+					.detail
+						.passengers 3
+						.bids 5
+						.price 32 &euro;
+			
+			li
+				.box
+					.transp Adapted vehicles <em>RT</em>
+					.route	Vigneux-sur-Seine to Maisons-Alfort
+					.bids 20 offers received
+					.detail
+						.passengers 3
+						.bids 5
+						.price 78 &euro;
+
+
+
+
+
+
+section#trustus
+	.container
+		header
+			h2 THEY TRUST US
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+	
+		ul.partners
+			li =image_tag 'logo_edf.jpg', :alt => 'logo_edf'
+			li =image_tag 'logo_m6.jpg', :alt => 'logo_m6'
+			li =image_tag 'logo_nrj.jpg', :alt => 'logo_nrj'
+			li =image_tag 'logo_technip.jpg', :alt => 'logo_technip'
+			li =image_tag 'logo_amdeus.jpg	', :alt => 'logo_amdeus'
+			li =image_tag 'logo_hp.jpg', :alt => 'logo_hp'
+			li =image_tag 'logo_siemens.jpg', :alt => 'logo_siemens'
+			li =image_tag 'logo_sanofi.jpg', :alt => 'logo_sanofi'
+			li =image_tag 'logo_men.jpg', :alt => 'logo_men'
+			li =image_tag 'logo_medde.jpg', :alt => 'logo_medde'
+
+
+
+
+section#reviews
+	.container
+		header
+			h2 LAST REVIEWS AND RATINGS
+			p something underneath lorem ipsum dolor sit amet consec
+	
+		ul.revlist
+			li
+				h4 Transfer by Mercedes VIANO from Bollène
+				=link_to 'VTC near Castelnau-d&#44;Aude'
+				p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
+				strong From Kathy W.
+				.rating.five 5 / 5
+
+			li
+				h4 Transfer by Mercedes SPRINTER from Cadaques Spain
+				=link_to 'Taxi near Narbonne'
+				p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
+				.rating.four 4 / 5
+				strong From Kathy W.
+
+			li
+				h4 Transfer by Peugeot Expert tapee from Saint-Jean-de-Losne
+				=link_to 'Taxi near Narbonne'
+				p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.The route included some windy mountain roads which he drove calmly and safely. We would recommend this transport provider.
+				.rating.four 5 / 5
+				strong From Kathy W.
+
+
+
+
+section#press
+	.container
+		header
+			h2 LAST REVIEWS AND RATINGS
+			p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.
+		
+		ul.prslist
+			li
+				figure 
+					= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+			li
+				figure 
+					= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+			li
+				figure 
+					= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+			li
+				figure 
+					= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+			li
+				figure
+					= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+			li
+				figure
+					= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
+					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+
+
+
+
+/ #cexgen.carousel.slide
+/ 	ol.carousel-indicators
+/ 	 li.active data-target="#cexgen" data-slide-to="0"
+/ 	 li data-target="#cexgen" data-slide-to="1"
+/ 	 li data-target="#cexgen" data-slide-to="2"
+
+/ 	.carousel-inner role="listbox"
+/ 		.item.active first
+/ 		.item second
+/ 		.item third
+
+/ 	a.left.carousel-control href="#cexgen" role="button" data-slide="prev" Previous
+/ 	a.right.carousel-control href="#cexgen" role="button" data-slide="next" Next
+
+
+
+
+section#affiliate
+	.container
+		header
+			h2 AFFILLIATED TRANSPORT PROVIDERS
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+		
+		ul.aflist
+			li
+				a href="#"
+					=image_tag 'veh_1.jpg', :alt => 'affiliate-car'
+					strong VLTP near Châtillon-en- Vendelais
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_2.jpg', :alt => 'affiliate-car'
+					strong Taxi near Narbonne
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_3.jpg', :alt => 'affiliate-car'
+					strong VTC near Castelnau-d& #39; Aude
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_4.jpg', :alt => 'affiliate-car'
+					strong Coach provider near Perpignan
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_5.jpg', :alt => 'affiliate-car'
+					strong Coach provider near Perpignan
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_6.jpg', :alt => 'affiliate-car'
+					strong VTC near Nice
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_7.jpg', :alt => 'affiliate-car'
+					strong VLTP near Chantilly
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_8.jpg', :alt => 'affiliate-car'
+					strong VTC near Bordeaux
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_9.jpg', :alt => 'affiliate-car'
+					strong VTC near Gennevilliers
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_10.jpg', :alt => 'affiliate-car'
+					strong VTC near Gennevilliers
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_6.jpg', :alt => 'affiliate-car'
+					strong VTC near Nice
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_7.jpg', :alt => 'affiliate-car'
+					strong VLTP near Chantilly
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_11.jpg', :alt => 'affiliate-car'
+					strong VTC near Bordeaux
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_12.jpg', :alt => 'affiliate-car'
+					strong VTC near Gennevilliers
+					em 'READ MORE'
+			li
+				a href="#"
+					=image_tag 'veh_9.jpg', :alt => 'affiliate-car'
+					strong VTC near Gennevilliers
+					em 'READ MORE'
+
+footer#bottom
+	.actprovider
+		header.container
+			h2 TRANSPORT PROVIDER?
+			h3 Join us! Clients are waiting for you.
+			a.btm href='#' FIND OUT MORE
+	
+	#footer.container
+		.col
+			.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+			p Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+
+		.col
+			h2 INFO
+			ul
+				li =link_to 'Faq'
+				li =link_to 'Quality Charter'
+				li =link_to 'Terms'
+				li =link_to 'Privacy'
+				li =link_to 'Contact Us'
+				li =link_to 'Blog'
+
+		.col
+			h2 LAW
+			ul
+				li =link_to 'Chauffeured Bike Services Law'
+				li =link_to 'Motorcycle Taxi Law'
+				li =link_to 'Taxi Law'
+				li =link_to 'Petite Remise Law'
+				li =link_to 'Vltp (loti) Law'
+				li =link_to 'Vtc Law'
+				li =link_to 'Coach Provider Law'
+
+		.col
+			h2 SOCIAL
+			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+			ul.social
+				li.li =link_to 'LinkedIn', '#', :target => '_blank'
+				li.tw =link_to 'Twitter', '#', :target => '_blank'
+				li.fb =link_to 'Facebook', '#', :target => '_blank'
+				li.gp =link_to 'Google Plus', '#', :target => '_blank'
+	
+		p.copy &copy; 2015  All Rights Reserved <strong>monTransport.com</strong>

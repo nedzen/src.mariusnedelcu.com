@@ -11,7 +11,7 @@ title
   - elsif content_for?(:title)
     = "yield_content(:title)"
   = t 'blog.title'
-  
+  // something in here breaks the build
 / - ogp_tags do|name, value|
 /   meta property=name content=value
 /   - if name.match /^og:(image|description|title|url)$/
@@ -27,18 +27,19 @@ title
 / - elsif current_article && current_article.tags
 /   meta content=current_article.tags.join(',') name="keywords"
 / - if current_resource.data.alternate
-  / meta content=alt_lang property= "og:locale:alternate"
-  / meta content=t 'author.name' name="author"
-  / link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{current_resource.url}"
+/   meta content=alt_lang property= "og:locale:alternate"
+/   meta content=t('author.name') name="author"
+/   link rel="alternate" hreflang=alt_lang herf="http://#{alt_host}#{current_resource.url}"
 
 / =feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
 / - %w{152 144 120 114 76 72 60 67}.each do |size|
 /   - size = "#{size}x#{size}"
 /   link rel="apple-touch-icon" size=size href="/apple-touch-icon-#{size}-precomposed.png"
-/   / link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
+/   link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"
 / link rel="shortcut icon" href="/favicon.png"
 / link rel="icon" type="image/ico" href="/favicon.ico"
 
+// something in here breaks the build
 / - if current_article
 /   - if current_article.previous_article.nil?
 /     link rel="prev" href=current_article.previous_article.url
