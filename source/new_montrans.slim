@@ -123,6 +123,39 @@ section#howitworks
 
 
 
+coffee:
+	(($) ->
+	  $ ->
+	    jcarousel = $('.jcarousel')
+	    jcarousel.on('jcarousel:reload jcarousel:create', ->
+	      carousel = $(this)
+	      width = carousel.innerWidth()
+	      if width >= 600
+	        width = width / 3
+	      else if width >= 350
+	        width = width / 2
+	      carousel.jcarousel('items').css 'width', Math.ceil(width) + 'px'
+	      return
+	    ).jcarousel wrap: 'circular'
+	    $('.prev').jcarouselControl target: '-=1'
+	    $('.next').jcarouselControl target: '+=1'
+	    $('.indicators').on('jcarouselpagination:active', 'a', ->
+	      $(this).addClass 'active'
+	      return
+	    ).on('jcarouselpagination:inactive', 'a', ->
+	      $(this).removeClass 'active'
+	      return
+	    ).on('click', (e) ->
+	      e.preventDefault()
+	      return
+	    ).jcarouselPagination
+	      perPage: 1
+	      item: (page) ->
+	        '<a href="#' + page + '">' + page + '</a>'
+	    return
+	  return
+	) jQuery
+
 
 section#latest
 	.container
@@ -130,46 +163,51 @@ section#latest
 			h2 LAST POSTED TRIP REQUESTS
 			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
 	
-		ul.ltslist
-			li
-				.box
-					.transp Taxis / Minivans <em>AR</em>
-					.route	Aix-les-Bains to Belley
-					.bids 20 offers received
-					.detail
-						.passengers 3
-						.bids 5
-						.price 337 &euro;
-			li
-				.box
-					.transp Coach / Minibus <em>AR</em>
-					.route	Le Cannet to Nice
-					.bids 20 offers received
-					.detail
-						.passengers 3
-						.bids 5
-						.price 105 &euro;
+		.jcarousel-wrap
+			.jcarousel
+				ul.ltslist
+					li
+						.box
+							.transp Taxis / Minivans <em>AR</em>
+							.route	Aix-les-Bains to Belley
+							.bids 20 offers received
+							.detail
+								.passengers 3
+								.bids 5
+								.price 337 &euro;
+					li
+						.box
+							.transp Coach / Minibus <em>AR</em>
+							.route	Le Cannet to Nice
+							.bids 20 offers received
+							.detail
+								.passengers 3
+								.bids 5
+								.price 105 &euro;
 
-			li
-				.box
-					.transp Taxis / Minivans <em>AR</em>
-					.route	Paris to Antony
-					.bids 20 offers received
-					.detail
-						.passengers 3
-						.bids 5
-						.price 32 &euro;
+					li
+						.box
+							.transp Taxis / Minivans <em>AR</em>
+							.route	Paris to Antony
+							.bids 20 offers received
+							.detail
+								.passengers 3
+								.bids 5
+								.price 32 &euro;
+					
+					li
+						.box
+							.transp Adapted vehicles <em>RT</em>
+							.route	Vigneux-sur-Seine to Maisons-Alfort
+							.bids 20 offers received
+							.detail
+								.passengers 3
+								.bids 5
+								.price 78 &euro;
 			
-			li
-				.box
-					.transp Adapted vehicles <em>RT</em>
-					.route	Vigneux-sur-Seine to Maisons-Alfort
-					.bids 20 offers received
-					.detail
-						.passengers 3
-						.bids 5
-						.price 78 &euro;
-
+			.prev &lsaquo;
+			.next &rsaquo;
+			p.indicators
 
 
 
@@ -202,28 +240,47 @@ section#reviews
 			h2 LAST REVIEWS AND RATINGS
 			p something underneath lorem ipsum dolor sit amet consec
 	
-		ul.revlist
-			li
-				h4 Transfer by Mercedes VIANO from Bollène
-				=link_to 'VTC near Castelnau-d&#44;Aude'
-				p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
-				strong From Kathy W.
-				.rating.five 5 / 5
+		.jcarousel-wrap
+			.jcarousel
+				ul.revlist
+					li
+						h4 Transfer by Mercedes VIANO from Bollène
+						=link_to 'VTC near Castelnau-d&#44;Aude'
+						p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
+						strong From Kathy W.
+						.rating.five 5 / 5
 
-			li
-				h4 Transfer by Mercedes SPRINTER from Cadaques Spain
-				=link_to 'Taxi near Narbonne'
-				p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
-				.rating.four 4 / 5
-				strong From Kathy W.
+					li
+						h4 Transfer by Mercedes SPRINTER from Cadaques Spain
+						=link_to 'Taxi near Narbonne'
+						p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
+						.rating.four 4 / 5
+						strong From Kathy W.
 
-			li
-				h4 Transfer by Peugeot Expert tapee from Saint-Jean-de-Losne
-				=link_to 'Taxi near Narbonne'
-				p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.The route included some windy mountain roads which he drove calmly and safely. We would recommend this transport provider.
-				.rating.four 5 / 5
-				strong From Kathy W.
+					li
+						h4 Transfer by Peugeot Expert tapee from Saint-Jean-de-Losne
+						=link_to 'Taxi near Narbonne'
+						p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.The route included some windy mountain roads which he drove calmly and safely. We would recommend this transport provider.
+						.rating.four 5 / 5
+						strong From Kathy W.
 
+					li
+						h4 Transfer by Mercedes VIANO from Bollène
+						=link_to 'VTC near Castelnau-d&#44;Aude'
+						p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
+						strong From Kathy W.
+						.rating.five 5 / 5
+
+					li
+						h4 Transfer by Mercedes SPRINTER from Cadaques Spain
+						=link_to 'Taxi near Narbonne'
+						p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
+						.rating.four 4 / 5
+						strong From Kathy W.
+
+			.prev &lsaquo;
+			.next &rsaquo;
+			p.indicators
 
 
 
@@ -233,48 +290,38 @@ section#press
 			h2 LAST REVIEWS AND RATINGS
 			p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.
 		
-		ul.prslist
-			li
-				figure 
-					= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-			li
-				figure 
-					= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-			li
-				figure 
-					= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-			li
-				figure 
-					= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-			li
-				figure
-					= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-			li
-				figure
-					= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
-					figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+		.jcarousel-wrap
+			.jcarousel
 
+				ul.prslist
+					li
+						figure 
+							= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					li
+						figure 
+							= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					li
+						figure 
+							= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					li
+						figure 
+							= link_to image_tag('press_tfi.png', :alt => 'press_tfi'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					li
+						figure
+							= link_to image_tag('press_m.png', :alt => 'press_m'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					li
+						figure
+							= link_to image_tag('press_france.png', :alt => 'press_france'), 'something'
+							figcaption Lorem ipsum dolor sit amet, consectetuer adipiscing elit
 
-
-
-/ #cexgen.carousel.slide
-/ 	ol.carousel-indicators
-/ 	 li.active data-target="#cexgen" data-slide-to="0"
-/ 	 li data-target="#cexgen" data-slide-to="1"
-/ 	 li data-target="#cexgen" data-slide-to="2"
-
-/ 	.carousel-inner role="listbox"
-/ 		.item.active first
-/ 		.item second
-/ 		.item third
-
-/ 	a.left.carousel-control href="#cexgen" role="button" data-slide="prev" Previous
-/ 	a.right.carousel-control href="#cexgen" role="button" data-slide="next" Next
+			.prev &lsaquo;
+			.next &rsaquo;
+			p.indicators
 
 
 

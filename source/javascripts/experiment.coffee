@@ -2,5 +2,4 @@
 #= require 'bootstrap/dropdown.js'
 #= require 'bootstrap/affix.js'
 #= require 'bootstrap/collapse.js'
-#= require 'bootstrap/carousel.js'
-#= require 'bootstrap/transition.js'
+#= require 'jquery.jcarousel.min.js'

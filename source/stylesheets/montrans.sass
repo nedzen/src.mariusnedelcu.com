@@ -13,6 +13,14 @@ ul
 fieldset
 	border: 0
 
+=desaturate
+	filter: gray //IE6-9
+	filter: grayscale(1)  //Firefox 35+
+	-webkit-filter: grayscale(1) // Google Chrome, Safari 6+ & Opera 15+
+=saturate
+	filter: none
+	-webkit-filter: grayscale(0)
+
 
 #intro
 	h1, p
@@ -727,20 +735,55 @@ section
 
 .aflist
 .prslist
-.revlist
+
 
 .ltslist
 	&, li
 		display: block
-
+	position: relative
+	margin-left: -1 * $box-pad
+	margin-right: -1 * $box-pad
 	li
+		padding: 0 $box-pad
+		+box-sizing(border-box)
 		@media screen and (min-width: $screen-xs)
 			width: 50%
 			float: left
 
 		@media screen and (min-width: $screen-sm)
 			width: 25%
+	
+	.box
+		border: 2px solid $darkblue
+		border-radius: 16px
+		padding: $box-pad
 
+
+.partners
+	display: block
+	width: 100%
+	text-align: center
+	li
+		&:hover
+			img
+				+saturate
+		width: (100 / 6) * 1%
+		display: inline-block
+		padding: $box-pad 0
+
+		img
+			+transition(100ms)
+			+desaturate
+			max-width: 106px
+
+
+
+.revlist
+	display: block
+	li
+		display: inline-block
+		vertical-align: top
+		width: (100 / 3) * 1%
 
 
 
@@ -772,6 +815,18 @@ section
 			width: (100 / 5) * 1%
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 footer#bottom
 	clear: both
 	background: black
@@ -800,13 +855,13 @@ ul.social
 		+square(60px)
 		display: block
 		&.li
-			+background-image('ico_')
+			+background-image('ico_li.svg')
 		&.tw
-			+background-image('ico_')
+			+background-image('ico_tw.svg')
 		&.fb
-			+background-image('ico_')
+			+background-image('ico_fb.svg')
 		&.gp
-			+background-image('ico_')
+			+background-image('ico_gb.svg')
 
 p.copy
 	padding: $box-pad		
@@ -816,263 +871,110 @@ p.copy
 
 
 
+// Le carousel
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// Carousel
-// --------------------------------------------------
-
-// Wrapper for the slide container and indicators
-.carousel
+.jcarousel-wrap
+	margin: 20px auto
 	position: relative
+	border: 10px solid #fff
+	-webkit-border-radius: 5px
+	-moz-border-radius: 5px
+	border-radius: 5px
+	-webkit-box-shadow: 0 0 2px #999
+	-moz-box-shadow: 0 0 2px #999
+	box-shadow: 0 0 2px #999
 
-.carousel-inner
+/** Carousel **/
+
+.jcarousel
 	position: relative
 	overflow: hidden
 	width: 100%
-	> .item
-		display: none
-		position: relative
-		+transition(0.6s ease-in-out left)
-		// Account for jankitude on images
-		> img,
-		> a > img
-			line-height: 1
-		// WebKit CSS3 transforms for supported devices
-		@media all and (#{transform-3d}), (#{-webkit-transform-3d})
-			+transition-transform(0.6s ease-in-out)
-			+backface-visibility(hidden)
-			+perspective(1000px)
-			&.next,
-			&.active.right
-				+translate3d(100%, 0, 0)
-				left: 0
-			&.prev,
-			&.active.left
-				+translate3d(-100%, 0, 0)
-				left: 0
-			&.next.left,
-			&.prev.right,
-			&.active
-				+translate3d(0, 0, 0)
-				left: 0
-	
-	> .active,
-	> .next,
-	> .prev
-		display: block
-	> .active
-		left: 0
-	> .next,
-	> .prev
-		position: absolute
-		top: 0
-		width: 100%
-	> .next
-		left: 100%
-	> .prev
-		left: -100%
-	> .next.left,
-	> .prev.right
-		left: 0
-	> .active.left
-		left: -100%
-	> .active.right
-		left: 100%
 
-// Left/right controls for nav
-// ---------------------------
-
-.carousel-control
-	position: absolute
-	top: 0
-	left: 0
-	bottom: 0
-	width: 15%
-	opacity: .6
-	font-size: 20px
-	color: orange
-	text-align: center
-	text-shadow: 1px solid black
-	background-color: rgba(0, 0, 0, 0)
-	// Fix IE9 click-thru bug
-	// We can't have this transition here because WebKit cancels the carousel
-	// animation if you trip this while in the middle of another animation.
-	// Set gradients for backgrounds
-	&.left
-		+gradient-horizontal($start_color: rgba(0, 0, 0, 0.5), $end_color: rgba(0, 0, 0, 0.0001))
-	
-	&.right
-		left: auto
-		right: 0
-		+gradient-horizontal($start_color: rgba(0, 0, 0, 0.0001), $end_color: rgba(0, 0, 0, 0.5))
-
-	// Hover/focus state
-	&:hover,
-	&:focus
-		outline: 0
-		color: red
-		text-decoration: none
-		opacity: 0.9
-	// Toggles
-	.icon-prev,
-	.icon-next,
-	.glyphicon-chevron-left,
-	.glyphicon-chevron-right
-		position: absolute
-		top: 50%
-		margin-top: -10px
-		z-index: 5
-		display: inline-block
-	.icon-prev,
-	.glyphicon-chevron-left
-		left: 50%
-		margin-left: -10px
-	.icon-next,
-	.glyphicon-chevron-right
-		right: 50%
-		margin-right: -10px
-	.icon-prev,
-	.icon-next
-		width: 20px
-		height: 20px
-		line-height: 1
-		font-family: serif
-	.icon-prev
-		&:before
-			content: '\2039'
-			// SINGLE LEFT-POINTING ANGLE QUOTATION MARK (U+2039)
-	.icon-next
-		&:before
-			content: '\203a'
-			// SINGLE RIGHT-POINTING ANGLE QUOTATION MARK (U+203A)
-
-// Optional indicator pips
-//
-// Add an unordered list with the following class and add a list item for each
-// slide your carousel holds.
-
-.carousel-indicators
-	position: absolute
-	bottom: 10px
-	left: 50%
-	z-index: 15
-	width: 60%
-	margin-left: -30%
-	padding-left: 0
+.jcarousel ul
+	width: 20000em
+	position: relative
 	list-style: none
-	text-align: center
-	li
-		display: inline-block
-		width: 10px
-		height: 10px
-		margin: 1px
-		text-indent: -999px
-		border: 1px solid red
-		border-radius: 10px
-		cursor: pointer
-		// IE8-9 hack for event handling
-		//
-		// Internet Explorer 8-9 does not support clicks on elements without a set
-		// `background-color`. We cannot use `filter` since that's not viewed as a
-		// background color by the browser. Thus, a hack is needed.
-		// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Internet_Explorer
-		//
-		// For IE8, we set solid black as it doesn't support `rgba()`. For IE9, we
-		// set alpha transparency for the best results possible.
-		background-color: #000 \9
-		// IE8
-		background-color: rgba(0, 0, 0, 0)
-		// IE9
-	.active
-		margin: 0
-		width: 12px
-		height: 12px
-		background-color: pink
+	margin: 0
+	padding: 0
 
-// Optional captions
-// -----------------------------
-// Hidden by default for smaller viewports
-.carousel-caption
+.jcarousel li
+	width: 200px
+	float: left
+	border: 1px solid #fff
+	-moz-box-sizing: border-box
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+
+.jcarousel img
+	display: block
+	max-width: 100%
+	height: auto !important
+
+
+
+
+/** Carousel Controls **/
+.prev,
+.next
 	position: absolute
-	left: 15%
-	right: 15%
-	bottom: 20px
-	z-index: 10
-	padding-top: 20px
-	padding-bottom: 20px
-	color: blue
+	top: 50%
+	margin-top: -15px
+	+square(30px)
 	text-align: center
-	// text-shadow: $carousel-text-shadow
-	& .btn
-		text-shadow: none
-		// No shadow for button elements in carousel-caption
+	background: #4E443C
+	color: #fff
+	text-decoration: none
+	cursor: pointer
+	text-shadow: 0 0 1px #000
+	font: 24px/27px Arial, sans-serif
+	-webkit-border-radius: 30px
+	-moz-border-radius: 30px
+	border-radius: 30px
+	-webkit-box-shadow: 0 0 4px #F0EFE7
+	-moz-box-shadow: 0 0 4px #F0EFE7
+	box-shadow: 0 0 4px #F0EFE7
 
-// Scale up controls for tablets and up
-@media screen and (min-width: $screen-sm)
-	// Scale up the controls a smidge
-	.carousel-control
-		.glyphicon-chevron-left,
-		.glyphicon-chevron-right,
-		.icon-prev,
-		.icon-next
-			width: 20px * 1.5
-			height: 20px * 1.5
-			margin-top: 20px / -2
-			font-size: 20px * 1.5
-		.glyphicon-chevron-left,
-		.icon-prev
-			margin-left: 20px / -2
-		.glyphicon-chevron-right,
-		.icon-next
-			margin-right: 20px / -2
+.prev
+	left: 15px
 
-	// Show and left align the captions
-	.carousel-caption
-		left: 20%
-		right: 20%
-		padding-bottom: 30px
+.next
+	right: 15px
 
-	// Move up the indicators
-	.carousel-indicators
-		bottom: 20px
+/** Carousel Pagination **/
+
+.indicators
+	position: absolute
+	bottom: -40px
+	left: 50%
+	-webkit-transform: translate(-50%, 0)
+	-ms-transform: translate(-50%, 0)
+	transform: translate(-50%, 0)
+	margin: 0
+
+	a
+		text-decoration: none
+		display: inline-block
+		font-size: 11px
+		height: 10px
+		width: 10px
+		line-height: 10px
+		background: #fff
+		color: #4E443C
+		border-radius: 10px
+		text-indent: -9999px
+		margin-right: 7px
+		-webkit-box-shadow: 0 0 2px #4E443C
+		-moz-box-shadow: 0 0 2px #4E443C
+		box-shadow: 0 0 2px #4E443C
+
+		&.active
+			background: #4E443C
+			color: #fff
+			opacity: 1
+			-webkit-box-shadow: 0 0 2px #F0EFE7
+			-moz-box-shadow: 0 0 2px #F0EFE7
+			box-shadow: 0 0 2px #F0EFE7
 
 
 
