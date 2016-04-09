@@ -71,6 +71,13 @@
 //   @include box-sizing(border-box);
 // }
 
+@mixin place($pos:static,$a:0,$b:0,$c:0,$d:0) {
+  position: $pos;
+  top:$a;
+  right:$b;
+  bottom:$c;
+  left:$d;
+}
 
 // Center-align a block level element
 @mixin center-block() {

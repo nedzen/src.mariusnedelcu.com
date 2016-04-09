@@ -10,32 +10,31 @@ nav.navbar.navbar-fixed-top
 	.container
 		.navbar-header
 			button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-				span class="sr-only" Toggle navigation
 				span class="icon-bar"
 				span class="icon-bar"
 				span class="icon-bar"
 			
-			.navbar-brand.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
+			.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
 
 		#navbar.navbar-collapse.collapse
 			ul.nav.navbar-nav
 				li.active =link_to 'concept', '#'
-				li =link_to 'Vehicles', '#'
 				li =link_to 'Directory', '#'
-				li =link_to 'Provider', '#'
+				li =link_to 'Post Trip', '#'
 
 			ul.nav.navbar-nav.navbar-right
-				li =link_to 'Vehicles', '#'
-				li =link_to 'Vehicles', '#'
+				li =link_to 'whatev', '#'
+				li =link_to 'Transport provider', '#'
 				li.dropdown
-					li=link_to 'Traveler', '#'
-					li=link_to 'Traveler', '#'
-					li.signupbtn =link_to 'SIGN UP', '#'
-				li.dropdown
-					a.dropdown-toggle href="#" data-toggle="dropdown" role="button" Dropdown <span class="caret"></span>
+					a.dropdown-toggle href="#" data-toggle="dropdown" role="button" Login
 					ul.dropdown-menu
-						li =image_tag 'france.png'
-						li =image_tag 'uk.png'
+						li=link_to 'Traveler', '#'
+						li.signupbtn =link_to 'SIGN UP', '#'
+				li.dropdown
+					a.dropdown-toggle href="#" data-toggle="dropdown" role="button"=image_tag 'france.png'
+					ul.dropdown-menu
+						li =link_to (image_tag 'uk.png'), 'test'
+
 
 
 section#intro
@@ -55,7 +54,7 @@ section#intro
 						.form-group.adress-depart
 							input type="text" class="form-control" placeholder="Adresse ou Lieu de départ"
 						.form-group.adress-arrive
-							input type="text" class="form-control" placeholder="Adresse ou Lieu de d'arrivée"
+							input type="text" class="form-control" placeholder="Adresse ou Lieu d'arrivée"
 						.form-group.hour-depart
 							input type="text" class="form-control" placeholder="Date &amp; heure de départ"
 
@@ -92,8 +91,6 @@ section#stats
 			h2 5 293
 			strong reservations made
 
-
-
 section#howitworks
 	.container
 		header
@@ -118,10 +115,6 @@ section#howitworks
 				=image_tag "icon_enjoy.png"
 				h4 POST A TRIP
 				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-
-
-
 
 coffee:
 	(($) ->
@@ -155,7 +148,6 @@ coffee:
 	    return
 	  return
 	) jQuery
-
 
 section#latest
 	.container
@@ -209,10 +201,6 @@ section#latest
 			.next &rsaquo;
 			p.indicators
 
-
-
-
-
 section#trustus
 	.container
 		header
@@ -230,9 +218,6 @@ section#trustus
 			li =image_tag 'logo_sanofi.jpg', :alt => 'logo_sanofi'
 			li =image_tag 'logo_men.jpg', :alt => 'logo_men'
 			li =image_tag 'logo_medde.jpg', :alt => 'logo_medde'
-
-
-
 
 section#reviews
 	.container
@@ -282,8 +267,6 @@ section#reviews
 			.next &rsaquo;
 			p.indicators
 
-
-
 section#press
 	.container
 		header
@@ -322,9 +305,6 @@ section#press
 			.prev &lsaquo;
 			.next &rsaquo;
 			p.indicators
-
-
-
 
 section#affiliate
 	.container
