@@ -60,22 +60,22 @@ $screen-xs-max:              ($screen-sm-min - 1) !default;
 $screen-sm-max:              ($screen-md-min - 1) !default;
 $screen-md-max:              ($screen-lg-min - 1) !default;
 
-* {
-	outline: 1px dotted fade-out(black, 0.5);
+// * {
+// 	outline: 1px dotted fade-out(black, 0.5);
 
-	@media screen and (min-width: $screen-xs) {
-		outline: 1px dotted fade-out(green, 0.5);
-	}
-	@media screen and (min-width: $screen-sm) {
-		outline: 1px dotted fade-out(olive, 0.5);
-	}
-	@media screen and (min-width: $screen-md) {
-		outline: 1px dotted fade-out(orange, 0.5);
-	}
-	@media screen and (min-width: $screen-lg) {
-		outline: 1px dotted fade-out(red, 0.5);
-	}
-}
+// 	@media screen and (min-width: $screen-xs) {
+// 		outline: 1px dotted fade-out(green, 0.5);
+// 	}
+// 	@media screen and (min-width: $screen-sm) {
+// 		outline: 1px dotted fade-out(olive, 0.5);
+// 	}
+// 	@media screen and (min-width: $screen-md) {
+// 		outline: 1px dotted fade-out(orange, 0.5);
+// 	}
+// 	@media screen and (min-width: $screen-lg) {
+// 		outline: 1px dotted fade-out(red, 0.5);
+// 	}
+// }
 
 
 

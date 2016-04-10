@@ -1,4 +1,5 @@
 #= require 'jquery'
+#= require 'bootstrap/transition'
 #= require 'bootstrap/dropdown.js'
 #= require 'bootstrap/affix.js'
 #= require 'bootstrap/collapse.js'

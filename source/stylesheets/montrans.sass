@@ -1,3 +1,4 @@
+// @import 'bootstrap'
 @import 'mymixins'
 @import 'normalize'
 @import 'montrans_variables'
@@ -23,10 +24,12 @@ fieldset
 
 
 body
-	// font-family: 'Roboto', sans-serif
-	font-family: 'Open Sans', sans-serif
+	font-family: 'Roboto', sans-serif
+	-webkit-font-smoothing: antialiased
+	// font-family: 'Open Sans', sans-serif
 
 #intro
+	display: none
 	h1, p
 		max-width: 1100px
 		+center-block
@@ -80,13 +83,6 @@ body
 		background-position: center -330px
 
 $fld-w: (100/5) * 1%
-// 480
-// 992
-// 768 // 767
-// 1200
-
-// *
-// 	outline: 1px solid red
 
 #query
 	box-shadow: none
@@ -236,124 +232,121 @@ button.btn.btn-submit
 
 
 // dropdown ---------------------------------------------------------------
-// ------------------------------------------------------------------------
-$caret-width-base: 4px
-$zindex-dropdown: 10
-$dropdown-link-color: #000
-$dropdown-bg: #333
-// Dropdown arrow/caret
-.caret
-	display: inline-block
-	+square(0)
-	margin-left: 2px
-	vertical-align: middle
-	border-top:   $caret-width-base dashed
-	border-top:   $caret-width-base solid \9 // IE8
-	border-right: $caret-width-base solid transparent
-	border-left:  $caret-width-base solid transparent
+$nav-link-color: #fff
 
+
+
+
+// ------------------------------------------------------------------------
+// dropdown ---------------------------------------------------------------
+$cw: 4px
+$zindex-dropdown: 10
+$dropdown-link-color: $nav-link-color
+$dropdown-bg: $darkblue
+
+// Dropdown arrow/caret
 .dropdown
 	position: relative
 
 .dropdown-toggle
 	outline: 0
+	// position: relative
+	&:after
+		content: ''
+		position: relative
+		right: -6px
+		display: inline-block
+		+square(0)
+		margin-left: 2px
+		vertical-align: middle
+		border-top:   $cw dashed
+		border-top:   $cw solid \9 // IE8
+		border-right: $cw solid transparent
+		border-left:  $cw solid transparent
+
+
+		// +place(absolute, 5px, 5px, auto aut)
 
 .dropdown-menu
-	position: absolute
-	top: 100%
-	left: 0
+	+place(absolute, 100%, auto, auto, 0)
 	z-index: $zindex-dropdown
-	display: none // none by default, but block on "open" of the menu
+	display: none
 	float: left
-	min-width: 160px
-	padding: 5px 0
-	margin: 2px 0 0 // override default ul
+	// padding: 15px 0
 	list-style: none
-	font-size: $font-size-base
 	text-align: left // Ensures proper alignment if parent has it changed (e.g., modal footer)
 	background-color: $dropdown-bg
-	border: 0
-	border-radius: 0
-	box-shadow: 0 6px 12px rgba(0,0,0,.175)
-	background-clip: padding-box
+	border-radius: 0px 0px 2px 2px
 
 	// Aligns the dropdown menu to right
-	// Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
-	&.pull-right
+	&.right
 		right: 0
 		left: auto
-
-	// Dividers (basically an hr) within the dropdown
-	// .divider
-	// 	@include nav-divider($dropdown-divider-bg)
 
 	// Links within the dropdown menu
 	> li > a
 		display: block
-		padding: 3px 20px
+		padding: $box-pad/2 $box-pad
 		clear: both
+		text-decoration: none
 		font-weight: normal
-		line-height: $line-height
 		color: $dropdown-link-color
 		white-space: nowrap // prevent links from randomly breaking onto new lines
+		outline: 0
 		&:hover,
 		&:focus
 			text-decoration: none
-			color: pink
-			background-color: orange
 
 	> .active > a
 		&, &:hover, &:focus
-			color: blue
 			text-decoration: none
 			outline: 0
-			background-color: olive
 
 // Open state for the dropdown
 .open
-	// Show the menu
 	> .dropdown-menu
 		display: block
-	// Remove the outline when :focus is triggered
-	> a
-		outline: 0
 
 
-// Component alignment
-// Reiterate per navbar.less and the modified component alignment there.
+
+=button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+	padding: $padding-vertical $padding-horizontal
+	font-size: $font-size
+	line-height: $line-height
+	border-radius: $border-radius
+
+=user-select($select)
+	-webkit-user-select: $select
+	-moz-user-select: $select
+	-ms-user-select: $select  // IE10+
+	user-select: $select
+
+
 
 @media (min-width: $screen-sm)
-	.navbar-right
+	.nav.right
 		.dropdown-menu
 			right: 0
 			left: auto
-		// Necessary for overrides of the default right aligned menu.
 		.dropdown-menu-left
 			left: 0
 			right: auto
 
-navbar-collapse
-
-.fade
-	opacity: 0
-	+transition(opacity 0.15s linear)
-	&.in
-		opacity: 1
-
+//navbar-collapse
 .collapse
 	display: none
 	&.in
 		display: block
-	// [converter] extracted tr&.in to tr.collapse.in
-	// [converter] extracted tbody&.in to tbody.collapse.in
-
-tr.collapse.in
-	display: table-row
-
-tbody.collapse.in
-	display: table-row-group
 
 .collapsing
+	ul
+		display: block
+		float: none
+		padding-right: $box-pad/2
+	width: 100%
+	
+	.dropdown-menu
+		display: none
 	position: relative
 	height: 0
 	overflow: hidden
@@ -361,154 +354,94 @@ tbody.collapse.in
 	+transition-duration(0.35s)
 	+transition-timing-function(ease)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$navbar-height: 50px
+$navbar-height: 55px
+$nav-color: #FFF
+$nav-color-hov: #FFF
 
 .navbar
 	position: relative
-	min-height: $navbar-height // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+	min-height: $navbar-height
 	margin-bottom: 0
-	border: 1px solid transparent
 	background-color: $darkblue
 	+clearfix
 
-.navbar-collapse
-	padding-right: $box-pad/2
-	padding-left:  $box-pad/2
+.nav-collapse
+	@media screen and (max-width: $screen-lg)
+		padding-right: $box-pad/2
 	+clearfix
 	-webkit-overflow-scrolling: touch
-	&.in
 	clear: left
 	@media (min-width: $screen-sm)
 		clear: none
 		width: auto
-		border-top: 0
-		box-shadow: none
-
 		&.collapse
-			display: block !important
-			height: auto !important
-			padding-bottom: 0 // Override default setting
-			overflow: visible !important
+			display: block
+			height: auto
+			overflow: visible
 
-		&.in
-			overflow-y: visible
-		// Undo the collapse side padding for navbars with containers to ensure
-		// alignment of right-aligned contents.
-		.navbar-fixed-top &
-			padding-left: 0
-			padding-right: 0
-
-
-.container
-	> .navbar-header,
-	> .navbar-collapse
-		margin-right: -$box-pad/2
-		margin-left:  -$box-pad/2
-
-		@media (min-width: $screen-sm)
-			margin-right: 0
-			margin-left:  0
-
-
-.navbar-fixed-top
-	.navbar-collapse
-		// max-height: 340px
-		@media (max-device-width: $screen-xs-min) and (orientation: landscape)
-			// max-height: 200px
-
-
-
-
-
-.navbar-fixed-top
+.fixed-top
 	+place(fixed, 0, 0, auto, 0)
 	z-index: 11
-	// Undo the rounded corners
-	@media (min-width: $screen-sm)
-		border-radius: 0
 
-
-
-
-
-
-// Brand/project name
 .logo
-	float: left
-	padding: $box-pad/2
-	height: $navbar-height
 	width: 200px
-	img
+	float: left
+	@media screen and (max-width: $screen-lg)
+		padding-left: $box-pad/2
+	a, img
 		display: block
-
-
+	a
+		padding: 10px $box-pad/2 0 0
 
 
 // Navbar toggle
-//
-// Custom button for toggling the `.navbar-collapse`, powered by the collapse
-// JavaScript plugin.
 =navbar-vertical-align($element-height)
 	margin-top: (($navbar-height - $element-height) / 2)
 	margin-bottom: (($navbar-height - $element-height) / 2)
 
-.navbar-toggle
+.toggle
+	@media (min-width: $screen-sm)
+		display: none
 	position: relative
 	float: right
 	margin-right: $box-pad/2
-	padding: 9px 10px
-	+navbar-vertical-align(34px)
-	background-color: lighten($darkblue, 30%)
-	background-image: none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
-	border: 1px solid white
-	border-radius: 5px
-
-	// We remove the `outline` here, but later compensate by attaching `:hover`
-	// styles to `:focus`.
+	padding: 5px 10px
+	+navbar-vertical-align(30)
+	background-image: none
+	background-color: transparent
+	border: none
 	&:focus
 		outline: 0
 
-	// Bars
 	.icon-bar
 		display: block
-		width: 22px
-		height: 2px
+		width: 30px
+		height: 4px
 		border-radius: 1px
 		background: white
+	
 	.icon-bar + .icon-bar
 		margin-top: 4px
 
+.nav
 	@media (min-width: $screen-sm)
-		display: none
+		&.right
+			float: right
 
-.navbar-nav
-	margin: $box-pad / 2 ($box-pad/2) * -1
-	> li > a
-		padding-top: 10px
-		padding-bottom: 10px
-		line-height: $line-height
-
+	> li 
+		text-align: center
+		> a
+			line-height: $line-height
+			color: white
+			padding: $box-pad/2 $box-pad
+			display: block
+			// &.btn
+			// 	&.orange
+			// 		max-width: 160px
+			// 		+center-block
+			// 	&.simple
+			// 		border: 0
+	
 	@media (max-width: $screen-sm - 1)
 		// Dropdowns get custom display when collapsed
 		.open .dropdown-menu
@@ -516,12 +449,9 @@ $navbar-height: 50px
 			float: none
 			width: auto
 			margin-top: 0
-			background-color: blue
 			border: 0
-			box-shadow: none
-			> li > a, .dropdown-header
-				padding: 5px 15px 5px 25px
 			> li > a
+				padding: 5px 15px 5px 25px
 				line-height: $line-height
 				&:hover,
 				&:focus
@@ -531,59 +461,125 @@ $navbar-height: 50px
 	@media (min-width: $screen-sm)
 		float: left
 		margin: 0
-
+		// background: pink
 		> li
+			padding-left: 10px
+			height: $navbar-height
+			display: inline-block
 			float: left
 			> a
-				padding-top: $box-pad
-				padding-bottom: $box-pad / 2
+				+navbar-vertical-align(39)
+				display: inline-block
+				padding: $box-pad/2 $box-pad
+				color: $nav-link-color
+				text-decoration: none
+				&.btn
+					+button-size($box-pad/4, $box-pad, $font-size-base, $line-height, 2px)
+					+navbar-vertical-align(33)
+
+
+section#super
+	padding: $box-pad * 10
+$cursor-disabled: not-allowed !default
+
+
+.lang
+	background-repeat: no-repeat
+	background-color: none
+	background-size: 32px auto
+	background-position: center
+	text-indent: -999999px
+	width: 0px
+	+center-block
+	&.en
+		+background-image('gb.png')
+		background-repeat: no-repeat
+	&.fr
+		+background-image('fr.png')
+		background-repeat: no-repeat
+
+
+.btn
+	display: inline-block
+	margin-bottom: 0 // For input.btn
+	text-align: center
+	vertical-align: middle
+	touch-action: manipulation
+	cursor: pointer
+	background-image: none // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	border: 1px solid transparent
+	white-space: nowrap
+	background: pink
+	+button-size($box-pad/2, $box-pad, $font-size-base, $line-height, 2px)
+	+user-select(none)
+	&,
+	&:active, &.active
+		&:focus, &.focus
+			+tab-focus
+	&:hover, &:focus, &.focus
+		color: $darkblue
+		text-decoration: none
+	&:active,
+	&.active
+		outline: 0
+		background-image: none
+		// box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125)
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] &
+		cursor: $cursor-disabled
+		opacity: 0.65
+		// box-shadow: none
+
+	a
+		&.disabled,
+		fieldset[disabled] &
+			pointer-events: none // Future-proof disabling of clicks on `<a>` elements
+	&.small
+		+button-size($box-pad/4, $box-pad/2, $font-size-small, $line-height, 2px)
+	&.big
+		+button-size($box-pad/2, $box-pad + $box-pad / 2, $font-size-base+2, $line-height, 2px)
+
+	&.orange
+		background-color: $orange
+		color: $darkblue
+	&.darkblue
+		background-color: $darkblue
+		color: $orange
+	&.simple
+		border: 1px solid fade-out(white, 0.9)
+		background-color: $darkblue
+		&:hover, &:focus, &.focus
+			color: white
+
+hr
+	display: block
+	clear: both
+	border: 0
+	border-top: 1px solid pink
 
 
 
 
 
-// Dropdown menus
-// Menu position and menu carets
-// .navbar-nav > li > .dropdown-menu
-	// margin-top: 0
-
-// Buttons in navbars
-// Vertically center a button within a navbar (when *not* in a form).
-
-// .navbar-btn
-	//@include navbar-vertical-align($input-height-base)
-	// &.btn-sm
-		//@include navbar-vertical-align($input-height-small)
-	// &.btn-xs
-		//@include navbar-vertical-align(22)
-
-@media (min-width: $screen-sm)
-	.navbar-left
-		float: left !important
-	.navbar-right
-		float: right !important
 
 
 
 
-//	Links in navbars
-//	Add a class to ensure links outside the navbar nav are colored correctly.
 
-	// .navbar-link
-	//   color: $navbar-default-link-color
-	//   &:hover
-	//     color: $navbar-default-link-hover-color
 
-	// .btn-link
-	//   color: $navbar-default-link-color
-	//   &:hover,
-	//   &:focus
-	//     color: $navbar-default-link-hover-color
-	//   &[disabled],
-	//   fieldset[disabled] &
-	//     &:hover,
-	//     &:focus
-	//       color: $navbar-default-link-disabled-color
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TYPOGRAPHY --------------------------------------------------------------------------------
 
@@ -695,7 +691,7 @@ section
 
 
 .partners
-	display: block
+	display: none
 	width: 100%
 	text-align: center
 	li

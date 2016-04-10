@@ -5,6 +5,273 @@ per_page: 10
 layout: laymtrs
 ---
 
+sass:
+	// dropdown ---------------------------------------------------------------
+	$nav-link-color: #fff
+
+
+
+
+	// ------------------------------------------------------------------------
+	// dropdown ---------------------------------------------------------------
+	$cw: 4px
+	$zindex-dropdown: 10
+	$dropdown-link-color: $nav-link-color
+	$dropdown-bg: #333
+
+	// Dropdown arrow/caret
+	.caret
+		display: inline-block
+		+square(0)
+		margin-left: 2px
+		vertical-align: middle
+		border-top:   $cw dashed
+		border-top:   $cw solid \9 // IE8
+		border-right: $cw solid transparent
+		border-left:  $cw solid transparent
+
+	.dropdown
+		position: relative
+
+	.dropdown-toggle
+		outline: 0
+
+	.dropdown-menu
+		position: absolute
+		top: 100%
+		left: 0
+		z-index: $zindex-dropdown
+		display: none // none by default, but block on "open" of the menu
+		float: left
+		min-width: 160px
+		padding: 5px 0
+		margin: 2px 0 0 // override default ul
+		list-style: none
+		text-align: left // Ensures proper alignment if parent has it changed (e.g., modal footer)
+		background-color: $dropdown-bg
+
+		// Aligns the dropdown menu to right
+		&.right
+			right: 0
+			left: auto
+
+		// Links within the dropdown menu
+		> li > a
+			display: block
+			padding: 3px 20px
+			clear: both
+			font-weight: normal
+			color: $dropdown-link-color
+			white-space: nowrap // prevent links from randomly breaking onto new lines
+			outline: 0
+			&:hover,
+			&:focus
+				text-decoration: none
+
+		> .active > a
+			&, &:hover, &:focus
+				text-decoration: none
+				outline: 0
+
+	// Open state for the dropdown
+	.open
+		> .dropdown-menu
+			display: block
+
+
+
+	//	Links in navbars
+	//	Add a class to ensure links outside the navbar nav are colored correctly.
+
+		// .navbar-link
+		//   color: $navbar-default-link-color
+		//   &:hover
+		//     color: $navbar-default-link-hover-color
+
+		// .btn-link
+		//   color: $navbar-default-link-color
+		//   &:hover,
+		//   &:focus
+		//     color: $navbar-default-link-hover-color
+		//   &[disabled],
+		//   fieldset[disabled] &
+		//     &:hover,
+		//     &:focus
+		//       color: $navbar-default-link-disabled-color
+
+
+
+
+
+
+	// Buttons in navbars
+	// Vertically center a button within a navbar (when *not* in a form).
+
+	// .navbar-btn
+	// 	@include navbar-vertical-align($input-height-base)
+	// 	&.btn-sm
+	// 		@include navbar-vertical-align($input-height-small)
+	// 	&.btn-xs
+	// 		@include navbar-vertical-align(22)
+
+	// @media (min-width: $screen-sm)
+	// 	.left
+	// 		float: left !important
+	// 	.right
+	// 		float: right !important
+
+
+
+
+
+	@media (min-width: $screen-sm)
+		.nav.right
+			.dropdown-menu
+				right: 0
+				left: auto
+			.dropdown-menu-left
+				left: 0
+				right: auto
+
+	//navbar-collapse
+	.collapse
+		display: none
+		&.in
+			display: block
+
+	.collapsing
+		position: relative
+		height: 0
+		overflow: hidden
+		+transition-property(height, visibility)
+		+transition-duration(0.35s)
+		+transition-timing-function(ease)
+
+
+	$navbar-height: 50px
+	$nav-color: #FFF
+	$nav-color-hov: #FFF
+
+	.navbar
+		position: relative
+		min-height: $navbar-height
+		margin-bottom: 0
+		background-color: $darkblue
+		+clearfix
+
+	.nav-collapse
+		@media screen and (max-width: $screen-lg)
+			padding-right: $box-pad/2
+		+clearfix
+		-webkit-overflow-scrolling: touch
+		clear: left
+		@media (min-width: $screen-sm)
+			clear: none
+			width: auto
+			&.collapse
+				display: block
+				height: auto
+				overflow: visible
+
+	.fixed-top
+		+place(fixed, 0, 0, auto, 0)
+		z-index: 11
+
+	.logo
+		width: 200px
+		float: left
+		@media screen and (max-width: $screen-lg)
+			padding-left: $box-pad/2
+		a, img
+			display: block
+		a
+			padding: $box-pad/2 $box-pad/2 0 0
+
+
+	// Navbar toggle
+	=navbar-vertical-align($element-height)
+		margin-top: (($navbar-height - $element-height) / 2)
+		margin-bottom: (($navbar-height - $element-height) / 2)
+
+	.toggle
+		@media (min-width: $screen-sm)
+			display: none
+		position: relative
+		float: right
+		margin-right: $box-pad/2
+		padding: 7px 10px
+		+navbar-vertical-align(30)
+		background-image: none
+		background-color: transparent
+		border: none
+		&:focus
+			outline: 0
+
+		.icon-bar
+			display: block
+			width: 30px
+			height: 4px
+			border-radius: 1px
+			background: white
+		
+		.icon-bar + .icon-bar
+			margin-top: 4px
+
+	.nav
+		@media (min-width: $screen-sm)
+			&.right
+				float: right
+		> li > a
+			line-height: $line-height
+
+		@media (max-width: $screen-sm - 1)
+			// Dropdowns get custom display when collapsed
+			.open .dropdown-menu
+				position: static
+				float: none
+				width: auto
+				margin-top: 0
+				border: 0
+				> li > a
+					// padding: 5px 15px 5px 25px
+					// line-height: $line-height
+					&:hover,
+					&:focus
+						background-image: none
+
+		// Uncollapse the nav
+		@media (min-width: $screen-sm)
+			float: left
+			margin: 0
+			background: pink
+			> li
+				height: $navbar-height
+				display: inline-block
+				float: left
+				> a
+					+navbar-vertical-align(39)
+					display: inline-block
+					padding: $box-pad/2 $box-pad
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 nav.navbar.fixed-top
 	.container
@@ -18,19 +285,25 @@ nav.navbar.fixed-top
 
 		#navbar.nav-collapse.collapse
 			ul.nav
-				li.active =link_to 'Concept', '#'
+				li.active =link_to 'concept', '#'
 				li =link_to 'Directory', '#'
+				li =link_to 'Post Trip', '#'
 
 			ul.nav.right
-				li =link_to 'Post Trip', '#', :class=> 'btn orange'
-				//li =link_to 'Transport provider', '#'
+				li =link_to 'whatev', '#'
+				li =link_to 'Transport provider', '#'
 				li.dropdown
-					a.btn.simple.dropdown-toggle href="#" data-toggle="dropdown" role="button" Login
+					a.dropdown-toggle href="#" data-toggle="dropdown" role="button" Login
 					ul.dropdown-menu
 						li=link_to 'Traveler', '#'
 						li.signupbtn =link_to 'SIGN UP', '#'
-				li =link_to 'EN', 'test', :class=> 'lang fr'
-						
+				li.dropdown
+					a.dropdown-toggle href="#" data-toggle="dropdown" role="button"=image_tag 'france.png'
+					ul.dropdown-menu
+						li =link_to (image_tag 'uk.png'), 'test'
+
+
+
 
 section#intro
 	.mask
