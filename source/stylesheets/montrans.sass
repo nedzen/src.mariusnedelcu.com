@@ -134,11 +134,9 @@ $fld-w: (100/5) * 1%
 			border-radius: 6px
 
 	@media screen and (min-width: 480px) and (max-width: 992px)
-		
 		.form-control
 			display: block
 			width: 100%
-		
 		.form-group
 			width: 100%
 			&.compact
@@ -148,14 +146,12 @@ $fld-w: (100/5) * 1%
 
 	@media screen and (min-width: 992px)
 		padding: 30px 0
-		
 		fieldset
 			position: relative
 			width: 100%
 			height: 60px
 			.form-control
 				width: 100%
-		
 		.form-group
 			position: absolute
 			top: 10px
@@ -206,7 +202,6 @@ $fld-w: (100/5) * 1%
 			margin-bottom: 0px
 			overflow: hidden
 			background-repeat: no-repeat
-			// vertical-align: bottom
 			margin-top: 6px
 			background-position: bottom center
 
@@ -214,9 +209,11 @@ $fld-w: (100/5) * 1%
 		+background-image('icon_user.svg')
 	.bag
 		+background-image('icon_bag.svg')
+
 .submit
 	padding-top: $box-pad
 	text-align: center
+
 button.btn.btn-submit
 	&:active,
 	&:focus,
@@ -335,287 +332,242 @@ $dropdown-bg: #333
 			left: 0
 			right: auto
 
+navbar-collapse
 
-// navbar -----------------------------------------------------------------
+.fade
+	opacity: 0
+	+transition(opacity 0.15s linear)
+	&.in
+		opacity: 1
 
+.collapse
+	display: none
+	&.in
+		display: block
+	// [converter] extracted tr&.in to tr.collapse.in
+	// [converter] extracted tbody&.in to tbody.collapse.in
 
+tr.collapse.in
+	display: table-row
 
+tbody.collapse.in
+	display: table-row-group
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $navbar-height: 50px
-
-// .navbar
-// 	position: relative
-// 	min-height: $navbar-height // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
-// 	margin-bottom: 0
-// 	border: 1px solid transparent
-// 	background-color: $darkblue
-// 	+clearfix
-
-// .navbar-collapse
-// 	overflow-x: visible
-// 	padding-right: $box-pad/2
-// 	padding-left:  $box-pad/2
-// 	+clearfix
-// 	-webkit-overflow-scrolling: touch
-// 	&.in
-// 		overflow-y: auto
-
-// 	@media (min-width: $screen-sm)
-// 		width: auto
-// 		border-top: 0
-// 		box-shadow: none
-
-// 		&.collapse
-// 			display: block !important
-// 			height: auto !important
-// 			padding-bottom: 0 // Override default setting
-// 			overflow: visible !important
-
-// 		&.in
-// 			overflow-y: visible
-// 		// Undo the collapse side padding for navbars with containers to ensure
-// 		// alignment of right-aligned contents.
-// 		.navbar-fixed-top &
-// 			padding-left: 0
-// 			padding-right: 0
-
-
-// .container
-// 	> .navbar-header,
-// 	> .navbar-collapse
-// 		margin-right: -$box-pad/2
-// 		margin-left:  -$box-pad/2
-
-// 		@media (min-width: $screen-sm)
-// 			margin-right: 0
-// 			margin-left:  0
-
-
-// .navbar-fixed-top
-// 	.navbar-collapse
-// 		// max-height: 340px
-// 		@media (max-device-width: $screen-xs-min) and (orientation: landscape)
-// 			// max-height: 200px
-
-
-
-
-
-// .navbar-fixed-top
-// 	+place(fixed, 0, 0, auto, 0)
-// 	z-index: 11
-// 	// Undo the rounded corners
-// 	@media (min-width: $screen-sm)
-// 		border-radius: 0
+.collapsing
+	position: relative
+	height: 0
+	overflow: hidden
+	+transition-property(height, visibility)
+	+transition-duration(0.35s)
+	+transition-timing-function(ease)
 
 
 
 
 
 
-// // Brand/project name
-// .logo
-// 	float: left
-// 	padding: $box-pad/2
-// 	height: $navbar-height
-// 	width: 200px
-// 	img
-// 		display: block
 
 
 
 
-// // Navbar toggle
-// //
-// // Custom button for toggling the `.navbar-collapse`, powered by the collapse
-// // JavaScript plugin.
-// =navbar-vertical-align($element-height)
-// 	margin-top: (($navbar-height - $element-height) / 2)
-// 	margin-bottom: (($navbar-height - $element-height) / 2)
 
-// .navbar-toggle
-// 	position: relative
-// 	float: right
-// 	margin-right: $box-pad/2
-// 	padding: 9px 10px
-// 	+navbar-vertical-align(34px)
-// 	background-color: lighten($darkblue, 30%)
-// 	background-image: none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
-// 	border: 1px solid white
-// 	border-radius: 5px
 
-// 	// We remove the `outline` here, but later compensate by attaching `:hover`
-// 	// styles to `:focus`.
-// 	&:focus
-// 		outline: 0
 
-// 	// Bars
-// 	.icon-bar
-// 		display: block
-// 		width: 22px
-// 		height: 2px
-// 		border-radius: 1px
-// 		background: white
-// 	.icon-bar + .icon-bar
-// 		margin-top: 4px
 
-// 	@media (min-width: $screen-sm)
-// 		display: none
 
-// .navbar-nav
-// 	margin: $box-pad / 2 ($box-pad/2) * -1
-// 	> li > a
-// 		padding-top: 10px
-// 		padding-bottom: 10px
-// 		line-height: $line-height
 
-// 	@media (max-width: $screen-sm - 1)
-// 		// Dropdowns get custom display when collapsed
-// 		.open .dropdown-menu
-// 			position: static
-// 			float: none
-// 			width: auto
-// 			margin-top: 0
-// 			background-color: blue
-// 			border: 0
-// 			box-shadow: none
-// 			> li > a, .dropdown-header
-// 				padding: 5px 15px 5px 25px
-// 			> li > a
-// 				line-height: $line-height
-// 				&:hover,
-// 				&:focus
-// 					background-image: none
 
-// 	// Uncollapse the nav
-// 	@media (min-width: $screen-sm)
-// 		float: left
-// 		margin: 0
 
-// 		> li
-// 			float: left
-// 			> a
-// 				padding-top: $box-pad
-// 				padding-bottom: $box-pad / 2
+
+
+
+
+$navbar-height: 50px
+
+.navbar
+	position: relative
+	min-height: $navbar-height // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+	margin-bottom: 0
+	border: 1px solid transparent
+	background-color: $darkblue
+	+clearfix
+
+.navbar-collapse
+	padding-right: $box-pad/2
+	padding-left:  $box-pad/2
+	+clearfix
+	-webkit-overflow-scrolling: touch
+	&.in
+	clear: left
+	@media (min-width: $screen-sm)
+		clear: none
+		width: auto
+		border-top: 0
+		box-shadow: none
+
+		&.collapse
+			display: block !important
+			height: auto !important
+			padding-bottom: 0 // Override default setting
+			overflow: visible !important
+
+		&.in
+			overflow-y: visible
+		// Undo the collapse side padding for navbars with containers to ensure
+		// alignment of right-aligned contents.
+		.navbar-fixed-top &
+			padding-left: 0
+			padding-right: 0
+
+
+.container
+	> .navbar-header,
+	> .navbar-collapse
+		margin-right: -$box-pad/2
+		margin-left:  -$box-pad/2
+
+		@media (min-width: $screen-sm)
+			margin-right: 0
+			margin-left:  0
+
+
+.navbar-fixed-top
+	.navbar-collapse
+		// max-height: 340px
+		@media (max-device-width: $screen-xs-min) and (orientation: landscape)
+			// max-height: 200px
+
+
+
+
+
+.navbar-fixed-top
+	+place(fixed, 0, 0, auto, 0)
+	z-index: 11
+	// Undo the rounded corners
+	@media (min-width: $screen-sm)
+		border-radius: 0
+
+
+
+
+
+
+// Brand/project name
+.logo
+	float: left
+	padding: $box-pad/2
+	height: $navbar-height
+	width: 200px
+	img
+		display: block
+
+
+
+
+// Navbar toggle
+//
+// Custom button for toggling the `.navbar-collapse`, powered by the collapse
+// JavaScript plugin.
+=navbar-vertical-align($element-height)
+	margin-top: (($navbar-height - $element-height) / 2)
+	margin-bottom: (($navbar-height - $element-height) / 2)
+
+.navbar-toggle
+	position: relative
+	float: right
+	margin-right: $box-pad/2
+	padding: 9px 10px
+	+navbar-vertical-align(34px)
+	background-color: lighten($darkblue, 30%)
+	background-image: none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
+	border: 1px solid white
+	border-radius: 5px
+
+	// We remove the `outline` here, but later compensate by attaching `:hover`
+	// styles to `:focus`.
+	&:focus
+		outline: 0
+
+	// Bars
+	.icon-bar
+		display: block
+		width: 22px
+		height: 2px
+		border-radius: 1px
+		background: white
+	.icon-bar + .icon-bar
+		margin-top: 4px
+
+	@media (min-width: $screen-sm)
+		display: none
+
+.navbar-nav
+	margin: $box-pad / 2 ($box-pad/2) * -1
+	> li > a
+		padding-top: 10px
+		padding-bottom: 10px
+		line-height: $line-height
+
+	@media (max-width: $screen-sm - 1)
+		// Dropdowns get custom display when collapsed
+		.open .dropdown-menu
+			position: static
+			float: none
+			width: auto
+			margin-top: 0
+			background-color: blue
+			border: 0
+			box-shadow: none
+			> li > a, .dropdown-header
+				padding: 5px 15px 5px 25px
+			> li > a
+				line-height: $line-height
+				&:hover,
+				&:focus
+					background-image: none
+
+	// Uncollapse the nav
+	@media (min-width: $screen-sm)
+		float: left
+		margin: 0
+
+		> li
+			float: left
+			> a
+				padding-top: $box-pad
+				padding-bottom: $box-pad / 2
 
 
 
 
 
 // Dropdown menus
-
 // Menu position and menu carets
 // .navbar-nav > li > .dropdown-menu
-// 	margin-top: 0
-
-// // Menu position and menu caret support for dropups via extra dropup class
-// .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu
-// 	margin-bottom: 0
+	// margin-top: 0
 
 // Buttons in navbars
-//
 // Vertically center a button within a navbar (when *not* in a form).
 
 // .navbar-btn
-// 	@include navbar-vertical-align($input-height-base)
-// 	&.btn-sm
-// 		@include navbar-vertical-align($input-height-small)
-// 	&.btn-xs
-// 		@include navbar-vertical-align(22)
+	//@include navbar-vertical-align($input-height-base)
+	// &.btn-sm
+		//@include navbar-vertical-align($input-height-small)
+	// &.btn-xs
+		//@include navbar-vertical-align(22)
 
-// @media (min-width: $screen-sm)
-// 	.navbar-left
-// 		float: left !important
-// 	.navbar-right
-// 		float: right !important
-
-// .navbar-default
-// 	background-color: black
-// 	border-color: pink
-
-// 	.navbar-nav
-// 		> li > a
-// 			color: red
-
-// 			&:hover,
-// 			&:focus
-// 				color: orange
-// 				background-color: blue
-		
-// 		> .active > a
-// 			&,
-// 			&:hover,
-// 			&:focus
-// 				color: green
-// 				background-color: blue
-
-// 	.navbar-toggle
-// 		border-color: blue
-// 		&:hover,
-// 		&:focus
-// 			background-color: orange
-// 		.icon-bar
-// 			background-color: pink
-
-// 	.navbar-collapse,
-// 	.navbar-form
-// 		border-color: black
-
-// 	// Dropdown menu items
-// 	.navbar-nav
-// 		// Remove background color from open dropdown
-// 		> .open > a
-// 			&,
-// 			&:hover,
-// 			&:focus
-// 				// background-color: 
-// 				// color: $navbar-default-link-active-color
-
-// 		@media (max-width: $screen-sm)
-// 			// Dropdowns get custom display when collapsed
-// 			.open .dropdown-menu
-// 				> li > a
-// 					// color: 
-// 					&:hover,
-// 					&:focus
-// 						// color: $navbar-default-link-hover-color
-// 						// background-color: $navbar-default-link-hover-bg
-// 				> .active > a
-// 					&,
-// 					&:hover,
-// 					&:focus
-// 						// color: $navbar-default-link-active-color
-// 						// background-color: $navbar-default-link-active-bg
-// 				> .disabled > a
-// 					&,
-// 					&:hover,
-// 					&:focus
-// 						// color: $navbar-default-link-disabled-color
-// 						// background-color: $navbar-default-link-disabled-bg
+@media (min-width: $screen-sm)
+	.navbar-left
+		float: left !important
+	.navbar-right
+		float: right !important
 
 
-	// Links in navbars
-	//
-	// Add a class to ensure links outside the navbar nav are colored correctly.
+
+
+//	Links in navbars
+//	Add a class to ensure links outside the navbar nav are colored correctly.
 
 	// .navbar-link
 	//   color: $navbar-default-link-color
