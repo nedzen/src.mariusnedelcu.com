@@ -40,31 +40,27 @@ section#intro
 				p: strong Comparez les offres de plus de 6000 véhicules avec chauffeur partout en France.
 			
 				form#query.navbar-form
+					
+					div.radios
+						label
+							input type="radio" name="aller" value="simple" aller simple
+						label 
+							input type="radio" name="aller" value="complex" aller complex
+					
 					fieldset
-						.form-group.ride-type
-							select name="select" class="form-control"
-								option value="value1" aller simple
-								option value="value1" aller complex
-
 						.form-group.adress-depart
-							input type="text" class="form-control" placeholder="Adresse ou Lieu de départ"
+							input type="text" class="fld" placeholder="Adresse ou Lieu de départ"
 						.form-group.adress-arrive
-							input type="text" class="form-control" placeholder="Adresse ou Lieu d'arrivée"
+							input type="text" class="fld" placeholder="Adresse ou Lieu d'arrivée"
 						.form-group.hour-depart
-							input type="text" class="form-control" placeholder="Date &amp; heure de départ"
+							input type="text" class="fld" placeholder="Date &amp; heure de départ"
+						.form-group.detail
+							input.fld.user type="text" placeholder="nr"
+							input.fld.bag type="text" placeholder="nr"
+						.form-group.submit
+							button.btn.orange type="submit" Submit
 
-						.form-group.compact
-							.sect-user
-								label.icn.user persons
-								input.form-control type="text" placeholder="nr"
-							.sect-bag
-								label.icn.bag tickets
-								input.form-control type="text" placeholder="nr"
-
-						.submit
-							button type="submit" class="btn btn-default btn-submit" Submit
-
-					h2 Customer satisfaction rate : 4.94/5
+					/ h2 Customer satisfaction rate : 4.94/5
 
 section#stats
 	ul.statslist.container
@@ -312,93 +308,95 @@ section#affiliate
 				a href="#"
 					=image_tag 'veh_1.jpg', :alt => 'affiliate-car'
 					strong VLTP near Châtillon-en- Vendelais
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_2.jpg', :alt => 'affiliate-car'
 					strong Taxi near Narbonne
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_3.jpg', :alt => 'affiliate-car'
-					strong VTC near Castelnau-d& #39; Aude
-					em 'READ MORE'
+					strong VTC near Castelnau-d'Aude
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_4.jpg', :alt => 'affiliate-car'
 					strong Coach provider near Perpignan
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_5.jpg', :alt => 'affiliate-car'
 					strong Coach provider near Perpignan
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_6.jpg', :alt => 'affiliate-car'
 					strong VTC near Nice
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_7.jpg', :alt => 'affiliate-car'
 					strong VLTP near Chantilly
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_8.jpg', :alt => 'affiliate-car'
 					strong VTC near Bordeaux
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_9.jpg', :alt => 'affiliate-car'
 					strong VTC near Gennevilliers
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_10.jpg', :alt => 'affiliate-car'
 					strong VTC near Gennevilliers
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_6.jpg', :alt => 'affiliate-car'
 					strong VTC near Nice
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_7.jpg', :alt => 'affiliate-car'
 					strong VLTP near Chantilly
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_11.jpg', :alt => 'affiliate-car'
 					strong VTC near Bordeaux
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_12.jpg', :alt => 'affiliate-car'
 					strong VTC near Gennevilliers
-					em 'READ MORE'
+					em READ MORE
 			li
 				a href="#"
 					=image_tag 'veh_9.jpg', :alt => 'affiliate-car'
 					strong VTC near Gennevilliers
-					em 'READ MORE'
+					em READ MORE
 
 footer#bottom
 	.actprovider
-		header.container
-			h2 TRANSPORT PROVIDER?
-			h3 Join us! Clients are waiting for you.
-			a.btm href='#' FIND OUT MORE
+		.container
+			header
+				h2 TRANSPORT PROVIDER?
+				h3 Join us! Clients are waiting for you.
+			.le-button
+				a.btn.big.orange href='#' FIND OUT MORE
 	
 	#footer.container
-		.col
+		.col.first
 			.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
 			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 			p Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
 
-		.col
-			h2 INFO
+		.col.second
+			h3 INFO
 			ul
 				li =link_to 'Faq'
 				li =link_to 'Quality Charter'
@@ -408,7 +406,7 @@ footer#bottom
 				li =link_to 'Blog'
 
 		.col
-			h2 LAW
+			h3 LAW
 			ul
 				li =link_to 'Chauffeured Bike Services Law'
 				li =link_to 'Motorcycle Taxi Law'
@@ -419,7 +417,7 @@ footer#bottom
 				li =link_to 'Coach Provider Law'
 
 		.col
-			h2 SOCIAL
+			h3 SOCIAL
 			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 			ul.social

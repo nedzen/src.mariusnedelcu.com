@@ -24,14 +24,13 @@ fieldset
 
 
 body
+	color: $body-color
 	font-family: 'Roboto', sans-serif
 	-webkit-font-smoothing: antialiased
 	// font-family: 'Open Sans', sans-serif
 
 #intro
-	display: none
 	h1, p
-		max-width: 1100px
 		+center-block
 		color: white
 		margin-bottom: $box-pad
@@ -46,15 +45,10 @@ body
 		h1
 			font-size: 2.6em
 
-	// *
-		// outline: 1px dotted red
-
 	position: relative
 	.mask
 		+size(100%)
-		background-color: fade-out($c02, 0.6)
-		background-color: fade-out($c02, 0.6)
-		// vertical-align: middle
+		background-color: fade-out(black, 0.6)
 		position: relative
 		+stretch
 	
@@ -66,13 +60,11 @@ body
 		display: table-cell
 		vertical-align: middle
 	
-	margin-top: 57px // nav height
-	// padding: 100px 0
+	margin-top: 50px // nav height
 	min-height: 600px
 	+background-image('header_img.jpg')
-	background-color: fade-out($c02, 0.6)
-	background-color: fade-out($c02, 0.6)
-	background-blend-mode: multiply
+	// background-color: fade-out($c02, 0.6)
+	// background-blend-mode: multiply
 	background-size: cover
 	background-position: center
 	@media screen and (min-width: 1500px)
@@ -82,26 +74,41 @@ body
 	@media screen and (min-width: 2500px)
 		background-position: center -330px
 
-$fld-w: (100/5) * 1%
+
+.fld
+	+box-sizing(border-box)
+
+.radios
+	padding-bottom: $box-pad / 2
+	label
+		padding-right: $box-pad
+		display: inline-block
+		color: white
+	input
+		margin-right: 10px
 
 #query
-	box-shadow: none
-	max-width: 1200px
+	display: block
+	padding: 8px 16px 0 16px
+	background: $darkblue
+	// outline-width: 2px
+	// box-shadow: none
+	border-radius: 2px
+	max-width: $screen-lg
 	+center-block
+	+box-sizing(border-box)
 	
 	fieldset
-		background: fade-out($c02, 0.6)
-		padding: 6px 
-
-	border: 0
-	// box-shadow: none
-	fieldset
+		// background: fade-out($orange, 0.2)
+		padding: 0px 
 		+center-block
+		border: 0
+		
 
 	.form-group
 		margin-bottom: 10px
 		&.compact
-			height: 40px
+			// height: 40px
 			label
 				display: inline-block
 			input
@@ -111,138 +118,120 @@ $fld-w: (100/5) * 1%
 					text-align: right
 					float: none
 	
-	.form-control
+	.fld
 		&:active,
 		&:focus
 			box-shadow: none
-			box-shadow: 0px 0px 3px $darkblue
-			border: 1px solid $orange
-			// border
-		border: 1px solid $darkblue
+			box-shadow: inset 0px 0px 0px 2px $orange
+			border: 0
+		border: 0px
+		padding-left: $box-pad
 		font-weight: normal
 		font-size: 1em
 		height: 40px
+		outline: none
+		box-shadow: inset 0px 0px 0px 1px $darkblue
 	
 	@media screen and (min-width: 480px)
-		padding: 10px 0
+		// padding: 10px 0
 		fieldset
 			width: 480px
 			border-radius: 6px
 
 	@media screen and (min-width: 480px) and (max-width: 992px)
-		.form-control
+		.fld
 			display: block
 			width: 100%
+
 		.form-group
 			width: 100%
-			&.compact
-				height: 40px
-				input
-					width: auto
 
 	@media screen and (min-width: 992px)
-		padding: 30px 0
+		// padding: 30px 0
 		fieldset
 			position: relative
-			width: 100%
-			height: 60px
-			.form-control
-				width: 100%
+			+size (100%, 60px)
 		.form-group
 			position: absolute
-			top: 10px
-			bottom: 10px
-			padding: 0 6px
+			.fld
+				width: 100%
 			
-			&.ride-type
-				left: 0
-				right: $fld-w * 4
-				padding-left: 10px
+			$val: 15
+			$fourth: $val * 1%
+			$fifth: $val * 1%
+			$first: (100 - $val * 2) / 3 * 1%
+			$second: (100 - $val * 2) / 3 * 1%
+			$third: (100 - $val * 2) / 3 * 1%
+
 			&.adress-depart
-				left: $fld-w
-				right: $fld-w * 3
+				left: 0
+				right: $second + $third + $fourth + $fifth //first width
+				background: red
+				z-index: 10
+
 			&.adress-arrive
-				left: $fld-w * 2
-				right: $fld-w * 2
+				left: $first
+				right: $third + $fourth + $fifth //second width
+				background: green
+				z-index: 11
+				
 			&.hour-depart
-				left: $fld-w * 3
-				right: $fld-w
-			&.compact
-				left: $fld-w * 4
+				left: $first + $second
+				right: $fourth + $fifth //first width
+				background: blue
+				z-index: 12
+				
+			&.detail
+				left: $first + $second + $third
+				right: $fifth
+				background: yellow
+				.fld
+					width: 50%
+					float: left
+			
+			&.submit
+				left: $first + $second + $third + $fourth
 				right: 0
-				margin-right: 5px
-				input.form-control
-					width: 60%
+				padding-left: 10px
+				.btn
+					width: 100%
 
-.form-group.compact
-	position: relative
-	> div
-		position: absolute
-		top: 0
-		bottom: 0
-		&.sect-user
-			left: 0
-			right: 50%
-		&.sect-bag
-			left: 50%
-			right: 0
+	.detail
+		input.fld
+			background-size: 40px auto
+			background-position: left
+			text-indent: 23px
+			// background-color: transparent
+			&.user
+				+background-image('icon_user.svg')
+				background-repeat: no-repeat
+			&.bag
+				+background-image('icon_bag.svg')
+				background-repeat: no-repeat
+
+
 	
-	label
-		clear: none
-		display: inline-block
-		float: left
-		&.icn
-			+size(36px, 0px)
-			padding-top: 33px
-			position: relative
-			margin-bottom: 0px
-			overflow: hidden
-			background-repeat: no-repeat
-			margin-top: 6px
-			background-position: bottom center
 
-	.user
-		+background-image('icon_user.svg')
-	.bag
-		+background-image('icon_bag.svg')
 
-.submit
-	padding-top: $box-pad
-	text-align: center
 
-button.btn.btn-submit
-	&:active,
-	&:focus,
-	&:hover
-		background: #ff9326
-		color: #fff
-		border: 1px solid transparent
-		box-shadow: none
-	
-	&:hover
-		color: white
-		// background: #dd811d
-	
-	box-shadow: none
-	background: $orange
-	color: $darkblue
-	+transition(100ms)
-	font-size: 1.2em
-	padding: 0.4em 1.4em
+
+
+
+
+
+
+
+
 
 
 // dropdown ---------------------------------------------------------------
-$nav-link-color: #fff
-
-
-
-
 // ------------------------------------------------------------------------
-// dropdown ---------------------------------------------------------------
+$nav-link-color: #fff
 $cw: 4px
 $zindex-dropdown: 10
 $dropdown-link-color: $nav-link-color
 $dropdown-bg: $darkblue
+$cursor-disabled: not-allowed !default
 
 // Dropdown arrow/caret
 .dropdown
@@ -288,7 +277,6 @@ $dropdown-bg: $darkblue
 		display: block
 		padding: $box-pad/2 $box-pad
 		clear: both
-		text-decoration: none
 		font-weight: normal
 		color: $dropdown-link-color
 		white-space: nowrap // prevent links from randomly breaking onto new lines
@@ -371,6 +359,14 @@ $nav-color-hov: #FFF
 	+clearfix
 	-webkit-overflow-scrolling: touch
 	clear: left
+	@media (max-width: $screen-sm)
+		> ul.nav.right
+			padding-top: $box-pad/2
+			padding-bottom: $box-pad
+		> ul.nav
+			padding-top: $box-pad
+
+
 	@media (min-width: $screen-sm)
 		clear: none
 		width: auto
@@ -429,18 +425,21 @@ $nav-color-hov: #FFF
 			float: right
 
 	> li 
-		text-align: center
+		// text-align: center
 		> a
+			text-decoration: none
 			line-height: $line-height
 			color: white
 			padding: $box-pad/2 $box-pad
 			display: block
-			// &.btn
-			// 	&.orange
-			// 		max-width: 160px
-			// 		+center-block
-			// 	&.simple
-			// 		border: 0
+			&.btn
+				&.orange
+					text-align: left
+					max-width: 68px
+				@media screen and (max-width: $screen-sm)
+					&.simple
+						border: 0
+						text-align: left
 	
 	@media (max-width: $screen-sm - 1)
 		// Dropdowns get custom display when collapsed
@@ -478,9 +477,8 @@ $nav-color-hov: #FFF
 					+navbar-vertical-align(33)
 
 
-section#super
-	padding: $box-pad * 10
-$cursor-disabled: not-allowed !default
+
+
 
 
 .lang
@@ -490,7 +488,9 @@ $cursor-disabled: not-allowed !default
 	background-position: center
 	text-indent: -999999px
 	width: 0px
-	+center-block
+	// +center-block
+	@media screen and (max-width: $screen-sm)
+		margin-left: $box-pad
 	&.en
 		+background-image('gb.png')
 		background-repeat: no-repeat
@@ -718,32 +718,81 @@ section
 
 
 
+#affiliate
+	position: relative
+	overflow: hidden
 
 .aflist
-	// makes responsive squares
-	&, li
-		display: block
+	display: block
+	text-align: center
+	
+	@media screen and (min-width: $screen-lg)
+		margin-right: -5px
+		margin-left: -5px
+	
+	li
+		display: none // adjusting content depending on viewport
+		width: (100 / 2) * 1%
+		position: relative
+		+box-sizing(border-box)
+		a
+			&:hover
+				em
+					opacity: 1
+			img
+				width: 100%
+			+stretch(0, 5px, 5px, 5px)
+			border: 1px solid #ccc
+			color: $body-color
+			
+			em, strong
+				+box-sizing(border-box)
+			
+			em
+				+stretch(0, 0, 0, auto)
+				height: 65%
+				padding-top: 20%
+				font-style: normal
+				font-weight: bold
+				color: white
+				background: fade-out(black, 0.5)
+				+transition(200ms)
+				opacity: 0
+				z-index: 12
+			
+			strong
+				height: (100 - 65) * 1%
+				padding-top: 7%
+				background: white
+				+stretch(auto, 0, 0, 0)
+				font-size: $font-size-small
+				z-index: 13
+
+		&:before
+			content: ""
+			display: block
+			padding-top: 86%
+		
+		&:nth-child(-n+6)
+			display: inline-block
 		
 	@media screen and (min-width: $screen-xs)
 		li
-			// max-width: 220px
-			position: relative
-			a
-				+stretch
-			float: left
-			width: (100 / 2) * 1%
-			&:before
-				content: ""
-				display: block
-				padding-top: 100%
-	
+			&:nth-child(-n+9)
+				display: inline-block
+			width: (100 / 3) * 1%
+
 	@media screen and (min-width: $screen-sm)
 		li
-			width: (100 / 4) * 1%
+			&:nth-child(-n+10)
+				display: inline-block
+			width: (100 / 5) * 1%
 	
 	@media screen and (min-width: $screen-md)
 		li
-			width: (100 / 5) * 1%
+			&:nth-child(-n+12)
+				display: inline-block
+			width: (100 / 6) * 1%
 
 
 
@@ -760,41 +809,95 @@ section
 
 footer#bottom
 	clear: both
-	background: black
+	background: #111
 
 .actprovider
 	+background-image('ftrbg.jpg')
+	background-position: top center
+	background-repeat: repeat-x
+	padding: $box-pad 0
+	color: #fff
+	min-height: 113px
+	
+	header
+		text-align: right
+	
+	.le-button, header
+		+box-sizing(border-box)
+		width: 50%
+		display: inline-block
+		vertical-align: top
+
+	.le-button
+		padding: $box-pad * 2 0 0 $box-pad * 2
 
 #footer
+	@media screen and (max-width: $screen-lg)
+		padding-left: $box-pad
+		padding-right: $box-pad
+
 	color: white
+	font-size: 15px
+	padding-top: $box-pad
+	padding-bottom: $box-pad
 	
+	h3
+		color: #bbb
+	p
+		color: #bbb
+	ul
+		li
+			line-height: 26px
+			font-weight: bold
 	a
 		color: white
-
-	@media screen and (min-width: $screen-sm)
+		text-decoration: none
+	
+	.logo
+		opacity: .5
+		width: 100%
+		margin-bottom: $box-pad
+		img
+			max-width: 200px
+	
+	.col.first p
+		@media screen and (min-width: $screen-xs)
+			padding-right: 30px
+		@media screen and (min-width: $screen-md)
+			padding-right: 60px
+	@media screen and (min-width: $screen-xs)
 		.col
 			vertical-align: top
 			display: inline-block
 			width: 50%
-	@media screen and (min-width: $screen-md)
+	
+	@media screen and (min-width: $screen-sm)
 		.col
 			width: 25%
-
+			&.first
+				width: 35%
+			&.second
+				width: 15%
 
 ul.social
 	display: block
+	padding: $box-pad 0
 	li
 		display: inline-block
 		margin-right: 10px
-		
 		a
+			&:hover
+				top: 3px
+			+transition(200ms)
+			top: 0
+			position: relative
 			display: block
 			background-repeat: no-repeat
 			text-indent: -99999px
 			overflow: hidden
 			border-radius: 50%
 			background-color: #333
-			+square(40px)
+			+square(33px)
 		
 		&.li
 			a
@@ -818,7 +921,7 @@ ul.social
 					background-color: #dd4b39
 
 p.copy
-	padding: $box-pad		
+	padding: $box-pad 0
 
 
 
