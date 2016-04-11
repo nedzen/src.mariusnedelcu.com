@@ -132,6 +132,7 @@ section#intro
 	@media screen and (min-width: $screen-md)
 		h1
 			font-size: 2.6em
+			margin-bottom: 0
 	
 	.mask
 		+size(100%)
@@ -189,8 +190,9 @@ section#intro
 
 #query
 	display: block
-	padding: 8px 16px 0 16px
-	background: $darkblue
+	padding: 3px 16px 0 16px
+	margin-top: $box-pad * 2
+	background: fade-out($darkblue, .3)
 	border-radius: 2px
 	max-width: $screen-lg
 	+center-block
@@ -274,19 +276,16 @@ section#intro
 			&.adress-depart
 				left: 0
 				right: $second + $third + $fourth + $fifth //first width
-				background: red
 				z-index: 10
 
 			&.adress-arrive
 				left: $first
 				right: $third + $fourth + $fifth //second width
-				background: green
 				z-index: 11
 				
 			&.hour-depart
 				left: $first + $second
 				right: $fourth + $fifth //first width
-				background: blue
 				z-index: 12
 				
 			&.detail
@@ -334,6 +333,7 @@ section#stats
 		text-transform: capitalize
 	h2
 		color: #FF9226
+		margin: $box-pad / 2
 
 .statslist
 	&, li
@@ -353,7 +353,7 @@ section#stats
 
 
 // --------------------------------------------//
-/* The Press --------------------------------- */
+/* HOW IT WORKS --------------------------------- */
 // --------------------------------------------//
 // #howitworks
 
@@ -362,9 +362,21 @@ section#stats
 		display: block
 
 	li
-		h4
+		h3
 			color: $darkblue
 		text-align: center
+		> strong
+			+square(40px)
+			+center-block
+			border-radius: 50%
+			text-align: center
+			border: 3px solid #eee
+			padding-top: 4px
+			font-size: 1.5em
+			color: $darkblue
+			margin-bottom: $box-pad
+			+box-sizing(border-box)
+
 		@media screen and (min-width: $screen-sm)
 			width: (100 / 3)  * 1%
 			float: left
@@ -373,11 +385,10 @@ section#stats
 			// width: 25%
 	img
 		+center-block
-		max-width: 180px
+		max-width: 230px
 
 	strong
 		display: block
-
 
 
 
@@ -411,6 +422,12 @@ section.dark
 	padding-left: $box-pad
 	padding-right: $box-pad
 
+.prslist
+	display: block
+	+clearfix
+	li
+		img
+			+center-block
 
 
 
@@ -474,12 +491,13 @@ section.dark
 		background-repeat: no-repeat
 		background-size: 90px 28px
 
+.route
+	padding-left: 57px
+
 .passengers
-	float: left
+	+place(absolute, 7px, auto, auto, 0)
 	min-width: 15px
 	padding: 4px 27px 3px 4px
-	margin-top: -1px
-	margin-right: 10px
 	text-align: right
 	border-radius: 3px
 	color: white
@@ -490,8 +508,18 @@ section.dark
 	background-size: 33px auto
 
 .details
+	position: relative
+	height: 40px
 	padding: $box-pad
-	min-height: 23px
+
+.in-wrap, .v-mid
+	+size(100%)
+.in-wrap
+	display: table
+	position: relative
+.v-mid
+	display: table-cell
+	vertical-align: middle
 
 .order,
 .price
@@ -557,38 +585,57 @@ section.dark
 	+clearfix
 	
 	li
-		padding: 0 $box-pad
+		padding: 0 $box-pad $box-pad
 		+box-sizing(border-box)
 		a
+			&:hover
+				text-decoration: underline
 			color: $darkblue
 			font-weight: bold
-			display: none
+			text-decoration: none
+		h4
+			margin-bottom: 0
+		p
+			font-style: italic
 
 
 // the rating indicator
 // --------------------------------------------//
 .rating
-	background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=')
-	height: 20px
+	$w: 20px
+	+background-image('star.svg')
+	// background-repeat: no-repeat
+	background-size: $w $w
+	height: $w
 	margin-bottom: $box-pad/2
 	span
+		color: $orange
 		background: white
 		display: inline-block
 		float: right
 		width: 50px
 		position: relative
 		right: -60px
+		font-weight: bold
 	
 	&.one
-		width: 20px
+		&.half
+			width: $w + $w/2
+		width: $w
 	&.two
-		width: 40px
+		&.half
+			width: $w * 2 + $w/2
+		width: $w * 2
 	&.three
-		width: 60px
+		&.half
+			width: $w * 2 + $w/2
+		width: $w * 3 + $w/2
 	&.four
-		width: 80px
+		&.half
+			width: $w * 4 + $w/2
+		width: $w * 4
 	&.five
-		width: 100px
+		width: $w * 5
 
 
 
@@ -610,7 +657,7 @@ section.dark
 		margin-left: -5px
 	
 	li
-		display: none // adjusting content depending on viewport
+		display: inline-block
 		width: (100 / 2) * 1%
 		position: relative
 		+box-sizing(border-box)
@@ -622,7 +669,7 @@ section.dark
 				width: 100%
 			+stretch(0, 5px, 5px, 5px)
 			border: 1px solid #ccc
-			color: $body-color
+			color: $darkblue
 			
 			em, strong
 				+box-sizing(border-box)
@@ -637,41 +684,35 @@ section.dark
 				background: fade-out(black, 0.5)
 				+transition(200ms)
 				opacity: 0
-				z-index: 12
+				z-index: 8
 			
-			strong
+			.in-wrap
 				height: (100 - 65) * 1%
-				padding-top: 7%
 				background: white
 				+stretch(auto, 0, 0, 0)
-				font-size: $font-size-small
-				z-index: 13
+				// font-size: $font-size-small
+				z-index: 9
+				padding-left: $box-pad / 2
+				padding-right: $box-pad / 2
+				+box-sizing(border-box)
+
 
 		&:before
 			content: ""
 			display: block
 			padding-top: 86%
 		
-		&:nth-child(-n+6)
-			display: inline-block
-		
 	@media screen and (min-width: $screen-xs)
 		li
-			&:nth-child(-n+9)
-				display: inline-block
 			width: (100 / 3) * 1%
 
 	@media screen and (min-width: $screen-sm)
 		li
-			&:nth-child(-n+10)
-				display: inline-block
-			width: (100 / 5) * 1%
+			width: (100 / 4) * 1%
 	
 	@media screen and (min-width: $screen-md)
 		li
-			&:nth-child(-n+12)
-				display: inline-block
-			width: (100 / 6) * 1%
+			width: (100 / 5) * 1%
 
 
 
@@ -705,6 +746,7 @@ section#bottom
 .actprovider
 	+background-image('ftrbg.jpg')
 	background-position: top center
+	background-size: cover
 	background-repeat: repeat-x
 	padding: $box-pad 0
 	color: #fff
@@ -713,11 +755,19 @@ section#bottom
 	.le-button, header
 		text-align: center
 	
-	@media screen and (max-width: $screen-sm)	
+	.le-button
+		.btn.big
+			padding-left: $box-pad * 4
+			padding-right: $box-pad * 4
+			font-weight: bold
+
+	@media screen and (max-width: $screen-sm)
 		h2
 			margin-top: 0
 		h3
-			margin-bottom: 0
+			margin: 0
+		.le-button
+			text-align: center
 	
 	@media screen and (min-width: $screen-sm)
 		.le-button, header
@@ -725,10 +775,10 @@ section#bottom
 			width: 50%
 			display: inline-block
 			vertical-align: top
-		
 		header
 			text-align: right
 		.le-button
+			text-align: left
 			padding: $box-pad * 2 0 0 $box-pad * 2
 		
 
@@ -752,6 +802,11 @@ section#bottom
 		li
 			line-height: 26px
 			font-weight: bold
+			a
+				color: #FFF
+				+transition(200ms)
+				&:hover
+					color: $orange
 	a
 		color: white
 		text-decoration: none
@@ -972,6 +1027,8 @@ $cursor-disabled: not-allowed !default
 	text-align: left // Ensures proper alignment if parent has it changed (e.g., modal footer)
 	background-color: $dropdown-bg
 	border-radius: 0px 0px 2px 2px
+	@media screen and (min-width: $screen-sm)
+		box-shadow: 1px 1px 0px fade-out(black, .8)
 	// padding-bottom: $box-pad/2
 
 	// Aligns the dropdown menu to right
@@ -1031,6 +1088,7 @@ $nav-color-hov: #FFF
 	min-height: $navbar-height
 	margin-bottom: 0
 	background-color: $darkblue
+	box-shadow: 1px 1px 0px fade-out(black, .8)
 	+clearfix
 
 // When the vp < 768px
@@ -1040,7 +1098,7 @@ $nav-color-hov: #FFF
 	+clearfix
 	-webkit-overflow-scrolling: touch
 	clear: left
-	@media (max-width: $screen-sm)
+	@media (max-width: 767px)
 		> ul.nav.right
 			padding-top: $box-pad/2
 			padding-bottom: $box-pad
@@ -1057,7 +1115,7 @@ $nav-color-hov: #FFF
 
 .fixed-top
 	+place(fixed, 0, 0, auto, 0)
-	z-index: 11
+	z-index: 14
 
 .nav
 	@media (min-width: $screen-sm)
@@ -1079,7 +1137,7 @@ $nav-color-hov: #FFF
 				&.orange
 					text-align: left
 					max-width: 68px
-				@media screen and (max-width: $screen-sm)
+				@media screen and (max-width: 767px)
 					&.simple
 						border: 0
 						text-align: left
@@ -1190,7 +1248,7 @@ $nav-color-hov: #FFF
 	text-indent: -999999px
 	width: 0px
 	// +center-block
-	@media screen and (max-width: $screen-sm)
+	@media screen and (max-width: 767px)
 		margin-left: $box-pad
 	&.en
 		+background-image('gb.png')
@@ -1215,7 +1273,6 @@ $nav-color-hov: #FFF
 	background-image: none
 	border: 1px solid transparent
 	white-space: nowrap
-	background: pink
 	+button-size($box-pad/2, $box-pad, $font-size-base, $line-height, 2px)
 	+user-select(none)
 	&,
@@ -1266,7 +1323,22 @@ $nav-color-hov: #FFF
 			border: 1px solid $orange
 
 
-
-
-
-
+// Custom Scrollbar ------------------------------------//
+::-webkit-scrollbar
+	width: 8px
+::-webkit-scrollbar-track
+	-webkit-box-shadow: none
+	-webkit-border-radius: 7px
+	border-radius: 7px
+	background: rgba(203, 203, 203, 1)
+::-webkit-scrollbar-thumb
+	-webkit-border-radius: 7px
+	border-radius: 7px
+	background: rgba(149, 149, 149, 1)
+	-webkit-box-shadow: none
+::-webkit-scrollbar-thumb:hover
+	background: rgba(255, 147, 38, .8)
+::-webkit-scrollbar-thumb:active
+	background: rgba(255, 147, 38, .8)
+::-webkit-scrollbar-thumb:window-inactive
+	background: rgba(255, 147, 38, .8)
