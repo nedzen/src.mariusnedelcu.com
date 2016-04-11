@@ -232,6 +232,15 @@ $prefixes: ("-moz-", "-webkit-", "-ms-", "");
   // }
 }
 
+@mixin rotate( $val: -2deg ) {
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+
 @mixin stretch($a:0,$b:0,$c:0,$d:0) {
   position: absolute;
   top:$a;

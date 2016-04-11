@@ -184,7 +184,6 @@ body
 			&.detail
 				left: $first + $second + $third
 				right: $fifth
-				background: yellow
 				.fld
 					width: 50%
 					float: left
@@ -664,34 +663,121 @@ section
 	strong
 		display: block
 
-.aflist
+
 .prslist
+
+
+.jcarousel-wrap
+	padding-left: $box-pad
+	padding-right: $box-pad
+	// visibility: hidden
+#latest
+	height: 400px
+	// header
+		// visibility: hidden
+	+background-image('mapbg.jpg')
+	background-size: auto 100%
 
 
 .ltslist
 	&, li
 		display: block
 	position: relative
-	margin-left: -1 * $box-pad
-	margin-right: -1 * $box-pad
+	+clearfix
+	// padding-right: $box-pad * 2
+	// margin-left: -1 * $box-pad
+	// margin-right: -1 * $box-pad
+	
 	li
 		padding: 0 $box-pad
 		+box-sizing(border-box)
-		@media screen and (min-width: $screen-xs)
-			width: 50%
-			float: left
+		
+		// @media screen and (min-width: $screen-xs)
+			// width: 50%
+			// float: left
 
-		@media screen and (min-width: $screen-sm)
-			width: 25%
+		// @media screen and (min-width: $screen-sm)
+			// width: 20%
 	
 	.box
-		border: 2px solid $darkblue
-		border-radius: 16px
-		padding: $box-pad
+		border: 3px solid $darkblue
+		border-radius: 5px
+		color: $darkblue
+		// padding: $box-pad
 
+
+
+
+// +box-sizing(border-box)
+
+.transp
+	> div
+		+place(absolute, auto, 16px, 6px, auto)
+		padding: $box-pad/3 40px $box-pad/3 0
+		background-position: bottom right
+		background-size: 30px
+	.a
+		+background-image('a.svg')
+		background-repeat: no-repeat
+	.ar
+		+background-image('ar.svg')
+		background-repeat: no-repeat
+
+	position: relative
+	border-bottom: 2px solid $darkblue
+	padding: $box-pad $box-pad 43px
+	background-size: 90px 32px
+	background-position: bottom left
+	&.minivan
+		+background-image('minivan.svg')
+		background-repeat: no-repeat
+	&.bus
+		+background-image('bus.svg')
+		background-repeat: no-repeat
+	&.taxi
+		+background-image('taxi.svg')
+		background-repeat: no-repeat
+		background-size: 90px 28px
+
+
+.order,
+.price
+	text-align: center
+	padding: $box-pad 0
+
+.order
+	border: 2px dashed $darkblue
+	border-left: 0
+	border-right: 0
+
+.price
+	font-size: 2em
+
+.details
+	padding: $box-pad
+
+.passengers
+	float: left
+	min-width: 20px
+	padding: 3px 30px 3px 3px
+	margin-top: -3px
+	margin-right: 10px
+	text-align: center
+	border-radius: 3px
+	color: white
+	+background-image('user_simplified.svg')
+	background-color: $darkblue	
+	background-repeat: no-repeat
+	background-position: right
+	background-size: 33px auto
+
+.route
+.bids
+
+.bids
+.price
 
 .partners
-	display: none
 	width: 100%
 	text-align: center
 	li
@@ -934,6 +1020,11 @@ p.copy
 	position: relative
 
 .jcarousel
+	
+	// padding-left: $box-pad
+	// padding-right: $box-pad
+	// +box-sizing(border-box)
+	
 	&, ul
 		position: relative
 	
@@ -951,31 +1042,59 @@ p.copy
 		float: left
 		+box-sizing(border-box)
 
-	img
-		display: block
-		max-width: 100%
-		height: auto !important
+	// img
+	// 	display: block
+	// 	max-width: 100%
+	// 	height: auto !important
 
 
 
-
+$line: $box-pad * 2.5
 // Carousel Controls //
+
 .prev,
 .next
-	font-size: 5em
-	line-height: 0.2em
+	&:hover
+		&:before, 
+		&:after
+			background: $orange
+	
+	top: 38%
+	display: block
+	+size(24px, 60px)
+	text-align: left
 	position: absolute
-	top: 50%
-	margin-top: -15px
-	+square(30px)
-	text-align: center
+	padding: 0
+	color: transparent
 	cursor: pointer
+	text-indent: -9000px
+	overflow: hidden
+
+	&:before,
+	&:after
+		content: ''
+		position: absolute
+		right: 0px
+		+size($line/2 ,3px)
+		background: $darkblue
+		+transition(200ms)
+	&:after
+		+rotate(-45deg)
+		top: 36px
+	&:before
+		top: 24px
+		+rotate(45deg)
 
 .prev
-	left: 15px
-
+	&:hover
+	+rotate(180deg)
+	left: 0
 .next
-	right: 15px
+	&:hover
+	right: 0px
+
+
+
 
 /** Carousel Pagination **/
 

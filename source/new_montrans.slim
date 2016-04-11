@@ -114,8 +114,10 @@ coffee:
 	    jcarousel.on('jcarousel:reload jcarousel:create', ->
 	      carousel = $(this)
 	      width = carousel.innerWidth()
-	      if width >= 600
-	        width = width / 3
+	      if width >= 992
+	        width = width / 4
+	      else if width >= 600
+	      	width = width / 3
 	      else if width >= 350
 	        width = width / 2
 	      carousel.jcarousel('items').css 'width', Math.ceil(width) + 'px'
@@ -151,43 +153,64 @@ section#latest
 				ul.ltslist
 					li
 						.box
-							.transp Taxis / Minivans <em>AR</em>
-							.route	Aix-les-Bains to Belley
-							.bids 20 offers received
-							.detail
+							.transp.minivan
+								strong Taxis / Minivans
+								.ar AR
+							.details
 								.passengers 3
-								.bids 5
-								.price 337 &euro;
+								.route Aix-les-Bains &#10142; Belley
+							.order
+								.bids 5 bids
+								.offers 20 offers received
+							.price 337 &euro;
 					li
 						.box
-							.transp Coach / Minibus <em>AR</em>
-							.route	Le Cannet to Nice
-							.bids 20 offers received
-							.detail
+							.transp.bus
+								strong Coach Minibus
+								.a A
+							.details
 								.passengers 3
-								.bids 5
-								.price 105 &euro;
-
+								.route Paris &#10142; Antony
+							.order
+								.bids 7 bids
+								.offers 23 offers received
+							.price 58 &euro;
+					li				
+						.box
+							.transp.taxi
+								strong Coach / Minibus
+								.ar AR
+							.details
+								.passengers 3
+								.route Le Cannet &#10142; Nice
+							.order
+								.bids 8 bids
+								.offers 24 offers received
+							.price 30 &euro;
 					li
 						.box
-							.transp Taxis / Minivans <em>AR</em>
-							.route	Paris to Antony
-							.bids 20 offers received
-							.detail
+							.transp.minivan
+								strong Adapted vehicles
+								.a A
+							.details
 								.passengers 3
-								.bids 5
-								.price 32 &euro;
-					
+								.route Le Cant &#10142; Nice
+							.order
+								.bids 3 bids
+								.offers 10 offers received
+							.price 41 &euro;
 					li
 						.box
-							.transp Adapted vehicles <em>RT</em>
-							.route	Vigneux-sur-Seine to Maisons-Alfort
-							.bids 20 offers received
-							.detail
+							.transp.bus
+								strong Coach / Minibus
+								.ar AR
+							.details
 								.passengers 3
-								.bids 5
-								.price 78 &euro;
-			
+								.route Vigneux-sur-Seine &#10142; Maisons-Alfort
+							.order
+								.bids 10 bids
+								.offers 30 offers received
+							.price 337 &euro;
 			.prev &lsaquo;
 			.next &rsaquo;
 			p.indicators
