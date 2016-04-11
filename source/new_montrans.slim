@@ -40,13 +40,13 @@ section#intro
 				p: strong Comparez les offres de plus de 6000 véhicules avec chauffeur partout en France.
 			
 				form#query.navbar-form
-					
 					div.radios
 						label
-							input type="radio" name="aller" value="simple" aller simple
+							input type="radio" name="aller" value="simple" 
+							| aller simple
 						label 
-							input type="radio" name="aller" value="complex" aller complex
-					
+							input type="radio" name="aller" value="complex"
+							| aller complex
 					fieldset
 						.form-group.adress-depart
 							input type="text" class="fld" placeholder="Adresse ou Lieu de départ"
@@ -60,25 +60,25 @@ section#intro
 						.form-group.submit
 							button.btn.orange type="submit" Submit
 
-					/ h2 Customer satisfaction rate : 4.94/5
+				h3 Customer satisfaction rate <strong class="rating five"></strong> 4.94/5
 
 section#stats
 	ul.statslist.container
 		li
-			=image_tag "icon_trip.png"
+			=image_tag "icon_trip.png", :alt=> 'trip'
 			h2 16 446
 			strong trip requests sent
 
 		li
-			=image_tag "icon_chauffer.png"
+			=image_tag "icon_chauffer.png", :alt=> 'chauffer'
 			h2 5 288
 			strong chauffered vehicles in France
 		li
-			=image_tag "icon_bids.png"
+			=image_tag "icon_bids.png", :alt=> 'bids'
 			h2 110 709
 			strong bids compared
 		li
-			=image_tag "icon_reservation.png"
+			=image_tag "icon_reservation.png", :alt=> 'reservation'
 			h2 5 293
 			strong reservations made
 
@@ -91,20 +91,20 @@ section#howitworks
 		ul.howlist
 			li
 				strong 1
-				=image_tag "icon_posttrip.png"
+				=image_tag "icon_posttrip.png", :alt=> 'posttrip'
 				h4 POST A TRIP
 				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 			li     
 				strong 2
-				=image_tag "icon_compare.png"
-				h4 POST A TRIP
+				=image_tag "icon_compare.png", :alt=> 'compare'
+				h4 COMPARE AND BOOK
 				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 			li     
 				strong 3
-				=image_tag "icon_enjoy.png"
-				h4 POST A TRIP
+				=image_tag "icon_enjoy.png", :alt=> 'enjoy'
+				h4 ENJOY YOUR TRIP!
 				/ p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 coffee:
@@ -403,7 +403,7 @@ section#affiliate
 					strong VTC near Gennevilliers
 					em READ MORE
 
-footer#bottom
+section#bottom
 	.actprovider
 		.container
 			header
@@ -412,7 +412,7 @@ footer#bottom
 			.le-button
 				a.btn.big.orange href='#' FIND OUT MORE
 	
-	#footer.container
+	footer#footer.container
 		.col.first
 			.logo = link_to image_tag('logo.svg', :alt => 'logo montransport'), 'https://montransport.com/'
 			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.

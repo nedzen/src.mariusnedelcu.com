@@ -24,7 +24,6 @@
 
 
 
-
 // --------------------------------------------------------
 // REBOOT reset + defaults
 // --------------------------------------------------------
@@ -85,22 +84,15 @@ section
 	+clearfix
 	header
 		padding-bottom: $box-pad
-		text-align: center
-		h2
-			font-size: 2em
-			color: $darkblue
+		text-align: center			
 		p
 			max-width: 700px
 			+center-block
 	clear: both
 
 .container
-	header
-		h2
-		p
-
 	max-width: $screen-lg
-	+center-block
+	margin: 0 auto
 
 
 // Typography ---------------------------------//
@@ -111,11 +103,15 @@ body
 	-webkit-font-smoothing: antialiased
 	// font-family: 'Open Sans', sans-serif
 
-
+section
+	header
+		h2
+			font-size: 2em
+			color: $darkblue
 
 
 // --------------------------------------------//
-// INTRO --------------------------------------//
+/* INTRO --------------------------------------*/
 // --------------------------------------------//
 
 section#intro
@@ -150,6 +146,17 @@ section#intro
 	.wrap
 		display: table-cell
 		vertical-align: middle
+		// The customer satisfaction thingy
+		h3
+			display: block
+			text-align: center
+			color: #fff
+			@media screen and (max-width: $screen-xs)
+				font-size: 16px
+			.rating
+				margin: 0 3px 
+				display: inline-block
+				vertical-align: top
 	
 	position: relative	
 	margin-top: 50px // nav height
@@ -170,11 +177,13 @@ section#intro
 	+box-sizing(border-box)
 
 .radios
-	padding-bottom: $box-pad / 2
+	padding-bottom: $box-pad
+	padding-top: $box-pad / 2
 	label
 		padding-right: $box-pad
 		display: inline-block
 		color: white
+		cursor: pointer
 	input
 		margin-right: 10px
 
@@ -211,27 +220,40 @@ section#intro
 			box-shadow: inset 0px 0px 0px 2px $orange
 			border: 0
 		
-		border: 0px
+		height: 40px
 		padding-left: $box-pad
+		border: 0px
 		font-weight: normal
 		font-size: 1em
-		height: 40px
 		outline: none
 		box-shadow: inset 0px 0px 0px 1px $darkblue
+		+transition(200ms)
 	
-	@media screen and (min-width: 480px)
+	// @media screen and (min-width: 480px)
+	// @media screen and (min-width: 480px)
 		// padding: 10px 0
 		// fieldset
 		// width: 480px
-		border-radius: 6px
+		// border-radius: 6px
 
-	@media screen and (min-width: $screen-xs) and (max-width: $screen-md)
+	@media screen and (max-width: $screen-md)
+		outline-width: 5px
+		max-width: $screen-xs
 		.fld
 			display: block
 			width: 100%
 		.form-group
 			width: 100%
-
+		
+		.detail
+			+clearfix
+			input.fld
+				float: left
+				width: 50%
+		.submit button
+			display: block
+			width: 100%
+	
 	@media screen and (min-width: $screen-md)
 		// padding: 30px 0
 		fieldset
@@ -300,9 +322,8 @@ section#intro
 
 
 
-
 // --------------------------------------------//
-// LATEST TRIPS -------------------------------//
+/* LATEST TRIPS ------------------------------ */
 // --------------------------------------------//
 section#stats
 	margin-top: 0
@@ -331,9 +352,8 @@ section#stats
 
 
 
-
 // --------------------------------------------//
-// The Press ----------------------------------//
+/* The Press --------------------------------- */
 // --------------------------------------------//
 // #howitworks
 
@@ -342,6 +362,8 @@ section#stats
 		display: block
 
 	li
+		h4
+			color: $darkblue
 		text-align: center
 		@media screen and (min-width: $screen-sm)
 			width: (100 / 3)  * 1%
@@ -363,7 +385,7 @@ section#stats
 
 
 // --------------------------------------------//
-// The Press ----------------------------------//
+/* The Press ---------------------------------- */
 // --------------------------------------------//
 
 #press
@@ -395,7 +417,7 @@ section.dark
 
 
 // --------------------------------------------//
-// LATEST TRIPS -------------------------------//
+/* LATEST TRIPS ------------------------------ */
 // --------------------------------------------//
 
 #latest
@@ -489,7 +511,7 @@ section.dark
 
 
 // --------------------------------------------//
-// Partners -----------------------------------//
+/* Partners ---------------------------------- */
 // --------------------------------------------//
 // #trustus
 
@@ -524,7 +546,7 @@ section.dark
 
 
 // --------------------------------------------//
-// USER REVIEWS -------------------------------//
+/* USER REVIEWS ------------------------------ */
 // --------------------------------------------//
 // #reviews
 
@@ -572,7 +594,7 @@ section.dark
 
 
 // --------------------------------------------//
-// AFFILIATE ----------------------------------//
+/* AFFILIATE --------------------------------- */
 // --------------------------------------------//
 
 #affiliate
@@ -662,13 +684,23 @@ section.dark
 
 
 // --------------------------------------------//
-// FOOTER -------------------------------------//
+/* FOOTER ------------------------------------ */
 // --------------------------------------------//
 
 // Promo part ---------------------------------//
-footer#bottom
+section#bottom
+	padding: 0
+	margin-bottom: 0
 	clear: both
 	background: #111
+	h2
+		font-weight: 400
+		color: white
+		margin-bottom: 0
+	h3
+		font-weight: 400
+		@media screen and (min-width: $screen-sm)
+			margin-top: 0
 
 .actprovider
 	+background-image('ftrbg.jpg')
@@ -678,17 +710,27 @@ footer#bottom
 	color: #fff
 	min-height: 113px
 	
-	header
-		text-align: right
-	
 	.le-button, header
-		+box-sizing(border-box)
-		width: 50%
-		display: inline-block
-		vertical-align: top
-
-	.le-button
-		padding: $box-pad * 2 0 0 $box-pad * 2
+		text-align: center
+	
+	@media screen and (max-width: $screen-sm)	
+		h2
+			margin-top: 0
+		h3
+			margin-bottom: 0
+	
+	@media screen and (min-width: $screen-sm)
+		.le-button, header
+			+box-sizing(border-box)
+			width: 50%
+			display: inline-block
+			vertical-align: top
+		
+		header
+			text-align: right
+		.le-button
+			padding: $box-pad * 2 0 0 $box-pad * 2
+		
 
 
 // The Main Footer -------------------------//
@@ -745,11 +787,6 @@ footer#bottom
 
 
 
-
-
-
-
-// --------------------------------------------//
 // Social button ------------------------------//
 // --------------------------------------------//
 
@@ -797,14 +834,6 @@ ul.social
 
 
 
-
-
-
-
-
-
-
-// --------------------------------------------//
 // Le carousel --------------------------------//
 // --------------------------------------------//
 
@@ -830,7 +859,6 @@ ul.social
 
 
 // Carousel Controls ----------------------- //
-// ------------------------------------------//
 .prev,
 .next
 	&:hover
@@ -875,7 +903,6 @@ ul.social
 
 
 // Carousel Pagination ----------------------- //
-// --------------------------------------------//
 .indicators
 	// -webkit-transform: translate(-50%, 0)
 	// -ms-transform: translate(-50%, 0)
@@ -903,8 +930,8 @@ ul.social
 
 
 
-// dropdown ---------------------------------------------------------------
-// ------------------------------------------------------------------------
+// dropdown -----------------------------------//
+// --------------------------------------------//
 $nav-link-color: #fff
 $cw: 4px
 $zindex-dropdown: 10
@@ -945,6 +972,7 @@ $cursor-disabled: not-allowed !default
 	text-align: left // Ensures proper alignment if parent has it changed (e.g., modal footer)
 	background-color: $dropdown-bg
 	border-radius: 0px 0px 2px 2px
+	// padding-bottom: $box-pad/2
 
 	// Aligns the dropdown menu to right
 	&.right
@@ -960,9 +988,12 @@ $cursor-disabled: not-allowed !default
 		color: $dropdown-link-color
 		white-space: nowrap // prevent links from randomly breaking onto new lines
 		outline: 0
+		text-decoration: none
 		&:hover,
 		&:focus
 			text-decoration: none
+			background: $orange
+			color: $darkblue
 
 	> .active > a
 		&, &:hover, &:focus
@@ -973,10 +1004,6 @@ $cursor-disabled: not-allowed !default
 .open
 	> .dropdown-menu
 		display: block
-
-
-
-
 
 @media (min-width: $screen-sm)
 	.nav.right
@@ -992,9 +1019,7 @@ $cursor-disabled: not-allowed !default
 
 
 
-
-
-// Navbar -------------------------------------//
+/* Navbar ------------------------------------ */
 // --------------------------------------------//
 
 $navbar-height: 55px
@@ -1047,6 +1072,9 @@ $nav-color-hov: #FFF
 			color: white
 			padding: $box-pad/2 $box-pad
 			display: block
+			+transition(200ms)
+			&:hover, &:focus
+				color: $orange
 			&.btn
 				&.orange
 					text-align: left
@@ -1174,16 +1202,17 @@ $nav-color-hov: #FFF
 
 
 
-// BUTTONS ---------------------------------------//
+/* BUTTONS -------------------------------------- */
 // -----------------------------------------------//
 .btn
 	display: inline-block
 	margin-bottom: 0 // For input.btn
 	text-align: center
+	text-decoration: none
 	vertical-align: middle
 	touch-action: manipulation
 	cursor: pointer
-	background-image: none // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	background-image: none
 	border: 1px solid transparent
 	white-space: nowrap
 	background: pink
@@ -1220,38 +1249,24 @@ $nav-color-hov: #FFF
 	&.orange
 		background-color: $orange
 		color: $darkblue
+		+transition(200ms)
+		&:hover, &:focus
+			background-color: darken($orange, 10%)
+			color: #fff
+	
 	&.darkblue
 		background-color: $darkblue
 		color: $orange
 	&.simple
 		border: 1px solid fade-out(white, 0.9)
 		background-color: $darkblue
+		+transition(200ms)
 		&:hover, &:focus, &.focus
 			color: white
+			border: 1px solid $orange
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TYPOGRAPHY --------------------------------------------------------------------------------
