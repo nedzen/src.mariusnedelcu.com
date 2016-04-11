@@ -1,33 +1,125 @@
-// @import 'bootstrap'
 @import 'mymixins'
 @import 'normalize'
 @import 'montrans_variables'
 
-// quick reset
+// Table of Contents ¯\_(ツ)_/¯
+// 1) - reboot
+// 2) - mixins
+// 3) - scafolding
+// ---- website sections ------
+// 4) - INTRO
+// 5) - STATS
+// 6) - HOW IT WORKS
+// 7) - LAST TRIP REQUESTS
+// 8) - THEY TRUST US
+// 9) - REVIEWS
+// 10) - PRESS
+// 11) - AFFILIATES
+// 12) - FOOTER
+//---- additional elements ----
+// 13) - carousel
+// 14) - nav + dropdown
+// 15) - buttons
+
+
+
+
+
+// --------------------------------------------------------
+// REBOOT reset + defaults
+// --------------------------------------------------------
+
 li
 	list-style-type: none
-
 ul
 	margin: 0
 	padding: 0
-
 fieldset
 	border: 0
 
+hr
+	display: block
+	clear: both
+	border: 0
+	border-top: 1px solid pink
+
+body, html
+	height: 100%
+	width: 100%
+	position: relative
+
+
+// mixins util --------------------------------------------------------
 =desaturate
 	filter: gray //IE6-9
 	filter: grayscale(1)  //Firefox 35+
 	-webkit-filter: grayscale(1) // Google Chrome, Safari 6+ & Opera 15+
+
 =saturate
 	filter: none
 	-webkit-filter: grayscale(0)
 
+=button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+	padding: $padding-vertical $padding-horizontal
+	font-size: $font-size
+	line-height: $line-height
+	border-radius: $border-radius
+
+=user-select($select)
+	-webkit-user-select: $select
+	-moz-user-select: $select
+	-ms-user-select: $select  // IE10+
+	user-select: $select
+
+=navbar-vertical-align($element-height)
+	margin-top: (($navbar-height - $element-height) / 2)
+	margin-bottom: (($navbar-height - $element-height) / 2)
+
+
+
+// -------------------------------------------------------------------------------------------
+// scaffolding
+section
+	margin: $box-pad 0
+	padding: $box-pad * 2 0
+	+clearfix
+	header
+		padding-bottom: $box-pad
+		text-align: center
+		h2
+			font-size: 2em
+			color: $darkblue
+		p
+			max-width: 700px
+			+center-block
+	clear: both
+
+.container
+	header
+		h2
+		p
+
+	max-width: $screen-lg
+	+center-block
+
+
+// Typography ---------------------------------//
 
 body
 	color: $body-color
-	font-family: 'Roboto', sans-serif
+	font-family: $font-family-base
 	-webkit-font-smoothing: antialiased
 	// font-family: 'Open Sans', sans-serif
+
+
+
+
+// --------------------------------------------//
+// INTRO --------------------------------------//
+// --------------------------------------------//
+
+section#intro
+	margin-bottom: 0
 
 #intro
 	h1, p
@@ -41,11 +133,10 @@ body
 	p
 		font-size: 1.2em
 	
-	@media screen and (min-width: 992px)
+	@media screen and (min-width: $screen-md)
 		h1
 			font-size: 2.6em
-
-	position: relative
+	
 	.mask
 		+size(100%)
 		background-color: fade-out(black, 0.6)
@@ -60,6 +151,7 @@ body
 		display: table-cell
 		vertical-align: middle
 	
+	position: relative	
 	margin-top: 50px // nav height
 	min-height: 600px
 	+background-image('header_img.jpg')
@@ -73,7 +165,6 @@ body
 		background-position: center -270px
 	@media screen and (min-width: 2500px)
 		background-position: center -330px
-
 
 .fld
 	+box-sizing(border-box)
@@ -91,24 +182,19 @@ body
 	display: block
 	padding: 8px 16px 0 16px
 	background: $darkblue
-	// outline-width: 2px
-	// box-shadow: none
 	border-radius: 2px
 	max-width: $screen-lg
 	+center-block
 	+box-sizing(border-box)
 	
 	fieldset
-		// background: fade-out($orange, 0.2)
 		padding: 0px 
 		+center-block
 		border: 0
-		
 
 	.form-group
 		margin-bottom: 10px
 		&.compact
-			// height: 40px
 			label
 				display: inline-block
 			input
@@ -124,6 +210,7 @@ body
 			box-shadow: none
 			box-shadow: inset 0px 0px 0px 2px $orange
 			border: 0
+		
 		border: 0px
 		padding-left: $box-pad
 		font-weight: normal
@@ -134,19 +221,18 @@ body
 	
 	@media screen and (min-width: 480px)
 		// padding: 10px 0
-		fieldset
-			width: 480px
-			border-radius: 6px
+		// fieldset
+		// width: 480px
+		border-radius: 6px
 
-	@media screen and (min-width: 480px) and (max-width: 992px)
+	@media screen and (min-width: $screen-xs) and (max-width: $screen-md)
 		.fld
 			display: block
 			width: 100%
-
 		.form-group
 			width: 100%
 
-	@media screen and (min-width: 992px)
+	@media screen and (min-width: $screen-md)
 		// padding: 30px 0
 		fieldset
 			position: relative
@@ -215,7 +301,601 @@ body
 
 
 
+// --------------------------------------------//
+// LATEST TRIPS -------------------------------//
+// --------------------------------------------//
+section#stats
+	margin-top: 0
+	background: #eee
+	color: #727272
+	strong
+		font-weight: normal
+		text-transform: capitalize
+	h2
+		color: #FF9226
 
+.statslist
+	&, li
+		display: block
+
+	li
+		text-align: center
+		@media screen and (min-width: $screen-xs)
+			width: 50%
+			float: left
+		@media screen and (min-width: $screen-sm)
+			width: 25%
+	
+	img
+		max-width:  80px
+
+
+
+
+// --------------------------------------------//
+// The Press ----------------------------------//
+// --------------------------------------------//
+// #howitworks
+
+.howlist
+	&, li
+		display: block
+
+	li
+		text-align: center
+		@media screen and (min-width: $screen-sm)
+			width: (100 / 3)  * 1%
+			float: left
+		
+		// @media screen and (min-width: $screen-sm)
+			// width: 25%
+	img
+		+center-block
+		max-width: 180px
+
+	strong
+		display: block
+
+
+
+
+
+
+
+// --------------------------------------------//
+// The Press ----------------------------------//
+// --------------------------------------------//
+
+#press
+	+background-image('pressbg.jpg')
+	background-size: auto 100%
+
+section.dark
+	h2
+		color: #fff
+	color: #fff
+	.next,
+	.prev
+		&:before,
+		&:after
+			background: #fff
+	.indicators
+		a
+			border: 1px solid #fff
+		.active
+			background: #fff
+
+.jcarousel-wrap
+	padding-left: $box-pad
+	padding-right: $box-pad
+
+
+
+
+
+
+// --------------------------------------------//
+// LATEST TRIPS -------------------------------//
+// --------------------------------------------//
+
+#latest
+	+background-image('mapbg.jpg')
+	background-size: auto 100%
+
+.ltslist
+	&, li
+		display: block
+	position: relative
+	+clearfix
+	
+	li
+		padding: 0 $box-pad
+		+box-sizing(border-box)
+	
+
+
+// The box ------------------------------------//
+.box
+	max-width: 280px
+	min-height: 280px
+	margin: 0 auto
+	border: 3px solid $darkblue
+	border-radius: 5px
+	color: $darkblue
+
+.transp
+	> div
+		+place(absolute, auto, 16px, 6px, auto)
+		padding: $box-pad/3 40px $box-pad/3 0
+		background-position: bottom right
+		background-size: 30px
+	.a
+		+background-image('a.svg')
+		background-repeat: no-repeat
+	.ar
+		+background-image('ar.svg')
+		background-repeat: no-repeat
+
+	position: relative
+	border-bottom: 2px solid $darkblue
+	padding: $box-pad $box-pad 43px
+	background-size: 90px 32px
+	background-position: bottom left
+	&.minivan
+		+background-image('minivan.svg')
+		background-repeat: no-repeat
+	&.bus
+		+background-image('bus.svg')
+		background-repeat: no-repeat
+	&.taxi
+		+background-image('taxi.svg')
+		background-repeat: no-repeat
+		background-size: 90px 28px
+
+.passengers
+	float: left
+	min-width: 15px
+	padding: 4px 27px 3px 4px
+	margin-top: -1px
+	margin-right: 10px
+	text-align: right
+	border-radius: 3px
+	color: white
+	+background-image('user_simplified.svg')
+	background-color: $darkblue	
+	background-repeat: no-repeat
+	background-position: right
+	background-size: 33px auto
+
+.details
+	padding: $box-pad
+	min-height: 23px
+
+.order,
+.price
+	text-align: center
+	padding: $box-pad 0
+
+.order
+	border: 2px dashed $darkblue
+	border-left: 0
+	border-right: 0
+
+.price
+	font-size: 2em
+	line-height: 1em
+	font-weight: 500
+
+
+
+// --------------------------------------------//
+// Partners -----------------------------------//
+// --------------------------------------------//
+// #trustus
+
+.partners
+	width: 100%
+	text-align: center
+	li
+		&:hover
+			img
+				+saturate
+		
+		img
+			+transition(100ms)
+			+desaturate
+			max-width: 90px
+
+		width: (100 / 3) * 1%
+		@media screen and (min-width: $screen-xs)	
+			width: (100 / 3) * 1%
+			img
+				max-width: 106px
+		@media screen and (min-width: $screen-sm)
+			width: (100 / 4) * 1%
+		@media screen and (min-width: $screen-sm)
+			width: (100 / 5) * 1%
+		@media screen and (min-width: $screen-md)
+			width: (100 / 6) * 1%
+		
+		display: inline-block
+		padding: $box-pad 0
+
+
+
+// --------------------------------------------//
+// USER REVIEWS -------------------------------//
+// --------------------------------------------//
+// #reviews
+
+.revlist
+	&, li
+		display: block
+	position: relative
+	+clearfix
+	
+	li
+		padding: 0 $box-pad
+		+box-sizing(border-box)
+		a
+			color: $darkblue
+			font-weight: bold
+			display: none
+
+
+// the rating indicator
+// --------------------------------------------//
+.rating
+	background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=')
+	height: 20px
+	margin-bottom: $box-pad/2
+	span
+		background: white
+		display: inline-block
+		float: right
+		width: 50px
+		position: relative
+		right: -60px
+	
+	&.one
+		width: 20px
+	&.two
+		width: 40px
+	&.three
+		width: 60px
+	&.four
+		width: 80px
+	&.five
+		width: 100px
+
+
+
+
+// --------------------------------------------//
+// AFFILIATE ----------------------------------//
+// --------------------------------------------//
+
+#affiliate
+	position: relative
+	overflow: hidden
+
+.aflist
+	display: block
+	text-align: center
+
+	@media screen and (min-width: $screen-lg)
+		margin-right: -5px
+		margin-left: -5px
+	
+	li
+		display: none // adjusting content depending on viewport
+		width: (100 / 2) * 1%
+		position: relative
+		+box-sizing(border-box)
+		a
+			&:hover
+				em
+					opacity: 1
+			img
+				width: 100%
+			+stretch(0, 5px, 5px, 5px)
+			border: 1px solid #ccc
+			color: $body-color
+			
+			em, strong
+				+box-sizing(border-box)
+			
+			em
+				+stretch(0, 0, 0, auto)
+				height: 65%
+				padding-top: 20%
+				font-style: normal
+				font-weight: bold
+				color: white
+				background: fade-out(black, 0.5)
+				+transition(200ms)
+				opacity: 0
+				z-index: 12
+			
+			strong
+				height: (100 - 65) * 1%
+				padding-top: 7%
+				background: white
+				+stretch(auto, 0, 0, 0)
+				font-size: $font-size-small
+				z-index: 13
+
+		&:before
+			content: ""
+			display: block
+			padding-top: 86%
+		
+		&:nth-child(-n+6)
+			display: inline-block
+		
+	@media screen and (min-width: $screen-xs)
+		li
+			&:nth-child(-n+9)
+				display: inline-block
+			width: (100 / 3) * 1%
+
+	@media screen and (min-width: $screen-sm)
+		li
+			&:nth-child(-n+10)
+				display: inline-block
+			width: (100 / 5) * 1%
+	
+	@media screen and (min-width: $screen-md)
+		li
+			&:nth-child(-n+12)
+				display: inline-block
+			width: (100 / 6) * 1%
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------//
+// FOOTER -------------------------------------//
+// --------------------------------------------//
+
+// Promo part ---------------------------------//
+footer#bottom
+	clear: both
+	background: #111
+
+.actprovider
+	+background-image('ftrbg.jpg')
+	background-position: top center
+	background-repeat: repeat-x
+	padding: $box-pad 0
+	color: #fff
+	min-height: 113px
+	
+	header
+		text-align: right
+	
+	.le-button, header
+		+box-sizing(border-box)
+		width: 50%
+		display: inline-block
+		vertical-align: top
+
+	.le-button
+		padding: $box-pad * 2 0 0 $box-pad * 2
+
+
+// The Main Footer -------------------------//
+#footer
+	@media screen and (max-width: $screen-lg)
+		padding-left: $box-pad
+		padding-right: $box-pad
+
+	color: white
+	font-size: 15px
+	padding-top: $box-pad
+	padding-bottom: $box-pad
+	
+	h3
+		color: #bbb
+	p
+		color: #bbb
+	ul
+		li
+			line-height: 26px
+			font-weight: bold
+	a
+		color: white
+		text-decoration: none
+	
+	.logo
+		opacity: .5
+		width: 100%
+		margin-bottom: $box-pad
+		img
+			max-width: 200px
+	
+	.col.first p
+		@media screen and (min-width: $screen-xs)
+			padding-right: 30px
+		@media screen and (min-width: $screen-md)
+			padding-right: 60px
+	@media screen and (min-width: $screen-xs)
+		.col
+			vertical-align: top
+			display: inline-block
+			width: 50%
+	
+	@media screen and (min-width: $screen-sm)
+		.col
+			width: 25%
+			&.first
+				width: 35%
+			&.second
+				width: 15%
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------//
+// Social button ------------------------------//
+// --------------------------------------------//
+
+ul.social
+	display: block
+	padding: $box-pad 0
+	li
+		display: inline-block
+		margin-right: 10px
+		a
+			&:hover
+				top: 3px
+			+transition(200ms)
+			top: 0
+			position: relative
+			display: block
+			background-repeat: no-repeat
+			text-indent: -99999px
+			overflow: hidden
+			border-radius: 50%
+			background-color: #333
+			+square(33px)
+		
+		&.li
+			a
+				+background-image('ico_li.svg')
+				&:hover
+					background-color: #007bb5
+		&.tw
+			a
+				+background-image('ico_tw.svg')
+				&:hover
+					background-color: #55acee
+		&.fb
+			a
+				+background-image('ico_fb.svg')
+				&:hover
+					background-color: #3b5998
+		&.gp
+			a
+				+background-image('ico_gb.svg')
+				&:hover
+					background-color: #dd4b39
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------//
+// Le carousel --------------------------------//
+// --------------------------------------------//
+
+.jcarousel-wrap
+	position: relative
+
+.jcarousel
+	&, ul
+		position: relative
+	overflow: hidden
+	width: 100%
+
+	ul
+		width: 20000em
+		list-style: none
+		margin: 0
+		padding: 0
+
+	li
+		width: 200px // maybe it's useless
+		float: left
+		+box-sizing(border-box)
+
+
+// Carousel Controls ----------------------- //
+// ------------------------------------------//
+.prev,
+.next
+	&:hover
+		&:before, 
+		&:after
+			background: $orange
+	
+	$line: $box-pad * 2.5	
+	top: 38%
+	display: block
+	+size(24px, 60px)
+	text-align: left
+	position: absolute
+	padding: 0
+	color: transparent
+	cursor: pointer
+	text-indent: -9000px
+	overflow: hidden
+
+	&:before,
+	&:after
+		content: ''
+		position: absolute
+		right: 0px
+		+size($line/2 ,3px)
+		background: $darkblue
+		+transition(200ms)
+	&:after
+		+rotate(-45deg)
+		top: 36px
+	&:before
+		top: 24px
+		+rotate(45deg)
+
+.prev
+	&:hover
+	+rotate(180deg)
+	left: 0
+.next
+	&:hover
+	right: 0px
+
+
+// Carousel Pagination ----------------------- //
+// --------------------------------------------//
+.indicators
+	// -webkit-transform: translate(-50%, 0)
+	// -ms-transform: translate(-50%, 0)
+	// transform: translate(-50%, 0)
+	// margin: 0
+	text-align: center
+	a
+		text-decoration: none
+		display: inline-block
+		+square(13px)
+		line-height: 10px
+		border: 1px solid $darkblue
+		border-radius: 10px
+		text-indent: -9999px
+		margin: 4px
+
+		&.active
+			background: $darkblue
+			color: #fff
+			opacity: 1
 
 
 
@@ -296,18 +976,6 @@ $cursor-disabled: not-allowed !default
 
 
 
-=button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
-	padding: $padding-vertical $padding-horizontal
-	font-size: $font-size
-	line-height: $line-height
-	border-radius: $border-radius
-
-=user-select($select)
-	-webkit-user-select: $select
-	-moz-user-select: $select
-	-ms-user-select: $select  // IE10+
-	user-select: $select
-
 
 
 @media (min-width: $screen-sm)
@@ -319,27 +987,15 @@ $cursor-disabled: not-allowed !default
 			left: 0
 			right: auto
 
-//navbar-collapse
-.collapse
-	display: none
-	&.in
-		display: block
 
-.collapsing
-	ul
-		display: block
-		float: none
-		padding-right: $box-pad/2
-	width: 100%
-	
-	.dropdown-menu
-		display: none
-	position: relative
-	height: 0
-	overflow: hidden
-	+transition-property(height, visibility)
-	+transition-duration(0.35s)
-	+transition-timing-function(ease)
+
+
+
+
+
+
+// Navbar -------------------------------------//
+// --------------------------------------------//
 
 $navbar-height: 55px
 $nav-color: #FFF
@@ -352,6 +1008,7 @@ $nav-color-hov: #FFF
 	background-color: $darkblue
 	+clearfix
 
+// When the vp < 768px
 .nav-collapse
 	@media screen and (max-width: $screen-lg)
 		padding-right: $box-pad/2
@@ -365,7 +1022,6 @@ $nav-color-hov: #FFF
 		> ul.nav
 			padding-top: $box-pad
 
-
 	@media (min-width: $screen-sm)
 		clear: none
 		width: auto
@@ -377,46 +1033,6 @@ $nav-color-hov: #FFF
 .fixed-top
 	+place(fixed, 0, 0, auto, 0)
 	z-index: 11
-
-.logo
-	width: 200px
-	float: left
-	@media screen and (max-width: $screen-lg)
-		padding-left: $box-pad/2
-	a, img
-		display: block
-	a
-		padding: 10px $box-pad/2 0 0
-
-
-// Navbar toggle
-=navbar-vertical-align($element-height)
-	margin-top: (($navbar-height - $element-height) / 2)
-	margin-bottom: (($navbar-height - $element-height) / 2)
-
-.toggle
-	@media (min-width: $screen-sm)
-		display: none
-	position: relative
-	float: right
-	margin-right: $box-pad/2
-	padding: 5px 10px
-	+navbar-vertical-align(30)
-	background-image: none
-	background-color: transparent
-	border: none
-	&:focus
-		outline: 0
-
-	.icon-bar
-		display: block
-		width: 30px
-		height: 4px
-		border-radius: 1px
-		background: white
-	
-	.icon-bar + .icon-bar
-		margin-top: 4px
 
 .nav
 	@media (min-width: $screen-sm)
@@ -459,7 +1075,6 @@ $nav-color-hov: #FFF
 	@media (min-width: $screen-sm)
 		float: left
 		margin: 0
-		// background: pink
 		> li
 			padding-left: 10px
 			height: $navbar-height
@@ -477,9 +1092,68 @@ $nav-color-hov: #FFF
 
 
 
+// Navbar toggle -----------------------------//
+.toggle
+	@media (min-width: $screen-sm)
+		display: none
+	position: relative
+	float: right
+	margin-right: $box-pad/2
+	padding: 5px 10px
+	+navbar-vertical-align(30)
+	background-image: none
+	background-color: transparent
+	border: none
+	&:focus
+		outline: 0
+
+	.icon-bar
+		display: block
+		width: 30px
+		height: 4px
+		border-radius: 1px
+		background: white
+	
+	.icon-bar + .icon-bar
+		margin-top: 4px
 
 
+//navbar-collapse --------------------------//
+.collapse
+	display: none
+	&.in
+		display: block
 
+.collapsing
+	ul
+		display: block
+		float: none
+		padding-right: $box-pad/2
+	width: 100%
+	
+	.dropdown-menu
+		display: none
+	position: relative
+	height: 0
+	overflow: hidden
+	+transition-property(height, visibility)
+	+transition-duration(0.35s)
+	+transition-timing-function(ease)
+
+
+// Logo ---------------------------------------//
+.logo
+	width: 200px
+	float: left
+	@media screen and (max-width: $screen-lg)
+		padding-left: $box-pad/2
+	a, img
+		display: block
+	a
+		padding: 10px $box-pad/2 0 0
+
+
+// the language button in the navbar
 .lang
 	background-repeat: no-repeat
 	background-color: none
@@ -498,6 +1172,10 @@ $nav-color-hov: #FFF
 		background-repeat: no-repeat
 
 
+
+
+// BUTTONS ---------------------------------------//
+// -----------------------------------------------//
 .btn
 	display: inline-block
 	margin-bottom: 0 // For input.btn
@@ -551,11 +1229,7 @@ $nav-color-hov: #FFF
 		&:hover, &:focus, &.focus
 			color: white
 
-hr
-	display: block
-	clear: both
-	border: 0
-	border-top: 1px solid pink
+
 
 
 
@@ -581,564 +1255,3 @@ hr
 
 
 // TYPOGRAPHY --------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-// -------------------------------------------------------------------------------------------
-// scaffolding
-
-section
-	padding: $box-pad * 2 0
-	+clearfix
-	header
-		text-align: center
-		p
-			max-width: 700px
-			+center-block
-	
-	clear: both
-
-#stats
-	background: #eee
-	color: #727272
-	strong
-		font-weight: normal
-		text-transform: capitalize
-	h2
-		color: #FF9226
-
-// #howitworks
-// #latest
-// #trustus
-// #reviews
-// #press
-// #affiliate
-
-
-.container
-	header
-		h2
-		p
-
-	max-width: $screen-lg
-	+center-block
-
-.statslist
-	&, li
-		display: block
-
-	li
-		text-align: center
-		@media screen and (min-width: $screen-xs)
-			width: 50%
-			float: left
-		@media screen and (min-width: $screen-sm)
-			width: 25%
-	
-	img
-		max-width:  80px
-
-
-.howlist
-	&, li
-		display: block
-
-	li
-		text-align: center
-		@media screen and (min-width: $screen-sm)
-			width: (100 / 3)  * 1%
-			float: left
-		
-		// @media screen and (min-width: $screen-sm)
-			// width: 25%
-	img
-		+center-block
-		max-width: 180px
-
-	strong
-		display: block
-
-
-.prslist
-
-
-.jcarousel-wrap
-	padding-left: $box-pad
-	padding-right: $box-pad
-	// visibility: hidden
-#latest
-	height: 400px
-	// header
-		// visibility: hidden
-	+background-image('mapbg.jpg')
-	background-size: auto 100%
-
-
-.ltslist
-	&, li
-		display: block
-	position: relative
-	+clearfix
-	// padding-right: $box-pad * 2
-	// margin-left: -1 * $box-pad
-	// margin-right: -1 * $box-pad
-	
-	li
-		padding: 0 $box-pad
-		+box-sizing(border-box)
-		
-		// @media screen and (min-width: $screen-xs)
-			// width: 50%
-			// float: left
-
-		// @media screen and (min-width: $screen-sm)
-			// width: 20%
-	
-	.box
-		border: 3px solid $darkblue
-		border-radius: 5px
-		color: $darkblue
-		// padding: $box-pad
-
-
-
-
-// +box-sizing(border-box)
-
-.transp
-	> div
-		+place(absolute, auto, 16px, 6px, auto)
-		padding: $box-pad/3 40px $box-pad/3 0
-		background-position: bottom right
-		background-size: 30px
-	.a
-		+background-image('a.svg')
-		background-repeat: no-repeat
-	.ar
-		+background-image('ar.svg')
-		background-repeat: no-repeat
-
-	position: relative
-	border-bottom: 2px solid $darkblue
-	padding: $box-pad $box-pad 43px
-	background-size: 90px 32px
-	background-position: bottom left
-	&.minivan
-		+background-image('minivan.svg')
-		background-repeat: no-repeat
-	&.bus
-		+background-image('bus.svg')
-		background-repeat: no-repeat
-	&.taxi
-		+background-image('taxi.svg')
-		background-repeat: no-repeat
-		background-size: 90px 28px
-
-
-.order,
-.price
-	text-align: center
-	padding: $box-pad 0
-
-.order
-	border: 2px dashed $darkblue
-	border-left: 0
-	border-right: 0
-
-.price
-	font-size: 2em
-
-.details
-	padding: $box-pad
-
-.passengers
-	float: left
-	min-width: 20px
-	padding: 3px 30px 3px 3px
-	margin-top: -3px
-	margin-right: 10px
-	text-align: center
-	border-radius: 3px
-	color: white
-	+background-image('user_simplified.svg')
-	background-color: $darkblue	
-	background-repeat: no-repeat
-	background-position: right
-	background-size: 33px auto
-
-.route
-.bids
-
-.bids
-.price
-
-.partners
-	width: 100%
-	text-align: center
-	li
-		&:hover
-			img
-				+saturate
-		width: (100 / 6) * 1%
-		display: inline-block
-		padding: $box-pad 0
-
-		img
-			+transition(100ms)
-			+desaturate
-			max-width: 106px
-
-
-
-.revlist
-	display: block
-	li
-		display: inline-block
-		vertical-align: top
-		width: (100 / 3) * 1%
-
-
-
-#affiliate
-	position: relative
-	overflow: hidden
-
-.aflist
-	display: block
-	text-align: center
-	
-	@media screen and (min-width: $screen-lg)
-		margin-right: -5px
-		margin-left: -5px
-	
-	li
-		display: none // adjusting content depending on viewport
-		width: (100 / 2) * 1%
-		position: relative
-		+box-sizing(border-box)
-		a
-			&:hover
-				em
-					opacity: 1
-			img
-				width: 100%
-			+stretch(0, 5px, 5px, 5px)
-			border: 1px solid #ccc
-			color: $body-color
-			
-			em, strong
-				+box-sizing(border-box)
-			
-			em
-				+stretch(0, 0, 0, auto)
-				height: 65%
-				padding-top: 20%
-				font-style: normal
-				font-weight: bold
-				color: white
-				background: fade-out(black, 0.5)
-				+transition(200ms)
-				opacity: 0
-				z-index: 12
-			
-			strong
-				height: (100 - 65) * 1%
-				padding-top: 7%
-				background: white
-				+stretch(auto, 0, 0, 0)
-				font-size: $font-size-small
-				z-index: 13
-
-		&:before
-			content: ""
-			display: block
-			padding-top: 86%
-		
-		&:nth-child(-n+6)
-			display: inline-block
-		
-	@media screen and (min-width: $screen-xs)
-		li
-			&:nth-child(-n+9)
-				display: inline-block
-			width: (100 / 3) * 1%
-
-	@media screen and (min-width: $screen-sm)
-		li
-			&:nth-child(-n+10)
-				display: inline-block
-			width: (100 / 5) * 1%
-	
-	@media screen and (min-width: $screen-md)
-		li
-			&:nth-child(-n+12)
-				display: inline-block
-			width: (100 / 6) * 1%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-footer#bottom
-	clear: both
-	background: #111
-
-.actprovider
-	+background-image('ftrbg.jpg')
-	background-position: top center
-	background-repeat: repeat-x
-	padding: $box-pad 0
-	color: #fff
-	min-height: 113px
-	
-	header
-		text-align: right
-	
-	.le-button, header
-		+box-sizing(border-box)
-		width: 50%
-		display: inline-block
-		vertical-align: top
-
-	.le-button
-		padding: $box-pad * 2 0 0 $box-pad * 2
-
-#footer
-	@media screen and (max-width: $screen-lg)
-		padding-left: $box-pad
-		padding-right: $box-pad
-
-	color: white
-	font-size: 15px
-	padding-top: $box-pad
-	padding-bottom: $box-pad
-	
-	h3
-		color: #bbb
-	p
-		color: #bbb
-	ul
-		li
-			line-height: 26px
-			font-weight: bold
-	a
-		color: white
-		text-decoration: none
-	
-	.logo
-		opacity: .5
-		width: 100%
-		margin-bottom: $box-pad
-		img
-			max-width: 200px
-	
-	.col.first p
-		@media screen and (min-width: $screen-xs)
-			padding-right: 30px
-		@media screen and (min-width: $screen-md)
-			padding-right: 60px
-	@media screen and (min-width: $screen-xs)
-		.col
-			vertical-align: top
-			display: inline-block
-			width: 50%
-	
-	@media screen and (min-width: $screen-sm)
-		.col
-			width: 25%
-			&.first
-				width: 35%
-			&.second
-				width: 15%
-
-ul.social
-	display: block
-	padding: $box-pad 0
-	li
-		display: inline-block
-		margin-right: 10px
-		a
-			&:hover
-				top: 3px
-			+transition(200ms)
-			top: 0
-			position: relative
-			display: block
-			background-repeat: no-repeat
-			text-indent: -99999px
-			overflow: hidden
-			border-radius: 50%
-			background-color: #333
-			+square(33px)
-		
-		&.li
-			a
-				+background-image('ico_li.svg')
-				&:hover
-					background-color: #007bb5
-		&.tw
-			a
-				+background-image('ico_tw.svg')
-				&:hover
-					background-color: #55acee
-		&.fb
-			a
-				+background-image('ico_fb.svg')
-				&:hover
-					background-color: #3b5998
-		&.gp
-			a
-				+background-image('ico_gb.svg')
-				&:hover
-					background-color: #dd4b39
-
-p.copy
-	padding: $box-pad 0
-
-
-
-
-
-
-// Le carousel
-
-.jcarousel-wrap
-	position: relative
-
-.jcarousel
-	
-	// padding-left: $box-pad
-	// padding-right: $box-pad
-	// +box-sizing(border-box)
-	
-	&, ul
-		position: relative
-	
-	overflow: hidden
-	width: 100%
-
-	ul
-		width: 20000em
-		list-style: none
-		margin: 0
-		padding: 0
-
-	li
-		width: 200px // maybe it's useless
-		float: left
-		+box-sizing(border-box)
-
-	// img
-	// 	display: block
-	// 	max-width: 100%
-	// 	height: auto !important
-
-
-
-$line: $box-pad * 2.5
-// Carousel Controls //
-
-.prev,
-.next
-	&:hover
-		&:before, 
-		&:after
-			background: $orange
-	
-	top: 38%
-	display: block
-	+size(24px, 60px)
-	text-align: left
-	position: absolute
-	padding: 0
-	color: transparent
-	cursor: pointer
-	text-indent: -9000px
-	overflow: hidden
-
-	&:before,
-	&:after
-		content: ''
-		position: absolute
-		right: 0px
-		+size($line/2 ,3px)
-		background: $darkblue
-		+transition(200ms)
-	&:after
-		+rotate(-45deg)
-		top: 36px
-	&:before
-		top: 24px
-		+rotate(45deg)
-
-.prev
-	&:hover
-	+rotate(180deg)
-	left: 0
-.next
-	&:hover
-	right: 0px
-
-
-
-
-/** Carousel Pagination **/
-
-.indicators
-	position: absolute
-	bottom: -40px
-	left: 50%
-	-webkit-transform: translate(-50%, 0)
-	-ms-transform: translate(-50%, 0)
-	transform: translate(-50%, 0)
-	margin: 0
-
-	a
-		text-decoration: none
-		display: inline-block
-		+square(10px)
-		line-height: 10px
-		background: #ccc
-		border-radius: 10px
-		text-indent: -9999px
-		margin: 4px
-
-		&.active
-			background: #4E443C
-			color: #fff
-			opacity: 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -86,7 +86,7 @@ section#howitworks
 	.container
 		header
 			h2 HOW IT WORKS ?
-			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
+			/p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
 
 		ul.howlist
 			li
@@ -116,10 +116,12 @@ coffee:
 	      width = carousel.innerWidth()
 	      if width >= 992
 	        width = width / 4
-	      else if width >= 600
+	      else if width >= 768
 	      	width = width / 3
+	      else if width >= 480
+	      	width = width / 2
 	      else if width >= 350
-	        width = width / 2
+	        width = width / 1
 	      carousel.jcarousel('items').css 'width', Math.ceil(width) + 'px'
 	      return
 	    ).jcarousel wrap: 'circular'
@@ -146,7 +148,7 @@ section#latest
 	.container
 		header
 			h2 LAST POSTED TRIP REQUESTS
-			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
+			/p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.
 	
 		.jcarousel-wrap
 			.jcarousel
@@ -219,7 +221,7 @@ section#trustus
 	.container
 		header
 			h2 THEY TRUST US
-			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+			/p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 	
 		ul.partners
 			li =image_tag 'logo_edf.jpg', :alt => 'logo_edf'
@@ -237,7 +239,7 @@ section#reviews
 	.container
 		header
 			h2 LAST REVIEWS AND RATINGS
-			p something underneath lorem ipsum dolor sit amet consec
+			/ p something underneath lorem ipsum dolor sit amet consec
 	
 		.jcarousel-wrap
 			.jcarousel
@@ -246,50 +248,48 @@ section#reviews
 						h4 Transfer by Mercedes VIANO from Bollène
 						=link_to 'VTC near Castelnau-d&#44;Aude'
 						p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
+						.rating.five: span 5 / 5
 						strong From Kathy W.
-						.rating.five 5 / 5
 
 					li
 						h4 Transfer by Mercedes SPRINTER from Cadaques Spain
 						=link_to 'Taxi near Narbonne'
 						p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
-						.rating.four 4 / 5
+						.rating.four: span 4 / 5
 						strong From Kathy W.
 
 					li
 						h4 Transfer by Peugeot Expert tapee from Saint-Jean-de-Losne
 						=link_to 'Taxi near Narbonne'
 						p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.The route included some windy mountain roads which he drove calmly and safely. We would recommend this transport provider.
-						.rating.four 5 / 5
+						.rating.four: span 5 / 5
 						strong From Kathy W.
 
 					li
 						h4 Transfer by Mercedes VIANO from Bollène
 						=link_to 'VTC near Castelnau-d&#44;Aude'
 						p Chauffeur ponctuel (il était même là 5min avant l'heure prévue) et courtois. Conduite agréable. Une bouteille d'eau à disposition est un plus.
+						.rating.five: span 5 / 5
 						strong From Kathy W.
-						.rating.five 5 / 5
 
 					li
 						h4 Transfer by Mercedes SPRINTER from Cadaques Spain
 						=link_to 'Taxi near Narbonne'
 						p Excellent service, everything was as promised, we couldn't have had any more done for us, thank you.
-						.rating.four 4 / 5
+						.rating.four: span 4 / 5
 						strong From Kathy W.
 
 			.prev &lsaquo;
 			.next &rsaquo;
 			p.indicators
 
-section#press
+section#press.dark
 	.container
 		header
 			h2 LAST REVIEWS AND RATINGS
-			p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.
-		
+			/p We were very pleased with the prompt and efficient service provided by this company.The driver was polite and professional.
 		.jcarousel-wrap
 			.jcarousel
-
 				ul.prslist
 					li
 						figure 
@@ -324,7 +324,7 @@ section#affiliate
 	.container
 		header
 			h2 AFFILLIATED TRANSPORT PROVIDERS
-			p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+			/p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 		
 		ul.aflist
 			li
