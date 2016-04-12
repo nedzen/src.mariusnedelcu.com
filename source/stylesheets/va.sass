@@ -140,7 +140,7 @@ $box-h: 300px
 =makesomeresponsivecolumns
 	.box
 		position: relative
-		// overflow: hidden
+		overflow: hidden
 		width: 100%
 		+transition(200ms)
 		@media screen and (min-width: $screen-xs)
@@ -224,39 +224,21 @@ p
 		position: absolute
 		top: -1 * ($stripe * 2)
 		bottom: -1 * ($stripe * 2)
-		background: fade-out($c01, .5)
-		// +gradient-horizontal(fade-out($white, .9), fade-out($white, .8))
-		// border: 2px solid fade-out($white, .2)
-		+size($stripe, 600px)
-		+rotate(0deg)
-		// box-shadow: 0px 0px 200px fade-out($white, .9)
+		+gradient-horizontal-three-colors(fade-out($white, .99), fade-out($white, .6), 50%, fade-out($white, .99))
+		+rotate(30deg)
 		
 	&:before
-		left: 0
-		width: $stripe
+		left: ($stripe * 4) * -1
+		width: $stripe * 3
 		right: auto
-	
-	// &:after
-	// 	left: ($stripe * 2) * -1
-	// 	right: auto
-	// 	bottom: auto
+		opacity: 1
 
 	&:hover
 		&:before
-			+transition(700ms)
+			+transition(300ms linear)
 			+transition-delay(300ms)
-			left: ($stripe) * 2
-			width: $stripe
+			left: $stripe * 7
 			opacity: 0
-
-		// &:after
-		// 	+transition(600ms)
-		// 	left: ($stripe * 4) * 2
-		// 	width: $stripe * 6
-	
-
-
-
 	
 	
 	text-align: center
