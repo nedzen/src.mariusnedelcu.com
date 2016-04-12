@@ -1,0 +1,74 @@
+---
+title: in-app landing page
+pageable: true
+per_page: 10
+layout: layva
+---
+
+nav#navbar
+	.container
+		=link_to (image_tag 'vocalapps_logo.svg'), '#', :class=> 'logo'
+
+.container
+	main.block-wrap
+		.box.library.sm-w12.w15
+			a href="#"
+				div.in-wrap
+					div.v-mid
+						strong.categ library
+						=image_tag 'icon_dashboard.svg', :class=> 'icon'
+						h2.title Skills Dashboard
+						p.desc Add only two lines of code in your Alexa Skill and benefit of the same ammount of data as the Alexa Designer developer. Get instantly Skill's Analytics. User Log, and much more !
+		
+		.box.reading.sm-w12.w9
+			div
+				div.in-wrap
+					div.v-mid
+						strong.categ reading
+						=image_tag 'icon_reading.svg', :class=> 'icon'
+						=link_to 'VISIT OUR BLOG', '#', :class=> 'btn white'
+		
+		.box.tool.sm-w12.w9
+			a href="#"
+				div.in-wrap
+					div.v-mid
+						strong.categ tool
+						=image_tag 'icon_experiment.svg'
+						h2 Test Suite
+						.notice COMING SOON
+		
+		.box.tool.sm-w12.w9
+			a href="#"
+				div.in-wrap
+					div.v-mid
+						strong.categ tool
+						=image_tag 'icon_mic.svg'
+						h2 Voice Tester
+						p Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+		
+		.box.social.sm-w24.w6
+			div
+				div.in-wrap
+					div.v-mid
+						strong.categ social
+						=image_tag 'icon_twitter.svg'
+						=link_to 'FOLLOW US', '#', :class=> 'btn white'
+		
+		.box.subscribe.sm-w12.w15
+			div
+				div.in-wrap
+					div.v-mid
+						strong.categ social
+						form#subscribe
+							input.fld type="email" name="email" placeholder=""
+							button.btn.white value="subscribe" sbscribe
+						h2 Stay in Touch
+		
+		.box.help.sm-w12.w9
+			a href="#"
+				div.in-wrap
+					div.v-mid
+						strong.categ help
+						=image_tag 'icon_stack.svg'
+						h2 Ask Stackoverflow
+						p Allows you to try the Alexa Voice Service even if you don't have an Echo with you

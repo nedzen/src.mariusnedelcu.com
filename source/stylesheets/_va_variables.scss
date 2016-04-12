@@ -1,0 +1,117 @@
+// Defaults
+$pi: 3.14;
+$font-size-root:     16px !default;
+$font-size-base:     16px !default;
+$font-size-small:    13px;/*  */
+$font-family-base:   'helvetica', sans-serif;
+$line-height: 		 1.5 !default;
+
+$brand-primary :     #000000;
+$body-color: 		      #555;
+$body-bg: 		       #f1f1f1;
+
+$abbr-border-color:  $brand-primary;
+$hover-focus:        $brand-primary;
+
+// $table-bg:					 #FFF;
+// $table-cell-padding: 1rem/2;
+// $text-muted:  			 #000;
+// $enable-hover-media-query: false;
+
+// Links
+// Style anchor elements.
+// Color palette
+$c00: #000000;  //black
+
+//.library
+$c01: #1f3559;  //darkblue
+$c02: #3e6890;  //blue
+//.reading
+$c03: #f5aa34;  //orange
+$c04: #f28933;  //spiced orange
+//.tool
+$c05: #3d811b;  //deepgreen
+$c06: #58bcbc;  //turcoise
+
+//.social + //.subscribe
+$c07: #5baeec;  //deepgreen
+$c08: #6cd59a;  //palegreen
+//.help
+$c09: #3c5aac;  //mov
+$c10: #6d2e8f;  //purple
+
+
+$c11: #070415; // deep purple
+$c12: #1a1c47; // lighter deep purple
+
+$white: #FFF;
+$black: $c00;
+
+$link-color:                 $brand-primary;
+$link-decoration:            none !default;
+$link-hover-color:           $link-color;
+$link-hover-decoration:      none !default;
+
+
+$box-pad: 22px;
+
+// Extra small screen / phone
+$screen-xs:                  480px !default;
+$screen-xs-min:              $screen-xs !default;
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+$screen-lg:                  1170px !default;
+$screen-lg-min:              $screen-lg !default;
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+* {
+	outline: 1px dotted fade-out(black, 0.5);
+
+	@media screen and (min-width: $screen-xs) {
+		outline: 1px dotted fade-out(green, 0.5);
+	}
+	@media screen and (min-width: $screen-sm) {
+		outline: 1px dotted fade-out(olive, 0.5);
+	}
+	@media screen and (min-width: $screen-md) {
+		outline: 1px dotted fade-out(orange, 0.5);
+	}
+	@media screen and (min-width: $screen-lg) {
+		outline: 1px dotted fade-out(red, 0.5);
+	}
+}
+
+
+
+// - nouveau code html/css épuré (pas minifié), pas en bootstrap, avec un chargement rapide (tester avec google pagespeed insight), séparer css header/footer et index
+// - couleur bleue de la photo à remplacer par noir
+// - coller les champs du formulaire (modèle hipmunk.com), icone à l'intérieur des textbox, "aller simple/aller retour" en radio button au dessus du formulaire, agrandir les 2 champs adresses, bouton "Continuer" à droite du formulaire, ajouter sous le formulaire avec un padding-top "Customer satisfaction rate : 4.94/5" avec les 5 étoiles (chaque étoile une image, garder les mêmes étoiles)
+// - supprimer "Vehicles" du header, bouton "Sign up" à supprimer, transformer "Transport provider" en bouton, ajouter bouton "Post a trip"
+// - redesign du bloc des trajets, il faut qu'on puisse faire défiler à gauche/droite
+// - redesign du bloc des avis, il faut qu'on puisse faire défiler à gauche/droite
+// - retirer le défilement automatique des logos, garder ces logos : edf, m6, nrj, technip, amadeus, hp, siemens, sanofi, ministere education nationale, ministere de l'écologie et du dev durable
+// - garder le bloc avec les 4 stats pour l'instant
+// - garder le bloc presse pour l'instant
+// - supprimer tous les textes "Lorem ipsum dolor sit amet" SAUF dans le footer
+// - retirer les effets sur les icônes de réseaux sociaux
+// - conserver les couleurs (darkblue: #273747, orange: #ff9326, gris clair: #535353), la police du site est "Open Sans", et sur la home on a "Roboto" (tu choisis ce qu'il faut faire sur la home)
+// - alignement vertical de tous les éléments à gauche et à droite parfait
+// - versions responsive parfaites
+
+
