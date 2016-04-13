@@ -112,6 +112,16 @@ section
 	max-width: $screen-lg
 	margin: 0 auto
 
+// centers the elements
+.in-wrap, .v-mid
+	+size(100%)
+.in-wrap
+	display: table
+	position: relative
+.v-mid
+	display: table-cell
+	vertical-align: middle
+
 
 // Typography ---------------------------------//
 
@@ -126,6 +136,26 @@ section
 		h2
 			font-size: 2em
 			// color: $darkblue
+
+p
+	font-size: 0.9em
+	line-height: 1.3em
+
+.box
+	text-align: center
+	color: white
+	.desc
+		color: fade-out($white, .3)
+	a
+		color: $white
+		text-decoration: none
+	
+	strong
+		font-weight: normal
+
+	p
+		strong
+			font-weight: bold
 
 
 // --------------------------------------------//
@@ -143,14 +173,14 @@ $box-h: 300px
 		overflow: hidden
 		width: 100%
 		+transition(200ms)
-		@media screen and (min-width: $screen-xs)
+		@media screen and (min-width: $screen-sm)
 			min-height: $box-h
 			float: left
-		@media screen and (min-width: $screen-xs)
+		@media screen and (min-width: $screen-sm)
 			@for $i from 1 through $cols - 1
 				&.sm-w#{$i}
 					width: ($i * 100/$cols) * 1%
-		@media screen and (min-width: $screen-sm)
+		@media screen and (min-width: $screen-md)
 			@for $i from 1 through $cols - 1
 				&.w#{$i}
 					width: ($i * 100/$cols) * 1%		
@@ -178,7 +208,7 @@ $box-h: 300px
 
 // configure the height for boxes on mobile screens
 $big-h: 300px
-$sm-h: 200px
+$sm-h: 300px
 
 =height-mobile($val)
 	@media screen and (max-width: $screen-sm)
@@ -208,15 +238,21 @@ $sm-h: 200px
 
 
 
-p
-	font-size: 0.9em
-	line-height: 1.3em
+
+
+
+
 
 // Styling the boxes-----------//
-
-
-
 .box
+	// general scaffolding --- /
+	img.icon
+		max-width: 100px
+		+center-block
+		+transition(100ms, linear)
+	.v-mid
+		padding: 0 $box-pad * 2
+	// the ghosty animation on rollover ----------- //
 	$stripe: 120px
 	&:before
 		opacity: 1
@@ -226,25 +262,17 @@ p
 		bottom: -1 * ($stripe * 2)
 		+gradient-horizontal-three-colors(fade-out($white, .99), fade-out($white, .6), 50%, fade-out($white, .99))
 		+rotate(30deg)
-		
 	&:before
 		left: ($stripe * 4) * -1
 		width: $stripe * 3
 		right: auto
 		opacity: 1
-
 	&:hover
 		&:before
 			+transition(300ms linear)
 			+transition-delay(300ms)
 			left: $stripe * 7
 			opacity: 0
-	
-	
-	text-align: center
-	// .title
-	.desc
-		color: fade-out($white, .3)
 
 	&.library
 		.title,
@@ -257,56 +285,128 @@ p
 			float: left
 			margin-right: 20px
 
-	&:hover
-		img
-			transform: scale(1.19)
-	a
-		color: $white
-		text-decoration: none
+	// First round of animation is done---------------------------------------------------
 	
-	img
-		// +transition(100ms)
-		max-width: 120px
-		margin-right: auto
-		margin-left: auto
-		display: block
-
-	&.reading
-		text-align: center
+	// eventually make an animate class.
+	&.library
+		&:hover
+			img.icon
+				transform: scale(1.19)
+	
+	&.tool, &.help
 		img.icon
-			max-width: 90px 
-			margin-bottom: $box-pad 
-	
-	.v-mid
-		// background: fade-out($c01, .4)
-		padding: 0 $box-pad * 2
+			width: 150px
+		
+		&:hover
+			.title
+				margin: $box-pad
+			.info
+				height: $box-h - $box-h/6
+			.categ
+				// font-size: 0px
+				transform: scale(-0.01)
+				opacity: 0
+
+		// .info
+		// .icon
+		.title
+			margin: $box-pad * 2	
+		.desc
+			margin-left: $box-pad
+			margin-right: $box-pad
+
+	&.reading, &.social
+		img.icon
+			width: 90px
+			margin-bottom: $box-pad
+
+	&.subscribe
+		form
+			margin: 30px 0 77px
+			input,
+			button
+				height: 45px
+			button
+				padding-top: 8px
+				text-transform: uppercase
+				position: relative
+				left: -3px
+			input
+				&:focus
+					outline: none
+				width: 60%
 
 
 
 
+
+.disabled
+	height: $box-h - $box-h/2.9
+	// background: fade-out($c02, .4)
+	+place(absolute, auto, 0, 0, 0)
+
+.info
+	height: $box-h - $box-h/2.9
+	// background: fade-out($c02, .4)
+	+place(absolute, auto, 0, 0, 0)
+
+.info,
+.info .title,
 .categ
-	// background: fade-out($c01, .4)
+	+transition(400ms, linear)
+
+// Common elements ---------------------------------------------------
+.categ, .alt
 	+place(absolute, 0, 0px, auto, 0px)
+	opacity: 1
 	color: fade-out($white, .2)
 	padding: $box-pad/2 0
 	text-transform: uppercase
-	font-weight: normal
 	display: block
 	text-align: center
 
+.notice
+	+stretch
+	background: fade-out($black, .5)
+	line-height: $big-h // Rough but it works
+	font-size: 24px
+	font-weight: bold
 
-// .in
-// 	.wrap
 
 
-.in-wrap, .v-mid
-	+size(100%)
-.in-wrap
-	display: table
-	position: relative
-.v-mid
-	display: table-cell
-	vertical-align: middle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -314,7 +414,8 @@ p
 // Navbar ------------//
 nav#navbar
 	padding: $box-pad / 2
-	+gradient-vertical($c11, $c12)
+	background: $black
+	// +gradient-vertical($c11, $c12)
 	height: 53px
 	margin-bottom: $box-pad/2
 
@@ -322,7 +423,7 @@ nav#navbar
 	img
 		max-width: 136px
 
-.block-wrap
+
 	// 
 
 
@@ -333,13 +434,12 @@ nav#navbar
 
 
 
-
-
-
-
-
-
-
+// NEWSLETTER ------------
+.fld
+	+box-sizing(border-box) 
+	padding: $box-pad/3
+	border: 3px solid white
+	background: transparent
 
 
 
@@ -354,10 +454,6 @@ nav#navbar
 // -- quicknav
 .logo
 	max-width: 100px
-
-
-
-
 
 
 // section#intro
@@ -419,9 +515,6 @@ nav#navbar
 // 		background-position: center -270px
 // 	@media screen and (min-width: 2500px)
 // 		background-position: center -330px
-
-// .fld
-// 	+box-sizing(border-box)
 
 // .radios
 // 	padding-bottom: $box-pad
@@ -1569,6 +1662,10 @@ $cursor-disabled: not-allowed !default
 			color: white
 			// border: 1px solid $orange
 
+
+// a sort of reset in this particular case
+button
+	background: transparent
 
 // // Custom Scrollbar ------------------------------------//
 // ::-webkit-scrollbar

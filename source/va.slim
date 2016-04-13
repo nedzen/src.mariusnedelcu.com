@@ -22,53 +22,47 @@ nav#navbar
 		
 		.box.reading.sm-w12.w9
 			div
-				div.in-wrap
-					div.v-mid
-						strong.categ reading
-						=image_tag 'icon_reading.svg', :class=> 'icon'
-						=link_to 'VISIT OUR BLOG', '#', :class=> 'btn white'
+				strong.categ reading
+				div.info
+					=image_tag 'icon_reading.svg', :class=> 'icon'
+					=link_to 'VISIT OUR BLOG', '#', :class=> 'btn white'
 		
 		.box.tool.sm-w12.w9
 			a href="#"
-				div.in-wrap
-					div.v-mid
-						strong.categ tool
-						=image_tag 'icon_experiment.svg'
-						h2 Test Suite
-						.notice COMING SOON
+				strong.alt tool
+				div.disabled
+					=image_tag 'icon_experiment.svg', :class=> 'icon'
+					h2 Test Suite
+			.notice COMING SOON
 		
 		.box.tool.sm-w12.w9
 			a href="#"
-				div.in-wrap
-					div.v-mid
-						strong.categ tool
-						=image_tag 'icon_mic.svg'
-						h2 Voice Tester
-						p Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+				strong.categ tool
+				div.info
+					=image_tag 'icon_mic.svg', :class=> 'icon'
+					h2.title Voice Tester
+					p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
 		
 		.box.social.sm-w24.w6
 			div
-				div.in-wrap
-					div.v-mid
-						strong.categ social
-						=image_tag 'icon_twitter.svg'
-						=link_to 'FOLLOW US', '#', :class=> 'btn white'
-		
+				strong.categ social
+				div.info
+					=image_tag 'icon_twitter.svg', :class=> 'icon'
+					=link_to 'FOLLOW US', '#', :class=> 'btn white'
+	
 		.box.subscribe.sm-w12.w15
 			div
-				div.in-wrap
-					div.v-mid
-						strong.categ social
-						form#subscribe
-							input.fld type="email" name="email" placeholder=""
-							button.btn.white value="subscribe" sbscribe
-						h2 Stay in Touch
+				strong.categ social
+				div.info
+					form#subscribe
+						input.fld type="email" name="email" placeholder=""
+						button.btn.white value="subscribe" subscribe
+					h2 Stay in Touch
 		
 		.box.help.sm-w12.w9
 			a href="#"
-				div.in-wrap
-					div.v-mid
-						strong.categ help
-						=image_tag 'icon_stack.svg'
-						h2 Ask Stackoverflow
-						p Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+				strong.categ help
+				div.info
+					=image_tag 'icon_stack.svg', :class=> 'icon'
+					h2.title Ask Stackoverflow
+					p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
