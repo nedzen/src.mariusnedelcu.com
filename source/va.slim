@@ -7,62 +7,59 @@ layout: layva
 
 nav#navbar
 	.container
-		=link_to (image_tag 'vocalapps_logo.svg'), '#', :class=> 'logo'
+		=link_to (image_tag 'vocalapps_logo.svg', :alt=>'vocal apps'), '#', :class=> 'logo'
 
 .container
-	main.block-wrap
-		.box.library.sm-w12.w15
+	.block-wrap
+		.box.ef-pop.library.sm-w16.w15
 			a href="#"
+				strong.categ library
 				div.in-wrap
 					div.v-mid
-						strong.categ library
-						=image_tag 'icon_dashboard.svg', :class=> 'icon'
-						h2.title Skills Dashboard
-						p.desc Add only two lines of code in your Alexa Skill and benefit of the same ammount of data as the Alexa Designer developer. Get instantly Skill's Analytics. User Log, and much more !
-		
-		.box.reading.sm-w12.w9
+						.icon =image_tag 'icon_dashboard.svg', :alt=> 'dashboard'
+						h2 Skills Dashboard
+						p Add only two lines of code in your Alexa Skill and benefit of the same ammount of data as the Alexa Designer developer. Get instantly Skill's Analytics. User Log, and much more !
+
+		.box.reading.sm-w8.w9
 			div
 				strong.categ reading
-				div.info
-					=image_tag 'icon_reading.svg', :class=> 'icon'
-					=link_to 'VISIT OUR BLOG', '#', :class=> 'btn white'
-		
-		.box.tool.sm-w12.w9
-			a href="#"
-				strong.alt tool
-				div.disabled
-					=image_tag 'icon_experiment.svg', :class=> 'icon'
-					h2 Test Suite
-			.notice COMING SOON
-		
-		.box.tool.sm-w12.w9
+				.icon =image_tag 'icon_reading.svg', :alt=> 'reading'
+				.clickme =link_to 'VISIT OUR BLOG', '#', :class=> 'btn white'
+
+		.box.disabled.tool.sm-w12.w9
 			a href="#"
 				strong.categ tool
-				div.info
-					=image_tag 'icon_mic.svg', :class=> 'icon'
-					h2.title Voice Tester
-					p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+				.icon =image_tag 'icon_experiment.svg', :alt=> 'experiment'
+				h2.title Test Suite
+
+		.box.ef-wop.tool.sm-w12.w9
+			a href="#"
+				strong.categ tool
+				.icon =image_tag 'icon_mic.svg', :alt=> 'mic'
+				h2.title Voice Tester
+				p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
 		
 		.box.social.sm-w24.w6
 			div
 				strong.categ social
-				div.info
-					=image_tag 'icon_twitter.svg', :class=> 'icon'
-					=link_to 'FOLLOW US', '#', :class=> 'btn white'
+				.icon =image_tag 'icon_twitter.svg', :alt=> 'twitter'
+				.clickme =link_to 'FOLLOW US', '#', :class=> 'btn white'
 	
 		.box.subscribe.sm-w12.w15
 			div
 				strong.categ social
-				div.info
-					form#subscribe
-						input.fld type="email" name="email" placeholder=""
-						button.btn.white value="subscribe" subscribe
-					h2 Stay in Touch
+				form#subscribe
+					fieldset
+						.fld-control.email
+							input.fld type="email" name="email" placeholder="email address"
+						.fld-control.push
+							button.btn.white value="subscribe" subscribe
+				h2.title Stay in touch		
 		
-		.box.help.sm-w12.w9
+		.box.ef-wop.help.sm-w12.w9
 			a href="#"
 				strong.categ help
-				div.info
-					=image_tag 'icon_stack.svg', :class=> 'icon'
-					h2.title Ask Stackoverflow
-					p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+				.icon =image_tag 'icon_stack.svg', :alt=> 'stack'
+				h2.title Ask Stackoverflow
+				p.desc Allows you to try the Alexa Voice Service even if you don't have an Echo with you
+#log

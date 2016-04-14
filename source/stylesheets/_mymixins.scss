@@ -12,6 +12,69 @@
 }
 
 
+@mixin desaturate {
+  filter: gray;
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
+
+@mixin saturate {
+  filter: none;
+  -webkit-filter: grayscale(0);
+}
+
+@mixin buttonsize($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
+  user-select: $select;
+}
+
+@mixin navbar-vertical-align($element-height) {
+  margin-top: ($navbar-height - $element-height) / 2;
+  margin-bottom: ($navbar-height - $element-height) / 2;
+}
+
+// the grid:
+
+// @mixin makesomeresponsivecolumns($n: 24) {
+//   $cols: $n;
+//   .box {
+//     position: relative;
+//     overflow: hidden;
+//     width: 100%;
+//     @include transition(200ms);
+//     @media screen and (min-width: $screen-sm) {
+//       min-height: $box-h;
+//       float: left;
+//     }
+//     @media screen and (min-width: $screen-sm) {
+//       @for $i from 1 through $cols - 1 {
+//         &.sm-w#{$i} {
+//           width: $i * 100 / $cols * 1%;
+//         }
+//       }
+//     }
+//     @media screen and (min-width: $screen-md) {
+//       @for $i from 1 through $cols - 1 {
+//         &.w#{$i} {
+//           width: $i * 100 / $cols * 1%;
+//         }
+//       }
+//     }
+//     // @for $i from 1 through $cols - 1
+//     // // @extend %float-it
+//   }
+// }
+
+
 // .jcarousel-wrapper
 //  .jcarousel
 //    ul
@@ -250,19 +313,19 @@ $prefixes: ("-moz-", "-webkit-", "-ms-", "");
 }
 
 // mixin font
-// @mixin lefont ($somefont) {
-//   @font-face {
-//     font-family: $somefont;
-//     // src: font-url($somefont + '.eot'); /* IE9 Compat Modes */
-//     src: 
-//       font-url($somefont + '.eot') format('embedded-opentype'), /* IE6-IE8 */
-//       // things are shifting rapidly towards WOFF and WOFF2 so we might get away with this 2 only:
-//       font-url($somefont + '.woff2') format('woff2'), /* Super Modern Browsers */ 
-//       font-url($somefont + '.woff') format('woff'), /* Pretty Modern Browsers */
-//       font-url($somefont + '.ttf') format('truetype'), /* Safari, Android, iOS */
-//       font-url($somefont + '.svg#gcsbi') format('svg'); /* Legacy iOS */
-//   } 
-// }
+@mixin lefont ($somefont) {
+  @font-face {
+    font-family: $somefont;
+    // src: font-url($somefont + '.eot'); /* IE9 Compat Modes */
+    src: 
+      font-url($somefont + '.eot') format('embedded-opentype'), /* IE6-IE8 */
+      // things are shifting rapidly towards WOFF and WOFF2 so we might get away with this 2 only:
+      font-url($somefont + '.woff2') format('woff2'), /* Super Modern Browsers */ 
+      font-url($somefont + '.woff') format('woff'), /* Pretty Modern Browsers */
+      font-url($somefont + '.ttf') format('truetype'), /* Safari, Android, iOS */
+      font-url($somefont + '.svg#gcsbi') format('svg'); /* Legacy iOS */
+  } 
+}
 // WebKit-style focus
 
 @mixin tab-focus() {

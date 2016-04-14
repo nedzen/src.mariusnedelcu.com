@@ -1,11 +1,11 @@
-@import 'mymixins'
+// @import 'mymixins'
 @import 'normalize'
 @import 'va_variables'
 
 // Table of Contents ¯\_(ツ)_/¯
-// 1) - reboot
-// 2) - mixins
-// 3) - scafolding
+// 1) - mixins
+// 2) - reboot
+// 3) - typography
 // ---- website sections ------
 // 4) - INTRO
 // 5) - STATS
@@ -20,33 +20,124 @@
 // 13) - carousel
 // 14) - nav + dropdown
 // 15) - buttons
+// mixins--------------------------------------------------
+=box-sizing($boxmodel)
+	-webkit-box-sizing: $boxmodel
+	-moz-box-sizing: $boxmodel
+	box-sizing: $boxmodel
 
+=clearfix
+	&:before,
+	&:after
+		content: " "
+		// 1
+		display: table
+		// 2
+	&:after
+		clear: both
 
+// quick positioning
+=place($pos: static, $a: 0, $b: 0, $c: 0, $d: 0)
+	position: $pos
+	top: $a
+	right: $b
+	bottom: $c
+	left: $d
 
-// .test
-// 	outline: 15px solid red
-// 	height: 100px
+// Center-align a block level element
+=center-block
+	display: block
+	margin-left: auto
+	margin-right: auto
+
+=size($width, $height: $width)
+	width: $width
+	height: $height
+
+=transition($transition...)
+	-webkit-transition: $transition
+	-o-transition: $transition
+	transition: $transition
+
+=gradient-directional($start-color: #555555, $end-color: #333333, $deg: 45deg)
+	background-repeat: repeat-x
+	background-image: linear-gradient($deg, $start-color, $end-color)
+
+=stretch($a: 0, $b: 0, $c: 0, $d: 0)
+	position: absolute
+	top: $a
+	left: $b
+	right: $c
+	bottom: $d
+
+=gradient-horizontal-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f)
+	background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color)
+	background-repeat: no-repeat
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1)
+	// IE9 gets no color-stop at all for proper fallback
+
+=rotate($val: -2deg)
+	-webkit-transform: rotate($val)
+	-moz-transform: rotate($val)
+	-ms-transform: rotate($val)
+	-o-transform: rotate($val)
+	transform: rotate($val)
+
+=transition-delay($transition-delay)
+	-webkit-transition-delay: $transition-delay
+	transition-delay: $transition-delay
+
+=buttonsize($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+	padding: $padding-vertical $padding-horizontal
+	font-size: $font-size
+	line-height: $line-height
+	border-radius: $border-radius
+
+@mixin user-select($select)
+	-webkit-user-select: $select
+	-moz-user-select: $select
+	-ms-user-select: $select
+	user-select: $select
+
+=tab-focus
+	outline: thin dotted
+	outline: 5px auto -webkit-focus-ring-color
+	outline-offset: -2px
+
+// The grid ---------/
+=makesomeresponsivecolumns($n:24)
+	$cols: $n
+	.box
+		position: relative
+		overflow: hidden
+		width: 100%
+		+transition(200ms)
+		@media screen and (min-width: $screen-sm)
+			min-height: $box-h
+			float: left
+		@media screen and (min-width: $screen-sm)
+			@for $i from 1 through $cols - 1
+				&.sm-w#{$i}
+					width: ($i * 100/$cols) * 1%
+		@media screen and (min-width: $screen-md)
+			@for $i from 1 through $cols - 1
+				&.w#{$i}
+					width: ($i * 100/$cols) * 1%
 
 // --------------------------------------------------------
 // REBOOT reset + defaults
 // --------------------------------------------------------
 
-
-// icon_experiment.svg
-// icon_stack.svg
-// icon_mic.svg
-// icon_twitter.svg
-// icon_reading.svg
-// icon_dashboard.svg
-// vocalapps_logo.svg
-
 li
 	list-style-type: none
+
 ul
 	margin: 0
 	padding: 0
+
 fieldset
 	border: 0
+	padding: 0
 
 hr
 	display: block
@@ -66,36 +157,41 @@ body, html
 *:before, *:after
 	+box-sizing(border-box)
 
-// mixins util --------------------------------------------------------
-=desaturate
-	filter: gray //IE6-9
-	filter: grayscale(1)  //Firefox 35+
-	-webkit-filter: grayscale(1) // Google Chrome, Safari 6+ & Opera 15+
 
-=saturate
-	filter: none
-	-webkit-filter: grayscale(0)
+// Typography ---------------------------------//
+body
+	color: $body-color
+	font-family: $font-family-base
+	-webkit-font-smoothing: antialiased
+	color: white
 
-=button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
-	padding: $padding-vertical $padding-horizontal
-	font-size: $font-size
-	line-height: $line-height
-	border-radius: $border-radius
+section
+	header
+		h2
+			font-size: 2em
+p
+	font-size: 0.9em
+	line-height: 1.3em
 
-=user-select($select)
-	-webkit-user-select: $select
-	-moz-user-select: $select
-	-ms-user-select: $select  // IE10+
-	user-select: $select
+.box
+	text-align: center
+	color: white
+	a
+		color: $white
+		text-decoration: none
+	p
+		color: fade-out($white, .3)
+		strong
+			font-weight: bold
+	
+	strong
+		font-weight: normal
 
-=navbar-vertical-align($element-height)
-	margin-top: (($navbar-height - $element-height) / 2)
-	margin-bottom: (($navbar-height - $element-height) / 2)
 
+// --------------------------------------------//
+/* Scaffolding --------------------------------*/
+// --------------------------------------------//
 
-
-// -------------------------------------------------------------------------------------------
-// scaffolding
 section
 	margin: $box-pad 0
 	padding: $box-pad * 2 0
@@ -112,80 +208,18 @@ section
 	max-width: $screen-lg
 	margin: 0 auto
 
-// centers the elements
+// vertical align the elements
 .in-wrap, .v-mid
 	+size(100%)
+
 .in-wrap
 	display: table
 	position: relative
+
 .v-mid
 	display: table-cell
 	vertical-align: middle
-
-
-// Typography ---------------------------------//
-
-body
-	color: $body-color
-	font-family: $font-family-base
-	-webkit-font-smoothing: antialiased
-	// font-family: 'Open Sans', sans-serif
-
-section
-	header
-		h2
-			font-size: 2em
-			// color: $darkblue
-
-p
-	font-size: 0.9em
-	line-height: 1.3em
-
-.box
-	text-align: center
-	color: white
-	.desc
-		color: fade-out($white, .3)
-	a
-		color: $white
-		text-decoration: none
-	
-	strong
-		font-weight: normal
-
-	p
-		strong
-			font-weight: bold
-
-
-// --------------------------------------------//
-/* Scaffolding --------------------------------*/
-// --------------------------------------------//
-
-
-// The grid ---------/
-$cols: 24
-$box-h: 300px
-
-=makesomeresponsivecolumns
-	.box
-		position: relative
-		overflow: hidden
-		width: 100%
-		+transition(200ms)
-		@media screen and (min-width: $screen-sm)
-			min-height: $box-h
-			float: left
-		@media screen and (min-width: $screen-sm)
-			@for $i from 1 through $cols - 1
-				&.sm-w#{$i}
-					width: ($i * 100/$cols) * 1%
-		@media screen and (min-width: $screen-md)
-			@for $i from 1 through $cols - 1
-				&.w#{$i}
-					width: ($i * 100/$cols) * 1%		
-		// @for $i from 1 through $cols - 1
-			// @extend %float-it
+// look for variables elsewhere
 
 // use classes .sm-w1 etc to sm-w24 for screens between 480px and 768px
 // use classes .w1 etc to w24 for screens between 768px up
@@ -204,11 +238,7 @@ $box-h: 300px
 		position: relative
 		margin-left: ($box-pad/3) * -1
 		margin-right: ($box-pad/3) * -1
-	
 
-// configure the height for boxes on mobile screens
-$big-h: 300px
-$sm-h: 300px
 
 =height-mobile($val)
 	@media screen and (max-width: $screen-sm)
@@ -235,12 +265,6 @@ $sm-h: 300px
 	> a, > div
 		+stretch(0, 0, 0, 0)
 		border: $box-pad/3 solid white
-
-
-
-
-
-
 
 
 // Styling the boxes-----------//
@@ -274,141 +298,188 @@ $sm-h: 300px
 			left: $stripe * 7
 			opacity: 0
 
-	&.library
-		.title,
-		.desc
-			margin-left: 130px
+	// --------------------------------------------- //
+	// first two boxes are higher.
+	&.library,
+	&.reading
+		height: $big-h
+	// --------------------------------------------- //
 	
-		img.icon
-			bottom: -10px
-			position: relative
-			float: left
-			margin-right: 20px
-
-	// First round of animation is done---------------------------------------------------
-	
-	// eventually make an animate class.
-	&.library
-		&:hover
-			img.icon
-				transform: scale(1.19)
-	
-	&.tool, &.help
-		img.icon
-			width: 150px
-		
-		&:hover
-			.title
-				margin: $box-pad
-			.info
-				height: $box-h - $box-h/6
-			.categ
-				// font-size: 0px
-				transform: scale(-0.01)
-				opacity: 0
-
-		// .info
-		// .icon
-		.title
-			margin: $box-pad * 2	
-		.desc
-			margin-left: $box-pad
-			margin-right: $box-pad
-
 	&.reading, &.social
 		img.icon
 			width: 90px
 			margin-bottom: $box-pad
 
-	&.subscribe
-		form
-			margin: 30px 0 77px
-			input,
-			button
-				height: 45px
-			button
-				padding-top: 8px
-				text-transform: uppercase
-				position: relative
-				left: -3px
-			input
-				&:focus
-					outline: none
-				width: 60%
+// default height for icons some might need to be smaller
+.icon
+	img
+		max-width: 110px
 
+.v-mid .icon
+	top: auto
+	left: auto
+	right: auto
+	bottom: auto
+	display: block
+	float: left
+	position: static
+	width: 120px
+	margin-right: $box-pad
 
+//Secondary effects are on a class ////
+.ef-pop
+	&:hover
+		.icon
+			img
+				transform: scale(1.19)
+	.icon
+		img
+			+transition(200ms)
+			max-width: 120px
+		@media screen and (max-width: $screen-xs)
+			img
+				max-width: 100px
+			padding: $box-pad 0 $box-pad/2
+			float: none
+			margin: 0
+			width: 100%
+	h2
+		margin: 0
+	p
+		@media screen and (min-width: $screen-xs)
+			margin-left: 110px
+			
+.ef-wop
+	&:hover
+		.categ
+			transform: scale(-0.01)
+			opacity: 0
 
+		.icon
+			$hx: 36%
+			$top: 10%
+			top: $top
+			bottom: 100% - ($top + $hx)
 
+		.title
+			bottom: 30%
+		.desc
+			top: 75%
 
-.disabled
-	height: $box-h - $box-h/2.9
-	// background: fade-out($c02, .4)
-	+place(absolute, auto, 0, 0, 0)
+.icon
+	img
+		max-height: 100%
+		max-width: 100%
 
-.info
-	height: $box-h - $box-h/2.9
-	// background: fade-out($c02, .4)
-	+place(absolute, auto, 0, 0, 0)
+.icon, .title, .clickme, .desc
+	+transition(400ms)
+	margin: 0
+	padding: 0 
+	position: absolute
+	left: 0
+	right: 0
 
-.info,
-.info .title,
-.categ
-	+transition(400ms, linear)
+.icon
+	$hx: 36%
+	$top: 27%
+	top: $top
+	bottom: 100% - ($top + $hx)
+
+.title, .clickme
+	bottom: 10%
+
+.desc
+	top: 100%
+	left: 5%
+	right: 5%
+
+div.box.disabled
+	&:after
+		+stretch(7px, 7px, 7px, 7px)
+		content: 'COMING SOON'
+		background: fade-out($black, .5)
+		line-height: $box-h // Rough but it works
+		font-size: 24px
+		font-weight: bold
+		cursor: wait
+
+	strong.categ,
+	&:hover strong.categ
+		transform: scale(1)
+		opacity: 1
 
 // Common elements ---------------------------------------------------
-.categ, .alt
+.categ
 	+place(absolute, 0, 0px, auto, 0px)
-	opacity: 1
-	color: fade-out($white, .2)
 	padding: $box-pad/2 0
+	color: fade-out($white, .2)
+	opacity: 1
 	text-transform: uppercase
-	display: block
 	text-align: center
-
-.notice
-	+stretch
-	background: fade-out($black, .5)
-	line-height: $big-h // Rough but it works
-	font-size: 24px
-	font-weight: bold
+	+transition(400ms)
 
 
+// NEWSLETTER ------------
+.fld
+	padding: $box-pad/3
+	border: 3px solid white
+	background: transparent
+	outline: none
+	box-shadow: inset 3px 3px 0px fade-out($black, .9)
+	// grouping the selectors together doesn't work. Leave it like this
+	&::-webkit-input-placeholder
+		color: fade-out(white, .3)
+		font-style: italic
+	&:-moz-placeholder
+		color: fade-out(white, .3)
+		font-style: italic
+	&::-moz-placeholder
+		color: fade-out(white, .3)
+		font-style: italic
+	&:-ms-input-placeholder
+		color: fade-out(white, .3)
+		font-style: italic
 
+	@media screen and (min-width: $screen-xs)
+		border-right: 0
 
+form#subscribe
+	+place(absolute, 50%, 0, 50%, 0)
+	
+	fieldset
+		max-width: 80%
+		height: 90px
+		position: relative
+		margin-top: -11% // very important
+		+center-block
+	
+	input, button
+		height: 43px
+		width: 100%
+	
+	button
+		outline: none
+		@media screen and (max-width: $screen-xs)
+			border-top: 0
+	
+	@media screen and (min-width: $screen-xs)
+		.fld-control
+			position: absolute
+			top: 0
+			bottom: 0
+			
+			$btn-w: 150px
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			&.email
+				left: 0
+				right: $btn-w
+			&.push
+				width: $btn-w
+				right: 0
+		
+		fieldset
+			height: 45px
+			margin-top: -3.5% // very important
 
 
 // Navbar ------------//
@@ -420,1184 +491,11 @@ nav#navbar
 	margin-bottom: $box-pad/2
 
 .logo
-	img
-		max-width: 136px
+	max-width: 139px
+	display: block
 
 
-	// 
-
-
-
-
-
-
-
-
-
-// NEWSLETTER ------------
-.fld
-	+box-sizing(border-box) 
-	padding: $box-pad/3
-	border: 3px solid white
-	background: transparent
-
-
-
-
-
-
-
-
-
-
-
-// -- quicknav
-.logo
-	max-width: 100px
-
-
-// section#intro
-// 	margin-bottom: 0
-
-// #intro
-// 	h1, p
-// 		+center-block
-// 		color: white
-// 		margin-bottom: $box-pad
-// 		letter-spacing: 1px
-// 		text-align: center
-// 		text-shadow: 1px 1px 0px fade-out(#000, .7)
-	
-// 	p
-// 		font-size: 1.2em
-	
-// 	@media screen and (min-width: $screen-md)
-// 		h1
-// 			font-size: 2.6em
-// 			margin-bottom: 0
-	
-// 	.mask
-// 		+size(100%)
-// 		background-color: fade-out(black, 0.6)
-// 		position: relative
-// 		+stretch
-	
-// 	.contents
-// 		display: table
-// 		+size(100%)
-
-// 	.wrap
-// 		display: table-cell
-// 		vertical-align: middle
-// 		// The customer satisfaction thingy
-// 		h3
-// 			display: block
-// 			text-align: center
-// 			color: #fff
-// 			@media screen and (max-width: $screen-xs)
-// 				font-size: 16px
-// 			.rating
-// 				margin: 0 3px 
-// 				display: inline-block
-// 				vertical-align: top
-	
-// 	position: relative	
-// 	margin-top: 50px // nav height
-// 	min-height: 600px
-// 	+background-image('header_img.jpg')
-// 	// background-color: fade-out($c02, 0.6)
-// 	// background-blend-mode: multiply
-// 	background-size: cover
-// 	background-position: center
-// 	@media screen and (min-width: 1500px)
-// 		background-position: center -220px
-// 	@media screen and (min-width: 2000px)
-// 		background-position: center -270px
-// 	@media screen and (min-width: 2500px)
-// 		background-position: center -330px
-
-// .radios
-// 	padding-bottom: $box-pad
-// 	padding-top: $box-pad / 2
-// 	label
-// 		padding-right: $box-pad
-// 		display: inline-block
-// 		color: white
-// 		cursor: pointer
-// 	input
-// 		margin-right: 10px
-
-// #query
-// 	display: block
-// 	padding: 3px 16px 0 16px
-// 	margin-top: $box-pad * 2
-// 	background: fade-out($darkblue, .3)
-// 	border-radius: 2px
-// 	max-width: $screen-lg
-// 	+center-block
-// 	+box-sizing(border-box)
-	
-// 	fieldset
-// 		padding: 0px 
-// 		+center-block
-// 		border: 0
-
-// 	.form-group
-// 		margin-bottom: 10px
-// 		&.compact
-// 			label
-// 				display: inline-block
-// 			input
-// 				width: 79%
-// 				display: inline-block
-// 				div.sect-bag
-// 					text-align: right
-// 					float: none
-	
-// 	.fld
-// 		&:active,
-// 		&:focus
-// 			box-shadow: none
-// 			box-shadow: inset 0px 0px 0px 2px $orange
-// 			border: 0
-		
-// 		height: 40px
-// 		padding-left: $box-pad
-// 		border: 0px
-// 		font-weight: normal
-// 		font-size: 1em
-// 		outline: none
-// 		box-shadow: inset 0px 0px 0px 1px $darkblue
-// 		+transition(200ms)
-	
-// 	// @media screen and (min-width: 480px)
-// 	// @media screen and (min-width: 480px)
-// 		// padding: 10px 0
-// 		// fieldset
-// 		// width: 480px
-// 		// border-radius: 6px
-
-// 	@media screen and (max-width: $screen-md)
-// 		outline-width: 5px
-// 		max-width: $screen-xs
-// 		.fld
-// 			display: block
-// 			width: 100%
-// 		.form-group
-// 			width: 100%
-		
-// 		.detail
-// 			+clearfix
-// 			input.fld
-// 				float: left
-// 				width: 50%
-// 		.submit button
-// 			display: block
-// 			width: 100%
-	
-// 	@media screen and (min-width: $screen-md)
-// 		// padding: 30px 0
-// 		fieldset
-// 			position: relative
-// 			+size (100%, 60px)
-// 		.form-group
-// 			position: absolute
-// 			.fld
-// 				width: 100%
-			
-// 			$val: 15
-// 			$fourth: $val * 1%
-// 			$fifth: $val * 1%
-// 			$first: (100 - $val * 2) / 3 * 1%
-// 			$second: (100 - $val * 2) / 3 * 1%
-// 			$third: (100 - $val * 2) / 3 * 1%
-
-// 			&.adress-depart
-// 				left: 0
-// 				right: $second + $third + $fourth + $fifth //first width
-// 				z-index: 10
-
-// 			&.adress-arrive
-// 				left: $first
-// 				right: $third + $fourth + $fifth //second width
-// 				z-index: 11
-				
-// 			&.hour-depart
-// 				left: $first + $second
-// 				right: $fourth + $fifth //first width
-// 				z-index: 12
-				
-// 			&.detail
-// 				left: $first + $second + $third
-// 				right: $fifth
-// 				.fld
-// 					width: 50%
-// 					float: left
-			
-// 			&.submit
-// 				left: $first + $second + $third + $fourth
-// 				right: 0
-// 				padding-left: 10px
-// 				.btn
-// 					width: 100%
-
-// 	.detail
-// 		input.fld
-// 			background-size: 40px auto
-// 			background-position: left
-// 			text-indent: 23px
-// 			// background-color: transparent
-// 			&.user
-// 				+background-image('icon_user.svg')
-// 				background-repeat: no-repeat
-// 			&.bag
-// 				+background-image('icon_bag.svg')
-// 				background-repeat: no-repeat
-
-
-	
-
-
-
-
-// // --------------------------------------------//
-// /* LATEST TRIPS ------------------------------ */
-// // --------------------------------------------//
-// section#stats
-// 	margin-top: 0
-// 	background: #eee
-// 	color: #727272
-// 	strong
-// 		font-weight: normal
-// 		text-transform: capitalize
-// 	h2
-// 		color: #FF9226
-// 		margin: $box-pad / 2
-
-// .statslist
-// 	&, li
-// 		display: block
-
-// 	li
-// 		text-align: center
-// 		@media screen and (min-width: $screen-xs)
-// 			width: 50%
-// 			float: left
-// 		@media screen and (min-width: $screen-sm)
-// 			width: 25%
-	
-// 	img
-// 		max-width:  80px
-
-
-
-// // --------------------------------------------//
-// /* HOW IT WORKS --------------------------------- */
-// // --------------------------------------------//
-// // #howitworks
-
-// .howlist
-// 	&, li
-// 		display: block
-
-// 	li
-// 		h3
-// 			color: $darkblue
-// 		text-align: center
-// 		> strong
-// 			+square(40px)
-// 			+center-block
-// 			border-radius: 50%
-// 			text-align: center
-// 			border: 3px solid #eee
-// 			padding-top: 4px
-// 			font-size: 1.5em
-// 			color: $darkblue
-// 			margin-bottom: $box-pad
-// 			+box-sizing(border-box)
-
-// 		@media screen and (min-width: $screen-sm)
-// 			width: (100 / 3)  * 1%
-// 			float: left
-		
-// 		// @media screen and (min-width: $screen-sm)
-// 			// width: 25%
-// 	img
-// 		+center-block
-// 		max-width: 230px
-
-// 	strong
-// 		display: block
-
-
-
-
-
-
-// // --------------------------------------------//
-// /* The Press ---------------------------------- */
-// // --------------------------------------------//
-
-// #press
-// 	+background-image('pressbg.jpg')
-// 	background-size: auto 100%
-
-// section.dark
-// 	h2
-// 		color: #fff
-// 	color: #fff
-// 	.next,
-// 	.prev
-// 		&:before,
-// 		&:after
-// 			background: #fff
-// 	.indicators
-// 		a
-// 			border: 1px solid #fff
-// 		.active
-// 			background: #fff
-
-// .jcarousel-wrap
-// 	padding-left: $box-pad
-// 	padding-right: $box-pad
-
-// .prslist
-// 	display: block
-// 	+clearfix
-// 	li
-// 		img
-// 			+center-block
-
-
-
-
-
-// // --------------------------------------------//
-// /* LATEST TRIPS ------------------------------ */
-// // --------------------------------------------//
-
-// #latest
-// 	+background-image('mapbg.jpg')
-// 	background-size: auto 100%
-
-// .ltslist
-// 	&, li
-// 		display: block
-// 	position: relative
-// 	+clearfix
-	
-// 	li
-// 		padding: 0 $box-pad
-// 		+box-sizing(border-box)
-	
-
-
-// // The box ------------------------------------//
-// .box
-// 	max-width: 280px
-// 	min-height: 280px
-// 	margin: 0 auto
-// 	border: 3px solid $darkblue
-// 	border-radius: 5px
-// 	color: $darkblue
-
-// .transp
-// 	> div
-// 		+place(absolute, auto, 16px, 6px, auto)
-// 		padding: $box-pad/3 40px $box-pad/3 0
-// 		background-position: bottom right
-// 		background-size: 30px
-// 	.a
-// 		+background-image('a.svg')
-// 		background-repeat: no-repeat
-// 	.ar
-// 		+background-image('ar.svg')
-// 		background-repeat: no-repeat
-
-// 	position: relative
-// 	border-bottom: 2px solid $darkblue
-// 	padding: $box-pad $box-pad 43px
-// 	background-size: 90px 32px
-// 	background-position: bottom left
-// 	&.minivan
-// 		+background-image('minivan.svg')
-// 		background-repeat: no-repeat
-// 	&.bus
-// 		+background-image('bus.svg')
-// 		background-repeat: no-repeat
-// 	&.taxi
-// 		+background-image('taxi.svg')
-// 		background-repeat: no-repeat
-// 		background-size: 90px 28px
-
-// .route
-// 	padding-left: 57px
-
-// .passengers
-// 	+place(absolute, 7px, auto, auto, 0)
-// 	min-width: 15px
-// 	padding: 4px 27px 3px 4px
-// 	text-align: right
-// 	border-radius: 3px
-// 	color: white
-// 	+background-image('user_simplified.svg')
-// 	background-color: $darkblue	
-// 	background-repeat: no-repeat
-// 	background-position: right
-// 	background-size: 33px auto
-
-// .details
-// 	position: relative
-// 	height: 40px
-// 	padding: $box-pad
-
-// .in-wrap, .v-mid
-// 	+size(100%)
-// .in-wrap
-// 	display: table
-// 	position: relative
-// .v-mid
-// 	display: table-cell
-// 	vertical-align: middle
-
-// .order,
-// .price
-// 	text-align: center
-// 	padding: $box-pad 0
-
-// .order
-// 	border: 2px dashed $darkblue
-// 	border-left: 0
-// 	border-right: 0
-
-// .price
-// 	font-size: 2em
-// 	line-height: 1em
-// 	font-weight: 500
-
-
-
-// // --------------------------------------------//
-// /* Partners ---------------------------------- */
-// // --------------------------------------------//
-// // #trustus
-
-// .partners
-// 	width: 100%
-// 	text-align: center
-// 	li
-// 		&:hover
-// 			img
-// 				+saturate
-		
-// 		img
-// 			+transition(100ms)
-// 			+desaturate
-// 			max-width: 90px
-
-// 		width: (100 / 3) * 1%
-// 		@media screen and (min-width: $screen-xs)	
-// 			width: (100 / 3) * 1%
-// 			img
-// 				max-width: 106px
-// 		@media screen and (min-width: $screen-sm)
-// 			width: (100 / 4) * 1%
-// 		@media screen and (min-width: $screen-sm)
-// 			width: (100 / 5) * 1%
-// 		@media screen and (min-width: $screen-md)
-// 			width: (100 / 6) * 1%
-		
-// 		display: inline-block
-// 		padding: $box-pad 0
-
-
-
-// // --------------------------------------------//
-// /* USER REVIEWS ------------------------------ */
-// // --------------------------------------------//
-// // #reviews
-
-// .revlist
-// 	&, li
-// 		display: block
-// 	position: relative
-// 	+clearfix
-	
-// 	li
-// 		padding: 0 $box-pad $box-pad
-// 		+box-sizing(border-box)
-// 		a
-// 			&:hover
-// 				text-decoration: underline
-// 			color: $darkblue
-// 			font-weight: bold
-// 			text-decoration: none
-// 		h4
-// 			margin-bottom: 0
-// 		p
-// 			font-style: italic
-
-
-// // the rating indicator
-// // --------------------------------------------//
-// .rating
-// 	$w: 20px
-// 	+background-image('star.svg')
-// 	// background-repeat: no-repeat
-// 	background-size: $w $w
-// 	height: $w
-// 	margin-bottom: $box-pad/2
-// 	span
-// 		color: $orange
-// 		background: white
-// 		display: inline-block
-// 		float: right
-// 		width: 50px
-// 		position: relative
-// 		right: -60px
-// 		font-weight: bold
-	
-// 	&.one
-// 		&.half
-// 			width: $w + $w/2
-// 		width: $w
-// 	&.two
-// 		&.half
-// 			width: $w * 2 + $w/2
-// 		width: $w * 2
-// 	&.three
-// 		&.half
-// 			width: $w * 2 + $w/2
-// 		width: $w * 3 + $w/2
-// 	&.four
-// 		&.half
-// 			width: $w * 4 + $w/2
-// 		width: $w * 4
-// 	&.five
-// 		width: $w * 5
-
-
-
-
-// // --------------------------------------------//
-// /* AFFILIATE --------------------------------- */
-// // --------------------------------------------//
-
-// #affiliate
-// 	position: relative
-// 	overflow: hidden
-
-// .aflist
-// 	display: block
-// 	text-align: center
-
-// 	@media screen and (min-width: $screen-lg)
-// 		margin-right: -5px
-// 		margin-left: -5px
-	
-// 	li
-// 		display: inline-block
-// 		width: (100 / 2) * 1%
-// 		position: relative
-// 		+box-sizing(border-box)
-// 		a
-// 			&:hover
-// 				em
-// 					opacity: 1
-// 			img
-// 				width: 100%
-// 			+stretch(0, 5px, 5px, 5px)
-// 			border: 1px solid #ccc
-// 			color: $darkblue
-			
-// 			em, strong
-// 				+box-sizing(border-box)
-			
-// 			em
-// 				+stretch(0, 0, 0, auto)
-// 				height: 65%
-// 				padding-top: 20%
-// 				font-style: normal
-// 				font-weight: bold
-// 				color: white
-// 				background: fade-out(black, 0.5)
-// 				+transition(200ms)
-// 				opacity: 0
-// 				z-index: 8
-			
-// 			.in-wrap
-// 				height: (100 - 65) * 1%
-// 				background: white
-// 				+stretch(auto, 0, 0, 0)
-// 				// font-size: $font-size-small
-// 				z-index: 9
-// 				padding-left: $box-pad / 2
-// 				padding-right: $box-pad / 2
-// 				+box-sizing(border-box)
-
-
-// 		&:before
-// 			content: ""
-// 			display: block
-// 			padding-top: 86%
-		
-// 	@media screen and (min-width: $screen-xs)
-// 		li
-// 			width: (100 / 3) * 1%
-
-// 	@media screen and (min-width: $screen-sm)
-// 		li
-// 			width: (100 / 4) * 1%
-	
-// 	@media screen and (min-width: $screen-md)
-// 		li
-// 			width: (100 / 5) * 1%
-
-
-
-
-
-
-
-
-
-
-
-// // --------------------------------------------//
-// /* FOOTER ------------------------------------ */
-// // --------------------------------------------//
-
-// // Promo part ---------------------------------//
-// section#bottom
-// 	padding: 0
-// 	margin-bottom: 0
-// 	clear: both
-// 	background: #111
-// 	h2
-// 		font-weight: 400
-// 		color: white
-// 		margin-bottom: 0
-// 	h3
-// 		font-weight: 400
-// 		@media screen and (min-width: $screen-sm)
-// 			margin-top: 0
-
-// .actprovider
-// 	+background-image('ftrbg.jpg')
-// 	background-position: top center
-// 	background-size: cover
-// 	background-repeat: repeat-x
-// 	padding: $box-pad 0
-// 	color: #fff
-// 	min-height: 113px
-	
-// 	.le-button, header
-// 		text-align: center
-	
-// 	.le-button
-// 		.btn.big
-// 			padding-left: $box-pad * 4
-// 			padding-right: $box-pad * 4
-// 			font-weight: bold
-
-// 	@media screen and (max-width: $screen-sm)
-// 		h2
-// 			margin-top: 0
-// 		h3
-// 			margin: 0
-// 		.le-button
-// 			text-align: center
-	
-// 	@media screen and (min-width: $screen-sm)
-// 		.le-button, header
-// 			+box-sizing(border-box)
-// 			width: 50%
-// 			display: inline-block
-// 			vertical-align: top
-// 		header
-// 			text-align: right
-// 		.le-button
-// 			text-align: left
-// 			padding: $box-pad * 2 0 0 $box-pad * 2
-		
-
-
-// // The Main Footer -------------------------//
-// #footer
-// 	@media screen and (max-width: $screen-lg)
-// 		padding-left: $box-pad
-// 		padding-right: $box-pad
-
-// 	color: white
-// 	font-size: 15px
-// 	padding-top: $box-pad
-// 	padding-bottom: $box-pad
-	
-// 	h3
-// 		color: #bbb
-// 	p
-// 		color: #bbb
-// 	ul
-// 		li
-// 			line-height: 26px
-// 			font-weight: bold
-// 			a
-// 				color: #FFF
-// 				+transition(200ms)
-// 				&:hover
-// 					color: $orange
-// 	a
-// 		color: white
-// 		text-decoration: none
-	
-// 	.logo
-// 		opacity: .5
-// 		width: 100%
-// 		margin-bottom: $box-pad
-// 		img
-// 			max-width: 200px
-	
-// 	.col.first p
-// 		@media screen and (min-width: $screen-xs)
-// 			padding-right: 30px
-// 		@media screen and (min-width: $screen-md)
-// 			padding-right: 60px
-// 	@media screen and (min-width: $screen-xs)
-// 		.col
-// 			vertical-align: top
-// 			display: inline-block
-// 			width: 50%
-	
-// 	@media screen and (min-width: $screen-sm)
-// 		.col
-// 			width: 25%
-// 			&.first
-// 				width: 35%
-// 			&.second
-// 				width: 15%
-
-
-
-
-
-
-// // Social button ------------------------------//
-// // --------------------------------------------//
-
-// ul.social
-// 	display: block
-// 	padding: $box-pad 0
-// 	li
-// 		display: inline-block
-// 		margin-right: 10px
-// 		a
-// 			&:hover
-// 				top: 3px
-// 			+transition(200ms)
-// 			top: 0
-// 			position: relative
-// 			display: block
-// 			background-repeat: no-repeat
-// 			text-indent: -99999px
-// 			overflow: hidden
-// 			border-radius: 50%
-// 			background-color: #333
-// 			+square(33px)
-		
-// 		&.li
-// 			a
-// 				+background-image('ico_li.svg')
-// 				&:hover
-// 					background-color: #007bb5
-// 		&.tw
-// 			a
-// 				+background-image('ico_tw.svg')
-// 				&:hover
-// 					background-color: #55acee
-// 		&.fb
-// 			a
-// 				+background-image('ico_fb.svg')
-// 				&:hover
-// 					background-color: #3b5998
-// 		&.gp
-// 			a
-// 				+background-image('ico_gb.svg')
-// 				&:hover
-// 					background-color: #dd4b39
-
-
-
-
-// // Le carousel --------------------------------//
-// // --------------------------------------------//
-
-// .jcarousel-wrap
-// 	position: relative
-
-// .jcarousel
-// 	&, ul
-// 		position: relative
-// 	overflow: hidden
-// 	width: 100%
-
-// 	ul
-// 		width: 20000em
-// 		list-style: none
-// 		margin: 0
-// 		padding: 0
-
-// 	li
-// 		width: 200px // maybe it's useless
-// 		float: left
-// 		+box-sizing(border-box)
-
-
-// // Carousel Controls ----------------------- //
-// .prev,
-// .next
-// 	&:hover
-// 		&:before, 
-// 		&:after
-// 			background: $orange
-	
-// 	$line: $box-pad * 2.5	
-// 	top: 38%
-// 	display: block
-// 	+size(24px, 60px)
-// 	text-align: left
-// 	position: absolute
-// 	padding: 0
-// 	color: transparent
-// 	cursor: pointer
-// 	text-indent: -9000px
-// 	overflow: hidden
-
-// 	&:before,
-// 	&:after
-// 		content: ''
-// 		position: absolute
-// 		right: 0px
-// 		+size($line/2 ,3px)
-// 		background: $darkblue
-// 		+transition(200ms)
-// 	&:after
-// 		+rotate(-45deg)
-// 		top: 36px
-// 	&:before
-// 		top: 24px
-// 		+rotate(45deg)
-
-// .prev
-// 	&:hover
-// 	+rotate(180deg)
-// 	left: 0
-// .next
-// 	&:hover
-// 	right: 0px
-
-
-// // Carousel Pagination ----------------------- //
-// .indicators
-// 	// -webkit-transform: translate(-50%, 0)
-// 	// -ms-transform: translate(-50%, 0)
-// 	// transform: translate(-50%, 0)
-// 	// margin: 0
-// 	text-align: center
-// 	a
-// 		text-decoration: none
-// 		display: inline-block
-// 		+square(13px)
-// 		line-height: 10px
-// 		border: 1px solid $darkblue
-// 		border-radius: 10px
-// 		text-indent: -9999px
-// 		margin: 4px
-
-// 		&.active
-// 			background: $darkblue
-// 			color: #fff
-// 			opacity: 1
-
-
-
-
-
-
-
-// // dropdown -----------------------------------//
-// // --------------------------------------------//
-$nav-link-color: #fff
-$cw: 4px
-$zindex-dropdown: 10
-$dropdown-link-color: $nav-link-color
-// $dropdown-bg: $darkblue
-$cursor-disabled: not-allowed !default
-
-// // Dropdown arrow/caret
-// .dropdown
-// 	position: relative
-
-// .dropdown-toggle
-// 	outline: 0
-// 	// position: relative
-// 	&:after
-// 		content: ''
-// 		position: relative
-// 		right: -6px
-// 		display: inline-block
-// 		+square(0)
-// 		margin-left: 2px
-// 		vertical-align: middle
-// 		border-top:   $cw dashed
-// 		border-top:   $cw solid \9 // IE8
-// 		border-right: $cw solid transparent
-// 		border-left:  $cw solid transparent
-
-
-// 		// +place(absolute, 5px, 5px, auto aut)
-
-// .dropdown-menu
-// 	+place(absolute, 100%, auto, auto, 0)
-// 	z-index: $zindex-dropdown
-// 	display: none
-// 	float: left
-// 	// padding: 15px 0
-// 	list-style: none
-// 	text-align: left // Ensures proper alignment if parent has it changed (e.g., modal footer)
-// 	background-color: $dropdown-bg
-// 	border-radius: 0px 0px 2px 2px
-// 	@media screen and (min-width: $screen-sm)
-// 		box-shadow: 1px 1px 0px fade-out(black, .8)
-// 	// padding-bottom: $box-pad/2
-
-// 	// Aligns the dropdown menu to right
-// 	&.right
-// 		right: 0
-// 		left: auto
-
-// 	// Links within the dropdown menu
-// 	> li > a
-// 		display: block
-// 		padding: $box-pad/2 $box-pad
-// 		clear: both
-// 		font-weight: normal
-// 		color: $dropdown-link-color
-// 		white-space: nowrap // prevent links from randomly breaking onto new lines
-// 		outline: 0
-// 		text-decoration: none
-// 		&:hover,
-// 		&:focus
-// 			text-decoration: none
-// 			background: $orange
-// 			color: $darkblue
-
-// 	> .active > a
-// 		&, &:hover, &:focus
-// 			text-decoration: none
-// 			outline: 0
-
-// // Open state for the dropdown
-// .open
-// 	> .dropdown-menu
-// 		display: block
-
-// @media (min-width: $screen-sm)
-// 	.nav.right
-// 		.dropdown-menu
-// 			right: 0
-// 			left: auto
-// 		.dropdown-menu-left
-// 			left: 0
-// 			right: auto
-
-
-
-
-
-
-// /* Navbar ------------------------------------ */
-// // --------------------------------------------//
-
-// $navbar-height: 55px
-// $nav-color: #FFF
-// $nav-color-hov: #FFF
-
-// .navbar
-// 	position: relative
-// 	min-height: $navbar-height
-// 	margin-bottom: 0
-// 	background-color: $darkblue
-// 	box-shadow: 1px 1px 0px fade-out(black, .8)
-// 	+clearfix
-
-// // When the vp < 768px
-// .nav-collapse
-// 	@media screen and (max-width: $screen-lg)
-// 		padding-right: $box-pad/2
-// 	+clearfix
-// 	-webkit-overflow-scrolling: touch
-// 	clear: left
-// 	@media (max-width: 767px)
-// 		> ul.nav.right
-// 			padding-top: $box-pad/2
-// 			padding-bottom: $box-pad
-// 		> ul.nav
-// 			padding-top: $box-pad
-
-// 	@media (min-width: $screen-sm)
-// 		clear: none
-// 		width: auto
-// 		&.collapse
-// 			display: block
-// 			height: auto
-// 			overflow: visible
-
-// .fixed-top
-// 	+place(fixed, 0, 0, auto, 0)
-// 	z-index: 14
-
-// .nav
-// 	@media (min-width: $screen-sm)
-// 		&.right
-// 			float: right
-
-// 	> li 
-// 		// text-align: center
-// 		> a
-// 			text-decoration: none
-// 			line-height: $line-height
-// 			color: white
-// 			padding: $box-pad/2 $box-pad
-// 			display: block
-// 			+transition(200ms)
-// 			&:hover, &:focus
-// 				color: $orange
-// 			&.btn
-// 				&.orange
-// 					text-align: left
-// 					max-width: 68px
-// 				@media screen and (max-width: 767px)
-// 					&.simple
-// 						border: 0
-// 						text-align: left
-	
-// 	@media (max-width: $screen-sm - 1)
-// 		// Dropdowns get custom display when collapsed
-// 		.open .dropdown-menu
-// 			position: static
-// 			float: none
-// 			width: auto
-// 			margin-top: 0
-// 			border: 0
-// 			> li > a
-// 				padding: 5px 15px 5px 25px
-// 				line-height: $line-height
-// 				&:hover,
-// 				&:focus
-// 					background-image: none
-
-// 	// Uncollapse the nav
-// 	@media (min-width: $screen-sm)
-// 		float: left
-// 		margin: 0
-// 		> li
-// 			padding-left: 10px
-// 			height: $navbar-height
-// 			display: inline-block
-// 			float: left
-// 			> a
-// 				+navbar-vertical-align(39)
-// 				display: inline-block
-// 				padding: $box-pad/2 $box-pad
-// 				color: $nav-link-color
-// 				text-decoration: none
-// 				&.btn
-// 					+button-size($box-pad/4, $box-pad, $font-size-base, $line-height, 2px)
-// 					+navbar-vertical-align(33)
-
-
-
-// // Navbar toggle -----------------------------//
-// .toggle
-// 	@media (min-width: $screen-sm)
-// 		display: none
-// 	position: relative
-// 	float: right
-// 	margin-right: $box-pad/2
-// 	padding: 5px 10px
-// 	+navbar-vertical-align(30)
-// 	background-image: none
-// 	background-color: transparent
-// 	border: none
-// 	&:focus
-// 		outline: 0
-
-// 	.icon-bar
-// 		display: block
-// 		width: 30px
-// 		height: 4px
-// 		border-radius: 1px
-// 		background: white
-	
-// 	.icon-bar + .icon-bar
-// 		margin-top: 4px
-
-
-// //navbar-collapse --------------------------//
-// .collapse
-// 	display: none
-// 	&.in
-// 		display: block
-
-// .collapsing
-// 	ul
-// 		display: block
-// 		float: none
-// 		padding-right: $box-pad/2
-// 	width: 100%
-	
-// 	.dropdown-menu
-// 		display: none
-// 	position: relative
-// 	height: 0
-// 	overflow: hidden
-// 	+transition-property(height, visibility)
-// 	+transition-duration(0.35s)
-// 	+transition-timing-function(ease)
-
-
-// // Logo ---------------------------------------//
-// .logo
-// 	width: 200px
-// 	float: left
-// 	@media screen and (max-width: $screen-lg)
-// 		padding-left: $box-pad/2
-// 	a, img
-// 		display: block
-// 	a
-// 		padding: 10px $box-pad/2 0 0
-
-
-// // the language button in the navbar
-// .lang
-// 	background-repeat: no-repeat
-// 	background-color: none
-// 	background-size: 32px auto
-// 	background-position: center
-// 	text-indent: -999999px
-// 	width: 0px
-// 	// +center-block
-// 	@media screen and (max-width: 767px)
-// 		margin-left: $box-pad
-// 	&.en
-// 		+background-image('gb.png')
-// 		background-repeat: no-repeat
-// 	&.fr
-// 		+background-image('fr.png')
-// 		background-repeat: no-repeat
-
-
-/* BUTTONS -------------------------------------- */
+/* BUTTON --------------------------------------- */
 // -----------------------------------------------//
 .btn
 	display: inline-block
@@ -1608,81 +506,30 @@ $cursor-disabled: not-allowed !default
 	touch-action: manipulation
 	cursor: pointer
 	background-image: none
-	border: 1px solid transparent
+	// border: 1px solid transparent
 	white-space: nowrap
-	+button-size($box-pad/2, $box-pad, $font-size-base, $line-height, 2px)
+	+buttonsize($box-pad/3, $box-pad, $font-size-base, $line-height, 2px)
 	+user-select(none)
 	&,
-	&:active, &.active
-		&:focus, &.focus
+	&:active
+		&:focus
 			+tab-focus
-	&:hover, &:focus, &.focus
-		// color: $darkblue
+	&:hover, &:focus
 		text-decoration: none
-	&:active,
-	&.active
+	&:active
 		outline: 0
 		background-image: none
-		// box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125)
-	&.disabled,
-	&[disabled],
-	fieldset[disabled] &
-		cursor: $cursor-disabled
-		opacity: 0.65
-		// box-shadow: none
-
 	a
-		&.disabled,
-		fieldset[disabled] &
-			pointer-events: none // Future-proof disabling of clicks on `<a>` elements
-	&.small
-		+button-size($box-pad/4, $box-pad/2, $font-size-small, $line-height, 2px)
-	&.big
-		+button-size($box-pad/2, $box-pad + $box-pad / 2, $font-size-base+2, $line-height, 2px)
-
 	&.white
 		border: 3px solid $white
 		color: white
 		font-weight: bold
 		text-shadow: 1px 1px 0px fade-out($black, .9)
+		text-transform: uppercase
 		border-radius: 0
+		background: transparent
+
 		+transition(200ms)
 		&:hover, &:focus
 			background-color: fade-out($white, .7)
 			// color: #fff
-	
-	&.darkblue
-		// background-color: $darkblue
-		// color: $orange
-	&.simple
-		border: 1px solid fade-out(white, 0.9)
-		// background-color: $darkblue
-		+transition(200ms)
-		&:hover, &:focus, &.focus
-			color: white
-			// border: 1px solid $orange
-
-
-// a sort of reset in this particular case
-button
-	background: transparent
-
-// // Custom Scrollbar ------------------------------------//
-// ::-webkit-scrollbar
-// 	width: 8px
-// ::-webkit-scrollbar-track
-// 	-webkit-box-shadow: none
-// 	-webkit-border-radius: 7px
-// 	border-radius: 7px
-// 	background: rgba(203, 203, 203, 1)
-// ::-webkit-scrollbar-thumb
-// 	-webkit-border-radius: 7px
-// 	border-radius: 7px
-// 	background: rgba(149, 149, 149, 1)
-// 	-webkit-box-shadow: none
-// ::-webkit-scrollbar-thumb:hover
-// 	background: rgba(255, 147, 38, .8)
-// ::-webkit-scrollbar-thumb:active
-// 	background: rgba(255, 147, 38, .8)
-// ::-webkit-scrollbar-thumb:window-inactive
-// 	background: rgba(255, 147, 38, .8)
