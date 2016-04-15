@@ -1,22 +1,10 @@
 // Defaults
-$pi: 3.14;
-$font-size-root:     16px !default;
 $font-size-base:     16px !default;
-$font-size-small:    13px;/*  */
 $font-family-base:   'helvetica', sans-serif;
-$line-height: 		 1.5 !default;
-
-$brand-primary :     #000000;
-$body-color: 		      #555;
+$line-height: 		    1.3em !default;
+$body-color: 		     #FFFFFF;
 $body-bg: 		       #f1f1f1;
-
-$abbr-border-color:  $brand-primary;
-$hover-focus:        $brand-primary;
-
-// $table-bg:					 #FFF;
-// $table-cell-padding: 1rem/2;
-// $text-muted:  			 #000;
-// $enable-hover-media-query: false;
+$link-color: 				 #FFFFFF;
 
 // Links
 // Style anchor elements.
@@ -47,12 +35,6 @@ $c12: #1a1c47; // lighter deep purple
 $white: #FFF;
 $black: $c00;
 
-$link-color:                 $brand-primary;
-$link-decoration:            none !default;
-$link-hover-color:           $link-color;
-$link-hover-decoration:      none !default;
-
-
 $box-pad: 22px;
 
 // Extra small screen / phone
@@ -80,43 +62,9 @@ $screen-xs-max:              ($screen-sm-min - 1) !default;
 $screen-sm-max:              ($screen-md-min - 1) !default;
 $screen-md-max:              ($screen-lg-min - 1) !default;
 
-// * {
-// 	outline: 1px dotted fade-out(black, 0.5);
-
-// 	@media screen and (min-width: $screen-xs) {
-// 		outline: 1px dotted fade-out(green, 0.5);
-// 	}
-// 	@media screen and (min-width: $screen-sm) {
-// 		outline: 1px dotted fade-out(olive, 0.5);
-// 	}
-// 	@media screen and (min-width: $screen-md) {
-// 		outline: 1px dotted fade-out(orange, 0.5);
-// 	}
-// 	@media screen and (min-width: $screen-lg) {
-// 		outline: 1px dotted fade-out(red, 0.5);
-// 	}
-// }
-
 // 200px minimum
 // optimal : 230px - 260px
 // 600px max 
 $box-h: 260px; // default box height
 $sm-h: 260px; // height for the small boxes on mobile
 $big-h: 310px; // height for the featured boxes
-
-
-// // dropdown -----------------------------------//
-// // --------------------------------------------//
-$nav-link-color: #fff;
-$cw: 4px;
-$zindex-dropdown: 10;
-$dropdown-link-color: $nav-link-color;
-// $dropdown-bg: $darkblue
-$cursor-disabled: not-allowed !default;
-
-
-
-
-
-
-
