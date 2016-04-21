@@ -256,7 +256,7 @@ p
 	.v-mid
 		padding: 0 $box-pad * 2
 	// the ghosty animation on rollover ----------- //
-	$stripe: 120px
+	$stripe: 190px
 	&:before
 		opacity: 1
 		content: ''
@@ -266,13 +266,13 @@ p
 		+gradient-horizontal-three-colors(fade-out($white, .99), fade-out($white, .6), 50%, fade-out($white, .99))
 		+rotate(30deg)
 	&:before
-		left: ($stripe * 4) * -1
+		left: ($stripe * 3.5) * -1
 		width: $stripe * 3
 		right: auto
 		opacity: 1
 	&:hover
 		&:before
-			+transition(300ms linear)
+			+transition(600ms linear)
 			+transition-delay(300ms)
 			left: $stripe * 7
 			opacity: 0
@@ -351,17 +351,12 @@ p
 	.icon, .title, .desc, .categ
 		+transition(400ms)
 
-.box > a,
-.box > div
+.box > a.github,
+.box > div.github
 	background-image: url("/images/github.svg")
 	background-size: 30px
 	background-repeat: no-repeat
 	background-position: top right
-
-.box.reading > a, .box.reading > div,
-.box.help> a, .box.subscribe > div,
-.box.social > a, .box.social > div
-	background: none
 
 // Common elements ---------------------------------------------------
 .icon
