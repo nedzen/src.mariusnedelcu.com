@@ -1,8 +1,80 @@
-@import 'mixins'
+@import 'mymixins'
 // @import 'syntax'
 
 // General ------------------------------------
-#pt
-	+center-block
-	+square(500px)
-	border: 1px solid #ccc
+$c1: #f7ff00 //yellow
+$c2: #f7ff00 //blueish
+$c3: #0c55fe //blue
+$c3: #8d30ee // purple
+$c4: #b811d0 // fucsia
+$c5: #f60fd4 // full blast fucsia
+$c6: #b9ff35 // green
+$c7: #b811d0 // green
+
+html,
+body
+	padding: 0
+	margin: 0
+	height: 100%
+
+body
+	position: relative
+
+.exp,
+.tops,
+.lay,
+.over
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	position: absolute
+	overflow: hidden
+
+// the gradient
+.exp
+	z-index: 0
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	position: absolute
+	+gradient-vertical(#ccc, #000)
+	+x-multiple-colored-gradient("left", #ff2222 0%, #ff22ff 15%, #2222ff 30%, #22ffff 45%, #22ff22 60%, #22ff22 75%, #ffff22 90%, #ff2222 100%)
+	// +x-multiple-colored-gradient("top", $c1 0%, $c2 15%, $c3 30%, $c4 45%, $c4 60%, $c5 75%, $c6 90%, $c6 100%)
+
+// the filter
+.tops
+	z-index: 2
+	-webkit-backdrop-filter: blur(13px) hue-rotate(0deg)
+	animation: move 9s infinite linear
+
+@keyframes move
+	to
+		-webkit-backdrop-filter: blur(13px) hue-rotate(360deg)
+
+// the mask image (white)
+.lay
+	z-index: 1
+	+background-image('mask.svg')
+	background-size: 100% auto
+
+// the svg // black
+
+.over
+	z-index: 9
+	+background-image('http://mariusnedelcu.com/images/noise_mask.png')
+	background-size: 95px 95px
+	// z-index: 5
+
+svg
+	width: 100%
+	// width: 600px
+	// display: block
+	// height: auto
+	// width: 100%
+	
+	path
+		fill: url(#MyGradient)
+		
+		// +x-multiple-colored-gradient("top", #ff2222 0%, #ff22ff 15%, #2222ff 30%, #22ffff 45%, #22ff22 60%, #22ff22 75%, #ffff22 90%, #ff2222 100%)
